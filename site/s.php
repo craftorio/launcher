@@ -12,6 +12,9 @@ include_once("loger.php");
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		$realUser = $row['user'];
+		if($realUser==null) {
+			exit;
+		}
 		$time = time();
 		$file = $capeurl.$realUser.'.png';
 		$exists = remoteFileExists($file);
