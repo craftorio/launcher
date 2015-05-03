@@ -32,4 +32,3 @@ function uuidConvert($string)
     return $string;
 }
 //uuidConvert($_GET['nick']);
-foreach($_REQUEST as $key => $val)
