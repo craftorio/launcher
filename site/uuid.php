@@ -32,3 +32,5 @@ function uuidConvert($string)
     return $string;
 }
 //uuidConvert($_GET['nick']);
+foreach($_REQUEST as $key => $val)
+echo '{"id":"'.uuidConvert(substr($key, 10)).'","name":"'.substr($key, 10).'"}';
