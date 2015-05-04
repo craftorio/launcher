@@ -5,7 +5,6 @@
 	include_once("loger.php");
 	@$user     = $_GET['username'];
     @$serverid = $_GET['serverId'];
-
 	$bad = array('error' => "Bad login",'errorMessage' => "Bad login");
 	try {
 		if (!preg_match("/^[a-zA-Z0-9_-]+$/", $user) || !preg_match("/^[a-zA-Z0-9_-]+$/", $serverid)){
@@ -19,7 +18,6 @@
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		$realUser = $row['user'];
 		$md5 = $row['md5'];
-
 		if($user == $realUser)
 		{
 			$time = time();
@@ -57,7 +55,6 @@
             
 		}
 		else exit(json_encode($bad));
-
 	} catch(PDOException $pe) {
 			die("Ошибка".$logger->WriteLine($log_date.$pe));  //вывод ошибок MySQL в m.log
 	}
