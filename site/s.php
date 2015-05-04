@@ -16,11 +16,13 @@ include_once("loger.php");
 			exit;
 		}
 		$time = time();
-		$file = $capeurl.$realUser.'.png';
-		$exists = remoteFileExists($file);
-		if ($exists) {
+		$file1 = $capeurl.$realUser.'.png';
+		$exists1 = remoteFileExists($file1);
+		$file2 = $skinurl.$realUser.'.png';
+		$exists2 = remoteFileExists($file2);
+		if ($exists1) {
 		    $cape = 
-		',
+		'
 		        "CAPE":
 				{
 					"url":"'.$capeurl.'?/'.$realUser.'$"
@@ -28,14 +30,27 @@ include_once("loger.php");
 		} else {
 			$cape = '';
 		}
+		if ($exists2) {
+		    $skin = 
+		'
+		        "SKIN":
+				{
+					"url":"'.$skinurl.$realUser.'.png"
+				}';
+		} else {
+			$skin = '';
+		}
+		if ($exists1 && $exists2) {
+			$spl = ',';
+		} else {
+			$spl = '';
+		}
+
 		$base64 ='
 		{
 			"timestamp":"'.$time.'","profileId":"'.$md5.'","profileName":"'.$realUser.'","textures":
 			{
-				"SKIN":
-				{
-					"url":"'.$skinurl.$realUser.'.png"
-				}'.$cape.'
+				'.$skin.$spl.$cape.'
 			}
 		}';
 		echo '
