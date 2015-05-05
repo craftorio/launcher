@@ -18,6 +18,8 @@ clients тут https://cloud.mail.ru/public/1fd2bdc3ca7f/site + демо кли�
 "https://sessionserver.mojang.com/session/minecraft/join" -> "http://minecraft/site/j.php"
 "https://sessionserver.mojang.com/session/minecraft/hasJoined" -> "http://minecraft/site/h.php"
 "https://sessionserver.mojang.com/session/minecraft/profile/" -> "http://minecraft/site/s.php?user="
+Ссылка для скинов блока головы в классе YggdrasilGameProfileRepository.class, класс изменен, брать с моего authlib.
+"https://api.mojang.com/profiles/" -> "http://minecraft/site/uuidskull.php"
 Переписана веб часть под mysql-pdo.
 Запуск новых версий теперь в аплете лаунчера.
 Полное шифрование запросов лаунчер-вебчасть.
