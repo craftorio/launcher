@@ -7,7 +7,7 @@ include_once("loger.php");
 		if (!preg_match("/^[a-zA-Z0-9_-]+$/", $md5)){
 			exit;
 		}
-		$stmt = $db->prepare("SELECT user,md5 FROM usersession WHERE md5= :md5");
+		$stmt = $db->prepare("SELECT user FROM usersession WHERE md5= :md5");
 		$stmt->bindValue(':md5', $md5);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
