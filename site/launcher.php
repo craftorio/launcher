@@ -8,9 +8,6 @@
     @$x = str_replace(" ", "+", $x);
     @$yd = Security::decrypt($x, $key2);
     @list($action, $client, $login, $postPass, $launchermd5, $ctoken) = explode(':', $yd);
-
-	if(!file_exists($uploaddirs)) die ("Путь к скинам не является папкой! Укажите в настройках правильный путь.");
-	if(!file_exists($uploaddirp)) die ("Путь к плащам не является папкой! Укажите в настройках правильный путь.");
 	
 	try {
 		
@@ -19,6 +16,9 @@
 		exit(Security::encrypt("errorLogin<$>", $key1));
     }
     include("connect.php");
+    if(!file_exists($uploaddirs)) die ("Путь к скинам не является папкой! Укажите в настройках правильный путь.");
+    if(!file_exists($uploaddirp)) die ("Путь к плащам не является папкой! Укажите в настройках правильный путь.");
+	
 	
 
     if($ctoken == "null") {
