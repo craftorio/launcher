@@ -1,12 +1,12 @@
 <?php
 define('INCLUDE_CHECK',true);
-include("connect.php");
 include_once("loger.php");
 @$md5 = $_GET['user'];
 	try {
 		if (!preg_match("/^[a-zA-Z0-9_-]+$/", $md5)){
 			exit;
 		}
+		include("connect.php");
 		$stmt = $db->prepare("SELECT user FROM usersession WHERE md5= :md5");
 		$stmt->bindValue(':md5', $md5);
 		$stmt->execute();

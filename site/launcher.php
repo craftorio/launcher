@@ -1,7 +1,6 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
 	define('INCLUDE_CHECK',true);
-	include("connect.php");
 	include_once("loger.php");
 	include_once("uuid.php");
 	include_once("security.php");
@@ -18,7 +17,8 @@
 	if (!preg_match("/^[a-zA-Z0-9_-]+$/", $login) || !preg_match("/^[a-zA-Z0-9_-]+$/", $postPass) || !preg_match("/^[a-zA-Z0-9_-]+$/", $action)) {
 	
 		exit(Security::encrypt("errorLogin<$>", $key1));
-    }	
+    }
+    include("connect.php");
 	
 
     if($ctoken == "null") {

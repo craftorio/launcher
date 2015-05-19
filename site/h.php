@@ -1,7 +1,6 @@
 <?php
     error_reporting(0);
 	define('INCLUDE_CHECK',true);
-	include ("connect.php");
 	include_once("loger.php");
 	@$user     = $_GET['username'];
     @$serverid = $_GET['serverId'];
@@ -10,7 +9,7 @@
 		if (!preg_match("/^[a-zA-Z0-9_-]+$/", $user) || !preg_match("/^[a-zA-Z0-9_-]+$/", $serverid)){
 			exit(json_encode($bad));
 		}
-		
+		include ("connect.php");
 		$stmt = $db->prepare("SELECT user,md5 FROM usersession WHERE user = :user and server = :serverid");
 		$stmt->bindValue(':user', $user);
 		$stmt->bindValue(':serverid', $serverid);
