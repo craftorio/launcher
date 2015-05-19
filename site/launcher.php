@@ -1,9 +1,8 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
-	define('INCLUDE_CHECK',true);
-	include_once("loger.php");
-	include_once("uuid.php");
-	include_once("security.php");
+    define('INCLUDE_CHECK',true);
+    include_once("loger.php");
+    include_once("uuid.php");
     @$x  = $_POST['action'];
     @$x = str_replace(" ", "+", $x);
     @$yd = Security::decrypt($x, $key2);
@@ -16,6 +15,7 @@
 		exit(Security::encrypt("errorLogin<$>", $key1));
     }
     include("connect.php");
+    include_once("security.php");
     if(!file_exists($uploaddirs)) die ("Путь к скинам не является папкой! Укажите в настройках правильный путь.");
     if(!file_exists($uploaddirp)) die ("Путь к плащам не является папкой! Укажите в настройках правильный путь.");
 	
