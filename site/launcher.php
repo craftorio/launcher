@@ -1,24 +1,27 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
-    define('INCLUDE_CHECK',true);
-    include_once("loger.php");
-    include_once("uuid.php");
-    @$x  = $_POST['action'];
-    @$x = str_replace(" ", "+", $x);
-    @$yd = Security::decrypt($x, $key2);
-    @list($action, $client, $login, $postPass, $launchermd5, $ctoken) = explode(':', $yd);
-	
+	define('INCLUDE_CHECK',true);
+	if(isset ($_POST['action'])) {
+		include("connect.php");
+		include_once("security.php");
+		include_once("loger.php");
+		include_once("uuid.php");
+		$x  = $_POST['action'];
+		$x = str_replace(" ", "+", $x);
+		$yd = Security::decrypt($x, $key2);
+		list($action, $client, $login, $postPass, $launchermd5, $ctoken) = explode(':', $yd);
+	} else {
+		exit;
+	}
+
 	try {
 		
 	if (!preg_match("/^[a-zA-Z0-9_-]+$/", $login) || !preg_match("/^[a-zA-Z0-9_-]+$/", $postPass) || !preg_match("/^[a-zA-Z0-9_-]+$/", $action)) {
 	
 		exit(Security::encrypt("errorLogin<$>", $key1));
     }
-    include("connect.php");
-    include_once("security.php");
-    if(!file_exists($uploaddirs)) die ("Путь к скинам не является папкой! Укажите в настройках правильный путь.");
-    if(!file_exists($uploaddirp)) die ("Путь к плащам не является папкой! Укажите в настройках правильный путь.");
-	
+	if(!file_exists($uploaddirs)) die ("Путь к скинам не является папкой! Укажите в настройках правильный путь.");
+	if(!file_exists($uploaddirp)) die ("Путь к плащам не является папкой! Укажите в настройках правильный путь.");
 	
 
     if($ctoken == "null") {
