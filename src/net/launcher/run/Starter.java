@@ -9,7 +9,7 @@ import net.launcher.utils.ProcessUtils;
 public class Starter
 {
 	public static void main(String[] args) throws Exception
-	{		
+	{
 		try {
 			String jarpath = Starter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
 			int memory = BaseUtils.getPropertyInt("memory", 768);

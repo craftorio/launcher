@@ -15,7 +15,7 @@ public class PostUtils
 	private static Random random = new Random();
 	private URLConnection connection;
 	private OutputStream os = null;
-	private String boundary = "---------------------------" + randomString() + randomString() + randomString();
+	private String boundary = randomString() + randomString() + randomString();
 
 	private void connect() throws IOException
 	{
@@ -47,7 +47,7 @@ public class PostUtils
 		newline();
 	}
 
-	private static String randomString()
+	static String randomString()
 	{
 		return Long.toString(random.nextLong(), 36);
 	}
@@ -62,6 +62,9 @@ public class PostUtils
 	{
 		this.connection = connection;
 		connection.setDoOutput(true);
+		connection.setRequestProperty("User-Agent", "Launcher/64.0");
+		connection.setRequestProperty("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4");
+		connection.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 		connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
 	}
 

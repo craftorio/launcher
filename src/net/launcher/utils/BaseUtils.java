@@ -198,6 +198,8 @@ public class BaseUtils
 		if(config.checkProperty(s)) return config.getPropertyBoolean(s);
 		return b;
 	}
+	
+	static String boundary = PostUtils.randomString() + PostUtils.randomString() + PostUtils.randomString();
 
     public static String runHTTP(String URL, String params, boolean send)
     {
@@ -207,10 +209,11 @@ public class BaseUtils
 
             URL url = new URL(URL + params);
             ct = (HttpURLConnection) url.openConnection();
-            ct.setRequestMethod("GET");
-            ct.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            ct.setRequestProperty("Content-Length", "0");
-            ct.setRequestProperty("Content-Language", "en-US");
+            ct.setRequestMethod("GET");    
+            ct.setRequestProperty("User-Agent", "Launcher/64.0");
+            ct.setRequestProperty("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4");
+            ct.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+            ct.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
             ct.setUseCaches(false);
             ct.setDoInput(true);
             ct.setDoOutput(true);

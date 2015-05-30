@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 //import java.net.URLConnection;
 import java.security.MessageDigest;
@@ -34,6 +35,7 @@ public class UpdaterThread extends Thread
 		this.answer = answer;
 	}
 	
+	String boundary = PostUtils.randomString() + PostUtils.randomString() + PostUtils.randomString();
 	public void run()
 	{ try {
 		String pathTo = BaseUtils.getAssetsDir().getAbsolutePath();
@@ -56,7 +58,16 @@ public class UpdaterThread extends Thread
 			} catch (Exception e) {
 			}
 			if (!dir.exists()) dir.mkdirs();
-			InputStream is = new BufferedInputStream(new URL(urlTo + file).openStream());
+			HttpURLConnection ct = null;
+            URL url = new URL(urlTo + file);
+            ct = (HttpURLConnection) url.openConnection();
+            ct.setRequestMethod("GET");    
+            ct.setRequestProperty("User-Agent", "Launcher/64.0");
+            ct.setRequestProperty("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4");
+            ct.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+            ct.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+			
+			InputStream is = new BufferedInputStream(ct.getInputStream());
 			FileOutputStream fos = new FileOutputStream(pathTo + "/" + currentfile);
 			long downloadStartTime = System.currentTimeMillis();
 			int downloadedAmount = 0, bs = 0;
