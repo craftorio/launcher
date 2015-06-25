@@ -53,6 +53,7 @@ public class Launcher extends Applet implements AppletStub
 		{
 			BaseUtils.patchDir(cl);
 			Class <?> Mine = cl.loadClass("net.minecraft.client.MinecraftApplet");
+			System.setProperty("minecraft.applet.WrapperClass", Launcher.class.getName());
 			Applet applet = (Applet)Mine.newInstance();
 			mcApplet = applet;
 			applet.setStub(this);
