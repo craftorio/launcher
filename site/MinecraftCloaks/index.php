@@ -1,7 +1,7 @@
 <?php
 foreach($_REQUEST as $key => $val)
 $imgBig = '1.png';
-$imgSmall = str_replace(array('$', '/'), array('', ''), $key.'.png');
+$imgSmall = str_replace(array('$', '/'), array('', ''), @$key.'.png');
 @$img1 = imagecreatefrompng($imgBig);
 @$img2 = imagecreatefrompng($imgSmall);
 if($img1 and $img2) {
