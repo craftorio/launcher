@@ -196,7 +196,3 @@
 	} catch(PDOException $pe) {
 		die(Security::encrypt("errorsql", $key1).$logger->WriteLine($log_date.$pe));  //вывод ошибок MySQL в m.log
 	}
-
-	function remoteFileExists($url){
-	    RETURN (bool)PREG_MATCH('~HTTP/1\.\d\s+200\s+OK~', @CURRENT(get_headers($url)));
-	}

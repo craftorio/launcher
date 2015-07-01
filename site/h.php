@@ -21,7 +21,7 @@
 		{
 			$time = time();
 			$file = $capeurl.$realUser.'.png';
-			$exists = remoteFileExists($file);
+			$exists = file_exists($uploaddirp.'/'.$realUser.'.png');
 			if ($exists) {
 			    $cape = 
 			',

@@ -17,9 +17,9 @@ include_once("loger.php");
 		}
 		$time = time();
 		$file1 = $capeurl.$realUser.'.png';
-		$exists1 = remoteFileExists($file1);
+		$exists1 = file_exists($uploaddirp.'/'.$realUser.'.png');
 		$file2 = $skinurl.$realUser.'.png';
-		$exists2 = remoteFileExists($file2);
+		$exists2 = file_exists($uploaddirs.'/'.$realUser.'.png');
 		if ($exists1) {
 		    $cape = 
 		'
