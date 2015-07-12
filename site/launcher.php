@@ -353,27 +353,28 @@
 			echo "success:".$money;
 		} else echo "keyerr";
 	} else if($action == 'uploadskin') {
-		if(!is_uploaded_file($_FILES['ufile']['tmp_name'])) die("nofile");
-		$imageinfo = getimagesize($_FILES['ufile']['tmp_name']);
-		if($imageinfo['mime'] != 'image/png' || $imageinfo["0"] != '64' || $imageinfo["1"] != '32') die("skinerr");
-		$uploadfile = "".$uploaddirs."/".$login.".png";
-		if(move_uploaded_file($_FILES['ufile']['tmp_name'], $uploadfile)) echo "success";
-		else echo "fileerr";
+		$sk = base64_decode($_POST['ufile']);
+		if($sk==null) die("nofile");
+		$image = imagecreatefromstring($sk);
+		if(imagestype($sk) != 'image/png' || imagesx($image) != '64' || imagesy($image) != '32') die("skinerr");
+        imagesavealpha($image, true);
+        $uploadfile = "".$uploaddirs."/".$login.".png";
+		if(imagepng($image,$uploadfile)) echo "success";
+		else exit("fileerr");
 	} else if($action == 'uploadcloak') {
 		$stmt = $db->prepare("SELECT user,realmoney FROM usersession WHERE user= :login");
 		$stmt->bindValue(':login', $login);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		$query = $row['realmoney']; if($query < $cloakPrice) die("moneyno");
-		if(!is_uploaded_file($_FILES['ufile']['tmp_name'])) die("nofile");
-		$imageinfo = getimagesize($_FILES['ufile']['tmp_name']);
-		$go = false;
-		if(($imageinfo['mime'] != 'image/png' || $imageinfo["0"] == '64' || $imageinfo["1"] == '32')){
-		$go = true;
-		} else echo 'cloakerr';
-		if($go) {
-		$uploadfile = "".$uploaddirp."/".$login.".png";
-		if(!move_uploaded_file($_FILES['ufile']['tmp_name'], $uploadfile)) die("fileerr");
+		$sk = base64_decode($_POST['ufile']);
+		if($sk==null) die("nofile");
+		$image = imagecreatefromstring($sk);
+		if(imagestype($sk) != 'image/png' || imagesx($image) != '64' || imagesy($image) != '32') die("cloakerr");
+        imagesavealpha($image, true);
+        $uploadfile = "".$uploaddirp."/".$login.".png";
+		if(imagepng($image,$uploadfile));
+		else exit("fileerr");
 		$stmt = $db->prepare("UPDATE usersession SET realmoney = realmoney - $cloakPrice WHERE user= :login");
 		$stmt->bindValue(':login', $login);
 		$stmt->execute();
@@ -382,7 +383,7 @@
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		echo "success:".$row['realmoney'];
-	}} else if($action == 'buyvip') {
+	} else if($action == 'buyvip') {
 		$stmt = $db->prepare("SELECT user,realmoney FROM usersession WHERE user= :login");
 		$stmt->bindValue(':login', $login);
 		$stmt->execute();
@@ -735,3 +736,23 @@
 
           return $password;
         }
+
+    function imagestype($binary) {
+	    if (
+	        !preg_match(
+	            '/\A(?:(\xff\xd8\xff)|(GIF8[79]a)|(\x89PNG\x0d\x0a)|(BM)|(\x49\x49(?:\x2a\x00|\x00\x4a))|(FORM.{4}ILBM))/',
+	            $binary, $hits
+	        )
+	    ) {
+	        return 'application/octet-stream';
+	    }
+	    static $type = array (
+	        1 => 'image/jpeg',
+	        2 => 'image/gif',
+	        3 => 'image/png',
+	        4 => 'image/x-windows-bmp',
+	        5 => 'image/tiff',
+	        6 => 'image/x-ilbm',
+	    );
+	    return $type[count($hits) - 1];
+    }

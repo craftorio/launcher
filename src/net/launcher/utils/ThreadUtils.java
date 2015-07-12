@@ -6,6 +6,8 @@ import static net.launcher.utils.BaseUtils.setProperty;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 import net.y;
 import net.launcher.components.Frame;
@@ -304,16 +306,41 @@ public class ThreadUtils
 		serverPollThread.start();
 	}
 
+	public static byte[] getBytesFromFile(File file) throws Exception {
+	    InputStream is = new FileInputStream(file);
+	    long length = file.length();
+	    byte[] bytes = new byte[(int)length];
+	    int offset = 0;
+	    int numRead = 0;
+	    while (offset < bytes.length
+	        && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) {
+
+	        offset += numRead;
+	    }
+	    is.close();
+
+	    return bytes;
+	}
+	
 	public static void upload(final File file, final int type)
 	{
 		new Thread(){ public void run()
 		{
 			String get = type > 0 ? "uploadcloak" : "uploadskin";
+			byte[] bytes;
+			String bytes64 = null;
+			try {
+				bytes = getBytesFromFile(file);
+				bytes64 = new String(new sun.misc.BASE64Encoder().encode(bytes));
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			String answer = BaseUtils.execute(buildUrl("launcher.php"), new Object[]
 			{
 				"action", encrypt(get+":0:"+Frame.login.getText()+":"+token, Settings.key2),
-				"ufile",  file
+				"ufile",  bytes64
 			});
+			BaseUtils.send(answer);
 			boolean error = false;
 			if(answer == null)
 			{
