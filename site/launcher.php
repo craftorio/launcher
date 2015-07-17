@@ -28,7 +28,7 @@
 
 
 	if($crypt === 'hash_md5' || $crypt === 'hash_authme' || $crypt === 'hash_xauth' || $crypt === 'hash_cauth' || $crypt === 'hash_joomla' || $crypt === 'hash_joomla_new' || $crypt === 'hash_wordpress' || $crypt === 'hash_dle' || $crypt === 'hash_launcher' || $crypt === 'hash_drupal' || $crypt === 'hash_smf' || $crypt === 'hash_imagecms') {
-		$stmt = $db->prepare("SELECT $db_columnUser,$db_columnPass FROM $db_table WHERE $db_columnUser= :login");
+		$stmt = $db->prepare("SELECT $db_columnUser,$db_columnPass FROM $db_table WHERE BINARY $db_columnUser= :login");
 		$stmt->bindValue(':login', $login);
 		$stmt->execute();
 		$stmt->bindColumn($db_columnPass, $realPass);
@@ -38,7 +38,7 @@
 		$salt = $realUser;
 	} else if ($crypt === 'hash_ipb' || $crypt === 'hash_vbulletin' || $crypt === 'hash_punbb') {
 		
-		$stmt = $db->prepare("SELECT $db_columnUser,$db_columnPass,$db_columnSalt FROM $db_table WHERE $db_columnUser= :login");
+		$stmt = $db->prepare("SELECT $db_columnUser,$db_columnPass,$db_columnSalt FROM $db_table WHERE BINARY $db_columnUser= :login");
 		$stmt->bindValue(':login', $login);
 		$stmt->execute();
 		$stmt->bindColumn($db_columnPass, $realPass);
@@ -47,7 +47,7 @@
 		$stmt->fetch();
 	} else if($crypt == 'hash_xenforo') {
 
-		$stmt = $db->prepare("SELECT scheme_class, $db_table.$db_columnId,$db_table.$db_columnUser,$db_tableOther.$db_columnId,$db_tableOther.$db_columnPass FROM $db_table, $db_tableOther WHERE $db_table.$db_columnId = $db_tableOther.$db_columnId AND $db_table.$db_columnUser= :login");
+		$stmt = $db->prepare("SELECT scheme_class, $db_table.$db_columnId,$db_table.$db_columnUser,$db_tableOther.$db_columnId,$db_tableOther.$db_columnPass FROM $db_table, $db_tableOther WHERE BINARY $db_table.$db_columnId = $db_tableOther.$db_columnId AND $db_table.$db_columnUser= :login");
 		$stmt->bindValue(':login', $login);
 		$stmt->execute();
 		$stmt->bindColumn($db_columnUser, $realUser);
@@ -62,9 +62,8 @@
 	} else die(Security::encrypt("badhash<$>", $key1));
 
 	$checkPass = hash_name($crypt, $realPass, $postPass, @$salt);
-	if($checkPass !=  $realPass)  die(Security::encrypt('errorLogin<$>', $key1));
 
-	if($useantibrut) {	
+	if($useantibrut) {
 		$ip  = getenv('REMOTE_ADDR');	
 		$time = time();
 		$bantime = $time+(10);
@@ -90,10 +89,8 @@
 		}
 
     } else {
-		if ($login !== $realUser) {
-			exit(Security::encrypt("errorLogin<$>", $key1)); }
-		if(!strcmp($realPass,$checkPass) == 0 || !$realPass) die(Security::encrypt("errorLogin<$>", $key1));
-    }}
+		if($checkPass !=  $realPass)  die(Security::encrypt('errorLogin<$>', $key1));
+	}}
 
         if($ctoken == "null") {
          	$acesstoken = token();
