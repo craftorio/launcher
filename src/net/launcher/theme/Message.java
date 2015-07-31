@@ -9,8 +9,12 @@ public class Message {
 	public static String Register = "Регистрация";
 	public static String Login = "Логин...";
 	//Регистрация
-	public static String okreg = "Регистрация";
 	public static String closereg = "Отмена";
+	public static String register = "Регистрация";
+	public static String textloginReg1 = "Ник:";
+	public static String textpasswordReg1 = "Пароль:";
+	public static String textpassword2Reg1 = "Пароль:";
+	public static String textmailReg1 = "E-mail:";
 	//Настройки
 	public static String options = "Настройки";
 	public static String options_close = "Закрыть";
@@ -48,12 +52,6 @@ public class Message {
 	public static String jobname = "Профессия: %%";
 	public static String joblvl = "Уровень: %%";
 	public static String jobexp = "Опыт: %%";
-	//Регистрация
-	public static String register = "Регистрация";
-	public static String textloginReg1 = "Ник:";
-	public static String textpasswordReg1 = "Пароль:";
-	public static String textpassword2Reg1 = "Пароль:";
-	public static String textmailReg1 = "E-mail:";
 	//Обновление клиента
 	public static String currentfile = "Текущий файл: %%";
 	public static String totalsize = "Всего: %% байт";
