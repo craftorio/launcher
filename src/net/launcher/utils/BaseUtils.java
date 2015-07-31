@@ -26,11 +26,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.imageio.ImageIO;
+
 import net.launcher.components.Files;
 import net.launcher.components.Frame;
 import net.launcher.run.Settings;
 import net.launcher.run.Starter;
+import net.launcher.theme.Message;
 
 public class BaseUtils
 {
@@ -491,11 +494,11 @@ public class BaseUtils
 	{
 		if (servtype == 1)
 		{
-			if(args[0] == null && args[1] == null && args[2] == null) return "Сервер выключен";
+			if(args[0] == null && args[1] == null && args[2] == null) return Message.serveroff;
 			if(args[4] != null && args[5] != null)
 			{
-				if(args[4].equals(args[5])) return "Сервер переполнен (Всего слотов: " + args[4] + ")";
-				return "На сервере " + args[4] + " из " + args[5] + " игроков";
+				if(args[4].equals(args[5])) return Message.serveroff.replace("%%", args[4]);
+				return Message.serveron.replace("%", args[4]).replace("%%", args[5]);
 			}
 		}
 		else
@@ -503,15 +506,15 @@ public class BaseUtils
 		{
 
 
-		if(args[0] == null && args[1] == null && args[2] == null) return "Сервер выключен";
+		if(args[0] == null && args[1] == null && args[2] == null) return Message.serveroff;
 		if(args[1] != null && args[2] != null)
 		{
 			int i = args.length;
-			if(args[i-2].equals(args[i-1])) return "Сервер переполнен (Всего слотов: " + args[i-1] + ")";
-			return "На сервере " + args[i-2] + " из " + args[i-1] + " игроков";
+			if(args[i-2].equals(args[i-1])) return Message.serveroff.replace("%%", args[i-1]);
+			return Message.serveron.replace("%", args[i-2]).replace("%%", args[i-1]);
 		}
 		}
-		return "Ошибка получения информации";
+		return Message.servererr;
 	}
 
 	public static BufferedImage genServerIcon(String[] args)

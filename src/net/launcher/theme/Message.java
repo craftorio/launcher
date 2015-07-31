@@ -83,4 +83,10 @@ public class Message {
 	public static String err2 = "%%";
 	//Выполнение
 	public static String Loading = "Выполнение...";
+	//Сервер
+	public static String serveroff = "Сервер выключен";
+	public static String serverfull = "Сервер переполнен (Всего слотов: %%)";
+	public static String serveron = "На сервере % из %% игроков";
+	public static String servererr = "Ошибка получения информации";
+			
 }
