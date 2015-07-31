@@ -312,8 +312,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.type = 0;
 		panel.timer.stop();
 		panel.removeAll();
-		addFrameComp();
 		addAuthComp();
+		addFrameComp();
 		repaint();
 	}
 
@@ -447,9 +447,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			panel.remove(close);
 			BufferedImage screen = ImageUtils.sceenComponent(panel);
 			panel.removeAll();
-			addFrameComp();
 			panel.setAuthState(screen);
 			ThreadUtils.auth(personal);
+			addFrameComp();
 		}
 
 		if(e.getSource() == toOptions)
@@ -568,19 +568,19 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	public void setUpdateComp(String version)
 	{
 		panel.removeAll();
-		addFrameComp();
 		panel.setUpdateState(version);
 		panel.add(update_exe);
 		panel.add(update_jar);
 		panel.add(update_no);
+		addFrameComp();
 		repaint();
 	}
 
 	public void setUpdateState()
 	{
 		panel.removeAll();
-		addFrameComp();
 		panel.setUpdateStateMC();
+		addFrameComp();
 		repaint();
 	}
 
@@ -590,17 +590,14 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.remove(close);
 		BufferedImage screen = ImageUtils.sceenComponent(panel);
 		panel.removeAll();
-		addFrameComp();
 		panel.setRegister(screen);
-
 		panel.add(loginReg);
         panel.add(passwordReg);
         panel.add(password2Reg);
         panel.add(mailReg);
-                
         panel.add(okreg);
 		panel.add(closereg);
-
+		addFrameComp();
 		repaint();
 	}
 
@@ -610,7 +607,6 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.remove(close);
 		BufferedImage screen = ImageUtils.sceenComponent(panel);
 		panel.removeAll();
-		addFrameComp();
 		panel.setOptions(screen);
 		panel.add(loadnews);
         panel.add(Music);
@@ -619,13 +615,13 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.add(fullscreen);
 		panel.add(memory);
 		panel.add(options_close);
+		addFrameComp();
 		repaint();
 	}        
         
 	public void setPersonal(PersonalContainer pc)
 	{
 		panel.removeAll();
-		addFrameComp();
 
 		if(pc.canUploadCloak) panel.add(buyCloak);
 		if(pc.canUploadSkin) panel.add(changeSkin);
@@ -676,6 +672,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.add(toGamePersonal);
 
 		panel.setPersonalState(pc);
+		addFrameComp();
 		repaint();
 	}
 
@@ -685,14 +682,14 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.remove(close);
 		BufferedImage screen = ImageUtils.sceenComponent(panel);
 		panel.removeAll();
-		addFrameComp();
 		panel.setLoadingState(screen, Message.Loading);
+		addFrameComp();
 	}
 
 	public void setError(String s)
 	{
 		panel.removeAll();
-		addFrameComp();
 		panel.setErrorState(s);
+		addFrameComp();
 	}
 }
