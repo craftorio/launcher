@@ -8,8 +8,6 @@ import net.launcher.components.Align;
 import net.launcher.components.ButtonStyle;
 import net.launcher.components.ComboboxStyle;
 import net.launcher.components.ComponentStyle;
-import net.launcher.components.DragbuttonStyle;
-import net.launcher.components.DraggerStyle;
 import net.launcher.components.LinklabelStyle;
 import net.launcher.components.PassfieldStyle;
 import net.launcher.components.ServerbarStyle;
@@ -33,9 +31,6 @@ public class LoginTheme
 	
 	public static ComponentStyle newsBrowser= new ComponentStyle(0, 0, 0, 0, "font", 0F, Color.WHITE, true);
 	public static LinklabelStyle links		= new LinklabelStyle(520, 415, 0, "font", 16F, Color.WHITE, Color.LIGHT_GRAY);
-
-	public static DragbuttonStyle dbuttons	= new DragbuttonStyle(429, 14, 35, 24, 462, 14, 35, 24, "draggbutton", true);
-	public static DraggerStyle	  dragger	= new DraggerStyle(0, 0, 506, 58, "font", 30F, Color.decode("0xACB362"), Align.LEFT);
 	
 	public static ButtonStyle	 update_exe	= new ButtonStyle(96, 440, 150, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);
 	public static ButtonStyle	 update_jar	= new ButtonStyle(262, 440, 150, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);

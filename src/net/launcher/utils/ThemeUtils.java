@@ -10,6 +10,7 @@ import static net.launcher.theme.LoginTheme.*;
 import static net.launcher.theme.OptionsTheme.*;
 import static net.launcher.theme.RegTheme.*;
 import static net.launcher.theme.PersonalTheme.*;
+import static net.launcher.theme.DraggerTheme.*;
 
 public class ThemeUtils extends BaseUtils
 {
@@ -24,6 +25,7 @@ public class ThemeUtils extends BaseUtils
 			i += fm.stringWidth(link.getText()) + links.margin;
 		}
 		
+		title.apply(main.title);
 		dragger.apply(main.dragger);
 		dbuttons.apply(main.hide, main.close);
 		toGame.apply(Frame.toGame);

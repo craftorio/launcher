@@ -25,6 +25,7 @@ import static net.launcher.theme.OptionsTheme.*;
 import static net.launcher.theme.RegTheme.*;
 import static net.launcher.theme.PersonalTheme.*;
 import static net.launcher.theme.UpdaterTheme.*;
+import static net.launcher.theme.DraggerTheme.*;
 import static net.launcher.utils.ImageUtils.*;
 
 public class Panel extends JPanel

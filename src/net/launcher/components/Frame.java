@@ -47,6 +47,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	public static Frame main;
     public Panel panel = new Panel(0);
 	public Dragger dragger = new Dragger();
+	public Title title = new Title();
 	public static Button toGame = new Button(Message.Game);
 	public static Button toAuth = new Button(Message.Auth);
 	public static Button toLogout = new Button(Message.Logout);
@@ -302,6 +303,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			panel.add(hide);
 			panel.add(close);
 			panel.add(dragger);
+			panel.add(title);
 		}
 	}
 
