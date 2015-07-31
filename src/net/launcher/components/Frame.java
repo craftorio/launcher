@@ -330,8 +330,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.add(toOptions);
         panel.add(toRegister);
 		panel.add(login);
-		panel.add(bpane);
 		panel.add(password);
+		panel.add(bpane);
 	}
 
 	//Старт программы
