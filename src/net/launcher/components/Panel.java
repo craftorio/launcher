@@ -136,7 +136,6 @@ public class Panel extends JPanel
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
 			g.setColor(OptionsTheme.memory.textColor);
 			g.drawString(Message.options, titleX, titleY);
-			g.drawString("dragoy.net", titleX-130, titleY);
 			g.setFont(g.getFont().deriveFont(fontbasesize));
 			g.drawString(Message.memory, memory.x, memory.y - 5);
 		} else if(type == 55)
