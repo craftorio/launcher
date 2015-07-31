@@ -84,7 +84,7 @@ public class Message {
 	//Сервер
 	public static String serveroff = "Сервер выключен";
 	public static String serverfull = "Сервер переполнен (Всего слотов: %%)";
-	public static String serveron = "На сервере % из %% игроков";
+	public static String serveron = "На сервере %% из ## игроков";
 	public static String servererr = "Ошибка получения информации";
 			
 }

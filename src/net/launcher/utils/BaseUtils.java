@@ -498,7 +498,7 @@ public class BaseUtils
 			if(args[4] != null && args[5] != null)
 			{
 				if(args[4].equals(args[5])) return Message.serveroff.replace("%%", args[4]);
-				return Message.serveron.replace("%", args[4]).replace("%%", args[5]);
+				return Message.serveron.replace("%%", args[4]).replace("##", args[5]);
 			}
 		}
 		else
@@ -511,7 +511,7 @@ public class BaseUtils
 		{
 			int i = args.length;
 			if(args[i-2].equals(args[i-1])) return Message.serveroff.replace("%%", args[i-1]);
-			return Message.serveron.replace("%", args[i-2]).replace("%%", args[i-1]);
+			return Message.serveron.replace("%%", args[i-2]).replace("##", args[i-1]);
 		}
 		}
 		return Message.servererr;
