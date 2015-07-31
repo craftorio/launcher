@@ -49,7 +49,6 @@ public class Settings
 	public static final String key1              = "1234567891234567"; //16 Character Key Ключ пост запросов
 	public static final String key2              = "1234567891234567"; //16 Character Key Ключ пост запросов
 	
-
 	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
 	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
 	public static final String masterVersion     = "final_RC4"; //Версия лаунчера

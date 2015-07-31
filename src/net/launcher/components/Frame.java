@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,7 +24,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+
 import net.launcher.run.Settings;
+import net.launcher.theme.Message;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ImageUtils;
 import net.launcher.utils.ThemeUtils;
@@ -44,12 +47,12 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	public static Frame main;
     public Panel panel = new Panel(0);
 	public Dragger dragger = new Dragger();
-	public static Button toGame = new Button("Играть");
-	public static Button toAuth = new Button("Авторизация");
-	public static Button toLogout = new Button("Выход");
-	public static Button toPersonal = new Button("Войти в ЛК");
-	public Button toOptions = new Button("Настройки");
-    public static Button toRegister = new Button("Регистрация");
+	public static Button toGame = new Button(Message.Game);
+	public static Button toAuth = new Button(Message.Auth);
+	public static Button toLogout = new Button(Message.Logout);
+	public static Button toPersonal = new Button(Message.Personal);
+	public Button toOptions = new Button(Message.Options);
+    public static Button toRegister = new Button(Message.Register);
 	public JTextPane browser = new JTextPane();
 	public JTextPane personalBrowser = new JTextPane();
 	public JScrollPane bpane = new JScrollPane(browser);
@@ -68,11 +71,11 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	public Button update_jar = new Button("jar");
 	public Button update_no = new Button("Выход");
 
-	public Checkbox loadnews = new Checkbox("Загружать новости");
-    public Checkbox Music = new Checkbox("Музыка в лаунчере");
-	public Checkbox updatepr = new Checkbox("Принудительное обновление");
-	public Checkbox cleanDir = new Checkbox("Очистить папку");
-	public Checkbox fullscreen = new Checkbox("Запустить в полный экран");
+	public Checkbox loadnews = new Checkbox(Message.loadnews);
+    public Checkbox Music = new Checkbox(Message.Music);
+	public Checkbox updatepr = new Checkbox(Message.updatepr);
+	public Checkbox cleanDir = new Checkbox(Message.cleanDir);
+	public Checkbox fullscreen = new Checkbox(Message.fullscreen);
 	public Textfield memory = new Textfield();
                         
                         
@@ -80,23 +83,23 @@ public class Frame extends JFrame implements ActionListener, FocusListener
     public Passfield passwordReg = new Passfield();
     public Passfield password2Reg = new Passfield();
     public Textfield mailReg = new Textfield();
-    public Button okreg = new Button("Регистрация");
-    public Button closereg = new Button("Отмена");
+    public Button okreg = new Button(Message.okreg);
+    public Button closereg = new Button(Message.closereg);
                         
-	public Button options_close = new Button("Закрыть");
+	public Button options_close = new Button(Message.options_close);
 
-	public Button buyCloak = new Button("Купить плащ");
-	public Button changeSkin = new Button("Сменить скин");
+	public Button buyCloak = new Button(Message.buyCloak);
+	public Button changeSkin = new Button(Message.changeSkin);
 	public Textfield vaucher = new Textfield();
-	public Button vaucherButton = new Button("Пополнить");
-	public Button buyVaucher = new Button("Купить");
+	public Button vaucherButton = new Button(Message.vaucherButton);
+	public Button buyVaucher = new Button(Message.buyVaucher);
 	public Textfield exchangeFrom = new Textfield();
 	public Textfield exchangeTo = new Textfield();
-	public Button exchangeButton= new Button("Обменять");
+	public Button exchangeButton= new Button(Message.exchangeButton);
 	public Button buyVip = new Button(BaseUtils.empty);
 	public Button buyPremium = new Button(BaseUtils.empty);
-	public Button buyUnban = new Button("Купить разбан");
-	public Button toGamePersonal = new Button("В игру");
+	public Button buyUnban = new Button(Message.buyUnban);
+	public Button toGamePersonal = new Button(Message.GamePersonal);
 
 	public Frame()
 	{			
@@ -643,10 +646,10 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 
 		if(pc.canBuyUnban) panel.add(buyUnban);
 
-		buyVip.setText("Купить VIP");
+		buyVip.setText(Message.buyVip);
 		buyVip.setEnabled(true);
 
-		buyPremium.setText("Купить Premium");
+		buyPremium.setText(Message.buyPremium);
 		buyPremium.setEnabled(true);
 
 		if(pc.ugroup.equals("Banned"))
@@ -655,12 +658,12 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			buyVip.setEnabled(false);
 		} else if(pc.ugroup.equals("VIP"))
 		{
-			buyVip.setText("Продлить VIP");
+			buyVip.setText(Message.buyVipN);
 			buyPremium.setEnabled(false);
 			buyUnban.setEnabled(false);
 		} else if(pc.ugroup.equals("Premium"))
 		{
-			buyPremium.setText("Продлить Premium");
+			buyPremium.setText(Message.buyPremiumN);
 			buyVip.setEnabled(false);
 			buyUnban.setEnabled(false);
 		} else if(pc.ugroup.equals("User"))

@@ -12,11 +12,13 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import net.launcher.run.Settings;
+import net.launcher.theme.ErrorTheme;
+import net.launcher.theme.Message;
 import net.launcher.theme.OptionsTheme;
+import net.launcher.theme.UpdateTheme;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ThreadUtils;
 import net.launcher.utils.UpdaterThread;
-
 import static net.launcher.components.Files.*;
 import static net.launcher.theme.LoginTheme.*;
 import static net.launcher.theme.OptionsTheme.*;
@@ -74,49 +76,49 @@ public class Panel extends JPanel
 		{
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
 			g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
-			g.drawString("Доступно обновление", getWidth() / 2 - g.getFontMetrics().stringWidth("Доступно обновление") / 2, 150);
+			g.drawString(Message.update, getWidth() / 2 - g.getFontMetrics().stringWidth(Message.update) / 2, UpdateTheme.stringsY);
 			g.setFont(g.getFont().deriveFont(fontbasesize));
-			g.drawString("Для продолжения игры обновите лаунчер.", 190, 190);
-			g.drawString("Новый лаунчер содержит разные улучшения и исправления,", 190, 210);
-			g.drawString("а так же необходим для запуска игры. Нажмите \"Обновить\",", 190, 230);
-			g.drawString("чтобы скачать новую версию. Если же вы не можете обновить", 190, 250);
-			g.drawString("лаунчер прямо сейчас, нажмите кнопку \"Выход\".", 190, 270);
-			g.drawString("Текущая версия: " + Settings.masterVersion, 190, 310);
-			g.drawString("Новая версия: " + tmpString, 190, 330);
+			g.drawString(Message.str1, UpdateTheme.stringsX, UpdateTheme.stringsY + 20);
+			g.drawString(Message.str2, UpdateTheme.stringsX, UpdateTheme.stringsY + 40);
+			g.drawString(Message.str3, UpdateTheme.stringsX, UpdateTheme.stringsY + 60);
+			g.drawString(Message.str4, UpdateTheme.stringsX, UpdateTheme.stringsY + 80);
+			g.drawString(Message.str5, UpdateTheme.stringsX, UpdateTheme.stringsY + 100);
+			g.drawString(Message.str6.replace("%%", Settings.masterVersion), UpdateTheme.stringsX, UpdateTheme.stringsY + 120);
+			g.drawString(Message.str7.replace("%%", tmpString), UpdateTheme.stringsX, UpdateTheme.stringsY + 140);
 			if(type == 8 || type == 9)
 			{
 				g.setColor(Color.RED);
-				g.drawString(type == 8 ? "Идет обновление лаунчера..." : "Ошибка при обновлении.", 190, 350);
+				g.drawString(type == 8 ? Message.str8 : Message.str9, UpdateTheme.stringsX, UpdateTheme.stringsY + 160);
 			}
 		} else if(type == 3)
 		{
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
 			g.setColor(Color.BLACK);
 			g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
-			g.drawString("Ошибка  выполнения", getWidth() / 2 - g.getFontMetrics().stringWidth("Ошибка  выполнения") / 2, 140);
+			g.drawString(Message.messerr, getWidth() / 2 - g.getFontMetrics().stringWidth(Message.messerr) / 2, ErrorTheme.stringsY);
 			g.setFont(g.getFont().deriveFont(fontbasesize));
-			g.drawString("Сообщите эту ошибку разработчикам и закройте лаунчер.", 190, 180);
+			g.drawString(Message.err1, ErrorTheme.stringsX, ErrorTheme.stringsY + 20);
 			g.setFont(g.getFont().deriveFont(12F));
 			for(int i = 0; i < tmpString.split("<:>").length; i++)
-				g.drawString(tmpString.split("<:>")[i], 190, 200 + (20 * i));
+			g.drawString(Message.err2.replace("%%", tmpString.split("<:>")[i]), ErrorTheme.stringsX, ErrorTheme.stringsY + 40 + (20 * i));
 		} else if(type == 4)
 		{	
 			g.drawImage(background_download, 0, 0, getWidth(), getHeight(), null);
 			UpdaterThread t = ThreadUtils.updaterThread;
 			
 			int leftTime = 0;
-	try	{	leftTime = (int) ((t.totalsize - t.currentsize) / (t.downloadspeed * 100)); } catch(Exception e){}
+	    try	{	leftTime = (int) ((t.totalsize - t.currentsize) / (t.downloadspeed * 100)); } catch(Exception e){}
 			
 			g.setFont(updaterDesc.font);
 			g.setColor(updaterDesc.color);
 			
-			g.drawString("Текущий файл: " + t.currentfile, stringsX, stringsY);
-			g.drawString("Всего: " + t.totalsize + " байт", stringsX, stringsY + 20);
-			g.drawString("Загружено: " + t.currentsize + " байт", stringsX, stringsY + 40);
-			g.drawString("Скорость: " + t.downloadspeed + " кб/сек", stringsX, stringsY + 60);
-			g.drawString("Папка: " + BaseUtils.getMcDir().getAbsolutePath(), stringsX, stringsY + 80);
-			g.drawString("Состояние: " + t.state, stringsX, stringsY + 100);
-			g.drawString("Осталось: " + leftTime + " секунд", stringsX, stringsY + 120);
+			g.drawString(Message.currentfile.replace("%%", t.currentfile), stringsX, stringsY);
+			g.drawString(Message.totalsize.replace("%%", Long.toString(t.totalsize)), stringsX, stringsY + 20);
+			g.drawString(Message.currentsize.replace("%%", Long.toString(t.currentsize)), stringsX, stringsY + 40);
+			g.drawString(Message.downloadspeed.replace("%%", Long.toString(t.downloadspeed)), stringsX, stringsY + 60);
+			g.drawString(Message.McDir.replace("%%", BaseUtils.getMcDir().getAbsolutePath()), stringsX, stringsY + 80);
+			g.drawString(Message.state.replace("%%", t.state), stringsX, stringsY + 100);
+			g.drawString(Message.leftTime.replace("%%", Long.toString(leftTime)), stringsX, stringsY + 120);
 			
 			if(t.error) return;
 			BufferedImage img = genButton(loadbarW, loadbarH, bar);
@@ -124,7 +126,7 @@ public class Panel extends JPanel
 			{
 				int percentw = (int)(t.procents * loadbarW / 100);
 				g.drawImage(img.getSubimage(0, 0, percentw, loadbarH), loadbarX, loadbarY, null);
-				g.drawImage(bar_label, (loadbarX + percentw) - (bar_label.getWidth() / 2), loadbarY - bar_label.getHeight(), null);
+				g.drawImage(bar_label, (loadbarX + percentw) - (bar_label.getWidth() / 2)-10, loadbarY - bar_label.getHeight(), null);
 				g.drawString(t.procents + "%", (loadbarX + percentw) - (g.getFontMetrics().stringWidth(t.procents + "%") / 2), loadbarY - (bar_label.getHeight() / 2));
 			} catch(Exception e){}
 		} else if(type == 5)
@@ -133,34 +135,34 @@ public class Panel extends JPanel
 			g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
 			g.setColor(OptionsTheme.memory.textColor);
-			g.drawString("Настройки", titleX, titleY);
+			g.drawString(Message.options, titleX, titleY);
 			g.setFont(g.getFont().deriveFont(fontbasesize));
-			g.drawString("Память (в мегабайтах):", memory.x, memory.y - 5);
+			g.drawString(Message.memory, memory.x, memory.y - 5);
 		} else if(type == 55)
 		{
 			g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
 			g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
 			g.setColor(OptionsTheme.memory.textColor);
-			g.drawString("Регистрация", titleX, titleY);
+			g.drawString(Message.register, titleRegX, titleRegY);
                         
-                        /***************************************************************/
+            /***************************************************************/
 			g.setFont(g.getFont().deriveFont(fontbasesize));
-                        String textloginReg1 = "Ник:";
+            String textloginReg1 = Message.textloginReg1;
 			g.drawString(textloginReg1, textloginReg.x-(g.getFontMetrics().stringWidth(textloginReg1)), textloginReg.y + 18);
-                        String textpasswordReg1 = "Пароль:";
+            String textpasswordReg1 = Message.textpasswordReg1;
 			g.drawString(textpasswordReg1, textpasswordReg.x-(g.getFontMetrics().stringWidth(textpasswordReg1)), textpasswordReg.y + 18);
-                        String textpassword2Reg1 = "Повторите пароль:";
+            String textpassword2Reg1 = Message.textpassword2Reg1;
 			g.drawString(textpassword2Reg1, textpassword2Reg.x-(g.getFontMetrics().stringWidth(textpassword2Reg1)), textpassword2Reg.y + 18);
-                        String textmailReg1 = "E-mail:";
+            String textmailReg1 = Message.textmailReg1;
 			g.drawString(textmailReg1, textmailReg.x-(g.getFontMetrics().stringWidth(textmailReg1)), textmailReg.y + 18);
 		} else if(type == 6)
 		{
 			g.drawImage(background_personal, 0, 0, getWidth(), getHeight(), null);
-			g.drawImage(pc.skin, skinX, skinY, 128, 256, null);
-			g.drawImage(pc.cloak, cloakX, cloakY, 80, 128, null);
+			g.drawImage(pc.skin, skinX, skinY, skinW, skinH, null);
+			g.drawImage(pc.cloak, cloakX, cloakY, cloakW, cloakH, null);
 			
-			String ugroupLBL = pc.ugroup.equals("User") ? "Игрок" : pc.ugroup.equals("VIP") ? "VIP игрок" : pc.ugroup.equals("Banned") ? "Забаненый" : "Премиум игрок";
+			String ugroupLBL = pc.ugroup.equals("User") ? Message.user : pc.ugroup.equals("VIP") ? Message.vip : pc.ugroup.equals("Banned") ? Message.ban : Message.prem;
 			g.setColor(ugroup.color);
 			g.setFont(BaseUtils.getFont(ugroup.fontName, ugroup.fontSize));
 			g.drawString(ugroupLBL, ugroup.x + (ugroup.w / 2 - g.getFontMetrics().stringWidth(ugroupLBL) / 2), ugroup.y + g.getFontMetrics().getHeight());
@@ -170,17 +172,17 @@ public class Panel extends JPanel
 				g.setColor(cloakPrice.color);
 				g.setFont(BaseUtils.getFont(cloakPrice.fontName, cloakPrice.fontSize));
 				
-				String cloakPriceSTR = pc.cloakPrice + " рублей";
+				String cloakPriceSTR = Message.realmoney.replace("%%", Long.toString(pc.cloakPrice));
 				
 				g.drawString(cloakPriceSTR, cloakPrice.x - g.getFontMetrics().stringWidth(cloakPriceSTR), cloakPrice.y + g.getFontMetrics().getHeight());
 			}
 			
-			String iconmoney = pc.iconmoney + " монет";
+			String iconmoney = Message.iconmoney.replace("%%", Double.toString(pc.iconmoney));
 			g.setColor(iConomy.color);
 			g.setFont(BaseUtils.getFont(iConomy.fontName, iConomy.fontSize));
 			g.drawString(iconmoney, iConomy.x - g.getFontMetrics().stringWidth(iconmoney), iConomy.y + g.getFontMetrics().getHeight());
 			
-			String realmoneySTR = pc.realmoney + " рублей";
+			String realmoneySTR = Message.realmoney.replace("%%", Long.toString(pc.realmoney));
 			g.setColor(realmoney.color);
 			g.setFont(BaseUtils.getFont(realmoney.fontName, realmoney.fontSize));
 			g.drawString(realmoneySTR, realmoney.x - g.getFontMetrics().stringWidth(realmoneySTR), realmoney.y + g.getFontMetrics().getHeight());
@@ -191,34 +193,34 @@ public class Panel extends JPanel
 			int j = 0;
 			if(pc.canBuyVip)
 			{
-				g.drawString("Цена VIP: " + pc.vipPrice + " рублей", prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.vipPrice.replace("%%", Long.toString(pc.vipPrice)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 			}
 			
 			if(pc.canBuyPremium)
 			{
-				g.drawString("Цена Premium: " + pc.premiumPrice + " рублей", prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.premiumPrice.replace("%%", Long.toString(pc.premiumPrice)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 			}
 			
 			if(pc.canBuyUnban)
 			{
-				g.drawString("Цена разбана: " + pc.unbanPrice + " рублей", prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.unbanPrice.replace("%%", Long.toString(pc.unbanPrice)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 			}
 			
 			if(pc.canExchangeMoney)
 			{
-				g.drawString("Курс обмена: 1 рубль = " + pc.exchangeRate + " монет", prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.exchangeRate.replace("%%", Long.toString(pc.exchangeRate)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 			}
 			
 			if(!pc.dateofexpire.contains("01.01.1970"))
 			{
-				g.drawString("Дата истечения : " + pc.dateofexpire, prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.dateofexpire.replace("%%", pc.dateofexpire), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 			}
 			
 			if(pc.jobexp != -1 && pc.joblvl != -1)
 			{
-				g.drawString("Профессия: " + pc.jobname, prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
-				g.drawString("Уровень: " + pc.joblvl, prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
-				g.drawString("Опыт: " + pc.jobexp, prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.jobname.replace("%%", pc.jobname), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.joblvl.replace("%%", Integer.toString(pc.joblvl)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
+				g.drawString(Message.jobexp.replace("%%", Integer.toString(pc.jobexp)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 			}
 		} else if(type == 7)
 		{
