@@ -7,6 +7,7 @@ public class Message {
 	public static String Logout = "Выход";
 	public static String Personal = "Войти в ЛК";
 	public static String Register = "Регистрация";
+	public static String Login = "Логин...";
 	//Регистрация
 	public static String okreg = "Регистрация";
 	public static String closereg = "Отмена";
@@ -37,6 +38,8 @@ public class Message {
 	public static String ban = "Забаненый";
 	public static String iconmoney = "%% монет";
 	public static String realmoney = "%% рублей";
+	public static String exchange = " Монет";
+	public static String exchangeTo = "<N/A>";
 	public static String vipPrice = "Цена VIP: %% рублей";
 	public static String premiumPrice = "Цена Premium: %% рублей";
 	public static String unbanPrice = "Цена разбана: %% рублей";
@@ -70,8 +73,14 @@ public class Message {
 	public static String str7 = "Новая версия: %%";
 	public static String str8 = "Идет обновление лаунчера...";
 	public static String str9 = "Ошибка при обновлении.";
+	public static String update_exe = "exe";
+	public static String update_jar = "jar";
+	public static String update_no = "Выход";
+	public static String update_no2 = "Отмена";
 	//Ошибка выполнения
 	public static String messerr = "Ошибка  выполнения";
 	public static String err1 = "Сообщите эту ошибку разработчикам и закройте лаунчер.";
 	public static String err2 = "%%";
+	//Выполнение
+	public static String Loading = "Выполнение...";
 }

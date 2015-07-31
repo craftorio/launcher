@@ -67,9 +67,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	public Dragbutton hide = new Dragbutton();
 	public Dragbutton close = new Dragbutton();
 
-	public Button update_exe = new Button("exe");
-	public Button update_jar = new Button("jar");
-	public Button update_no = new Button("Выход");
+	public Button update_exe = new Button(Message.update_exe);
+	public Button update_jar = new Button(Message.update_jar);
+	public Button update_no = new Button(Message.update_no);
 
 	public Checkbox loadnews = new Checkbox(Message.loadnews);
     public Checkbox Music = new Checkbox(Message.Music);
@@ -279,8 +279,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 				try
 				{
 					int i = Integer.parseInt(exchangeFrom.getText());
-					exchangeTo.setText(String.valueOf((long)i * (long)panel.pc.exchangeRate) + " Монет");
-				} catch(Exception e){ exchangeTo.setText("<N/A>"); }
+					exchangeTo.setText(String.valueOf((long)i * (long)panel.pc.exchangeRate) + Message.exchange);
+				} catch(Exception e){ exchangeTo.setText(Message.exchangeTo); }
 			}
 		});
 
@@ -387,14 +387,14 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			{
 				panel.type = 8;
 				update_exe.setEnabled(false);
-				update_no.setText("Отмена");
+				update_no.setText(Message.update_no2);
 				panel.repaint();
 				BaseUtils.updateLauncher();
 			} catch(Exception e1)
 			{
 				e1.printStackTrace();
 				send("Error updating launcher!");
-				update_no.setText("Выйти");
+				update_no.setText(Message.update_no);
 				update_exe.setEnabled(true);
 				panel.type = 9;
 				panel.repaint();
@@ -408,14 +408,14 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			{
 				panel.type = 8;
 				update_jar.setEnabled(false);
-				update_no.setText("Отмена");
+				update_no.setText(Message.update_no2);
 				panel.repaint();
 				BaseUtils.updateLauncher();
 			} catch(Exception e1)
 			{
 				e1.printStackTrace();
 				send("Error updating launcher!");
-				update_no.setText("Выйти");
+				update_no.setText(Message.update_no);
 				update_jar.setEnabled(true);
 				panel.type = 9;
 				panel.repaint();
@@ -486,7 +486,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileFilter(new SkinFilter(1));
 			chooser.setAcceptAllFileFilterUsed(false);
-			int i = chooser.showDialog(main, "Купить");
+			int i = chooser.showDialog(main, Message.buyCloak);
 
 			if(i == JFileChooser.APPROVE_OPTION)
 			{
@@ -500,7 +500,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileFilter(new SkinFilter(0));
 			chooser.setAcceptAllFileFilterUsed(false);
-			int i = chooser.showDialog(main, "Сменить");
+			int i = chooser.showDialog(main, Message.changeSkin);
 
 			if(i == JFileChooser.APPROVE_OPTION)
 			{
@@ -555,12 +555,12 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 
 	public void focusGained(FocusEvent e)
 	{
-		if(e.getSource() == login && login.getText().equals("Логин...")) login.setText(empty);
+		if(e.getSource() == login && login.getText().equals(Message.Login)) login.setText(empty);
 	}
 
 	public void focusLost(FocusEvent e)
 	{
-		if(e.getSource() == login && login.getText().equals(empty)) login.setText("Логин...");
+		if(e.getSource() == login && login.getText().equals(empty)) login.setText(Message.Login);
 	}
 
 	public void setUpdateComp(String version)
@@ -684,7 +684,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		BufferedImage screen = ImageUtils.sceenComponent(panel);
 		panel.removeAll();
 		addFrameComp();
-		panel.setLoadingState(screen, "Выполнение...");
+		panel.setLoadingState(screen, Message.Loading);
 	}
 
 	public void setError(String s)
