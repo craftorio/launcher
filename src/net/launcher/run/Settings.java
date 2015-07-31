@@ -3,7 +3,7 @@ package net.launcher.run;
 public class Settings
 {
 	/** Настройка заголовка лаунчера */
-	public static final String  title		         = "dragoy.net"; //Заголовок лаунчера
+	public static final String  title		         = "                   dragoy.net"; //Заголовок лаунчера
 	public static final String  titleInGame  	     = "Minecraft"; //Заголовок лаунчера после авторизации
 	public static final String  baseconf		     = "voxelaria"; //Папка с файлом конфигурации
 	public static final String  pathconst		     = "voxelaria/%SERVERNAME%"; //Конструктор пути к папке с MC
