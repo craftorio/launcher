@@ -9,7 +9,7 @@
 		$x  = $_POST['action'];
 		$x = str_replace(" ", "+", $x);
 		$yd = Security::decrypt($x, $key2);
-		if(isset($yd)) {
+		iif($yd==null) {
 			echo 'errorlauncher';
 			exit;
 		}
