@@ -86,5 +86,42 @@ public class Message {
 	public static String serverfull = "Сервер переполнен (Всего слотов: %%)";
 	public static String serveron = "На сервере %% из ## игроков";
 	public static String servererr = "Ошибка получения информации";
-			
+	//tmpString
+	public static String tmpString = "Авторизация...";
+	public static String Null = "Ошибка подключения";
+	public static String errorTocen = "Ошибка авторизации (Токен устарел)";
+	public static String errorLogin = "Ошибка авторизации (Логин, пароль)";
+	public static String errorsql = "Ошибка sql";
+	public static String client = "Ошибка: %% не найден";
+	public static String temp = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+	public static String badhash = "Ошибка: Неподдерживаемый способ хеширования";
+	public static String tmpDownload = "Загрузка данных...";
+	public static String noactive = "Ваш аккаунт не активирован!";
+	public static String skin = "Загрузка скина...";
+	public static String cloak = "Загрузка плаща...";
+	public static String skinImage = "Парсинг скина...";
+	public static String cloakImage = "Парсинг плаща...";
+	public static String nofile = "Файл не выбран";
+	public static String skinerr = "Этот файл не является файлом скина";
+	public static String cloakerr = "Этот файл не является файлом плаща";
+	public static String fileerr = "Ошибка загрузки файла!";
+	public static String keyerr = "Ключ введен неверно!";
+	public static String econo = "Вас нет в базе Fe Economy";
+	public static String ecoerr = "Вы не ввели сумму";
+	public static String moneyno = "У вас недостаточно средств!";
+	public static String done = "Регистрация успешно завершена";
+	public static String errorField = "Заполнены не все поля";
+	public static String errorMail = "eMail адрес введен некорректно";
+	public static String errorMail2 = "eMail адрес содержит запрещенные символы";
+	public static String errorLoginSymbol = "Логин содержит запрещенные символы";
+	public static String passErrorSymbol = "Пароль содержит запрещенные символы";
+	public static String errorPassToPass = "Пароль не совпадает";
+	public static String errorSmallLogin = "Логин должен содержать 2-16 символов";
+	public static String errorPassSmall = "Пароль должен содержать 6-20 символов";
+	public static String emailErrorPovtor = "eMail уже зарегестрирован";
+	public static String Errorip = "С вашего ip уже была регистрация";
+	public static String loginErrorPovtor = "Пользователем с таким логином уже зарегистрирован";
+	public static String registeroff = "Регистрация выключена!";
+	public static String unknown = "Неизвестная ошибка (%%)";
+	public static String banno = "Вы не забанены";
 }

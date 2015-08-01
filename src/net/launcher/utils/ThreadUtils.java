@@ -3,16 +3,20 @@ package net.launcher.utils;
 import static net.launcher.utils.BaseUtils.buildUrl;
 import static net.launcher.utils.BaseUtils.getPropertyString;
 import static net.launcher.utils.BaseUtils.setProperty;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
+
 import net.y;
 import net.launcher.components.Frame;
 import net.launcher.components.PersonalContainer;
 import net.launcher.run.Settings;
+import net.launcher.theme.Message;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -61,7 +65,7 @@ public class ThreadUtils
 				try {
 				token =  decrypt(getPropertyString("password"), d);
 				} catch (Exception e) {
-					Frame.main.panel.tmpString = "Ошибка подключения";
+					Frame.main.panel.tmpString = Message.Null;
 					error = true;
 				}
 			}
@@ -71,14 +75,20 @@ public class ThreadUtils
 			});
 			BaseUtils.send(answer2);
             String answer = null;
+            System.err.println();
 			try {
 				answer = decrypt(answer2, Settings.key1);
-			} catch (Exception e) {}
+			} catch (Exception e) {
+				if(Settings.release) {
+					Frame.main.setUpdateComp("???");
+					return;
+				}
+			}
 			if(answer == null) {
-				Frame.main.panel.tmpString = "Ошибка подключения";
+				Frame.main.panel.tmpString = Message.Null;
 				error = true;
 			} else if(answer.length()==0) {
-				Frame.main.panel.tmpString = "Ошибка подключения";
+				Frame.main.panel.tmpString = Message.Null;
 				BaseUtils.sendErr("Ошибка в launcher.php или вебсервере");
 				BaseUtils.sendErr("Включите вывод ошибок, раскомментируйте строки в connect.php");
 				BaseUtils.sendErr("Error_Reporting(E_ALL | E_STRICT);");
@@ -99,26 +109,26 @@ public class ThreadUtils
 					Frame.token = "null";
 					Frame.login.setEditable(true);
 					Frame.main.panel.repaint();
-					Frame.main.panel.tmpString = "Ошибка авторизации (Токен устарел)";
+					Frame.main.panel.tmpString = Message.errorTocen;
 				} else {
-					Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
+					Frame.main.panel.tmpString = Message.errorLogin;
 				}
 				error = true;
 			} else if(answer.contains("errorsql<$>"))
 			{
-				Frame.main.panel.tmpString = "Ошибка sql";
+				Frame.main.panel.tmpString = Message.errorsql;
 				error = true;
 			} else if(answer.contains("client<$>"))
 			{
-				Frame.main.panel.tmpString = "Ошибка: "+answer.replace("client<$>", "клиент")+" не найден";
+				Frame.main.panel.tmpString =  Message.client.replace("%%", answer.replace("client<$>", "клиент"));
 				error = true;
 			} else if(answer.contains("temp<$>"))
 			{
-				Frame.main.panel.tmpString = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+				Frame.main.panel.tmpString = Message.temp;
 				error = true;	
 			} else if(answer.contains("badhash<$>"))
 			{
-				Frame.main.panel.tmpString = "Ошибка: Неподдерживаемый способ хеширования";
+				Frame.main.panel.tmpString = Message.badhash;
 				error = true;	
 			} else if(answer.split("<br>").length != 4)
 			{
@@ -145,7 +155,7 @@ public class ThreadUtils
 			
 				if(personal)
 				{
-					Frame.main.panel.tmpString = "Загрузка данных...";
+					Frame.main.panel.tmpString = Message.tmpDownload;
 					String personal = BaseUtils.execute(BaseUtils.buildUrl("launcher.php"), new Object[]
 					{
 						"action", encrypt("getpersonal:0:"+Frame.login.getText()+":"+token, Settings.key2),
@@ -158,27 +168,27 @@ public class ThreadUtils
 
 					if(personal == null)
 					{
-						Frame.main.panel.tmpString = "Ошибка подключения";
+						Frame.main.panel.tmpString = Message.Null;
 						error = true;
 					} else if(personal.contains("errorLogin"))
 					{
-						Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
+						Frame.main.panel.tmpString = Message.errorLogin;
 						error = true;
 					} else if(personal.contains("errorsql"))
 					{
-						Frame.main.panel.tmpString = "Ошибка sql";
+						Frame.main.panel.tmpString = Message.errorsql;
 						error = true;
 					} else if(personal.contains("temp"))
 					{
-						Frame.main.panel.tmpString = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+						Frame.main.panel.tmpString = Message.temp;
 						error = true;
 					} else if(personal.contains("noactive"))
 					{
-						Frame.main.panel.tmpString = "Ваш аккаунт не активирован!";
+						Frame.main.panel.tmpString = Message.noactive;
 						error = true;	
 					} else if(personal.contains("badhash"))
 					{
-						Frame.main.panel.tmpString = "Ошибка: Неподдерживаемый способ шифровки";
+						Frame.main.panel.tmpString = Message.badhash;
 						error = true;	
 					} else if(personal.split("<:>").length != 13 || personal.split("<:>")[0].length() != 7)
 					{
@@ -196,13 +206,13 @@ public class ThreadUtils
 					} else
 					{
 						try {
-						Frame.main.panel.tmpString = "Загрузка скина...";
+						Frame.main.panel.tmpString = Message.skin;
 						BufferedImage skinImage   = BaseUtils.getSkinImage(answer.split("<br>")[1].split("<:>")[0]);
-						Frame.main.panel.tmpString = "Загрузка плаща...";
+						Frame.main.panel.tmpString = Message.cloak;
 						BufferedImage cloakImage  = BaseUtils.getCloakImage(answer.split("<br>")[1].split("<:>")[0]);
-						Frame.main.panel.tmpString = "Парсинг скина...";
+						Frame.main.panel.tmpString = Message.skinImage;
 						skinImage = ImageUtils.parseSkin(skinImage);
-						Frame.main.panel.tmpString = "Парсинг плаща...";
+						Frame.main.panel.tmpString = Message.cloakImage;
 						cloakImage= ImageUtils.parseCloak(cloakImage);
 						Frame.main.panel.tmpString = BaseUtils.empty;
 						PersonalContainer pc = new PersonalContainer(personal.split("<:>"), skinImage, cloakImage);
@@ -344,43 +354,43 @@ public class ThreadUtils
 			boolean error = false;
 			if(answer == null)
 			{
-				Frame.main.panel.tmpString = "Ошибка подключения";
+				Frame.main.panel.tmpString = Message.Null;
 				error = true;
 			} else if(answer.contains("nofile"))
 			{
-				Frame.main.panel.tmpString = "Файл не выбран";
+				Frame.main.panel.tmpString = Message.nofile;
 				error = true;
 			} else if(answer.contains("skinerr"))
 			{
-				Frame.main.panel.tmpString = "Этот файл не является файлом скина";
+				Frame.main.panel.tmpString = Message.skinerr;
 				error = true;
 			} else if(answer.contains("cloakerr"))
 			{
-				Frame.main.panel.tmpString = "Этот файл не является файлом плаща";
+				Frame.main.panel.tmpString = Message.cloakerr;
 				error = true;
 			} else if(answer.contains("fileerr"))
 			{
-				Frame.main.panel.tmpString = "Ошибка загрузки файла!";
+				Frame.main.panel.tmpString = Message.fileerr;
 				error = true;
 			} else if(answer.contains("errorLogin"))
 			{
-				Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
+				Frame.main.panel.tmpString = Message.errorLogin;
 				error = true;
 			} else if(answer.contains("errorsql"))
 			{
-				Frame.main.panel.tmpString = "Ошибка sql";
+				Frame.main.panel.tmpString = Message.errorsql;
 				error = true;
 			} else if(answer.contains("temp"))
 			{
-				Frame.main.panel.tmpString = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+				Frame.main.panel.tmpString = Message.temp;
 				error = true;
 			} else if(answer.contains("noactive"))
 			{
-				Frame.main.panel.tmpString = "Ваш аккаунт не активирован!";
+				Frame.main.panel.tmpString = Message.noactive;
 				error = true;	
 			} else if(answer.contains("badhash"))
 			{
-				Frame.main.panel.tmpString = "Ошибка: Неподдерживаемый способ шифровки";
+				Frame.main.panel.tmpString = Message.badhash;
 				error = true;	
 			} else if(!answer.contains("success"))
 			{
@@ -419,31 +429,31 @@ public class ThreadUtils
 			boolean error = false;
 			if(answer == null)
 			{
-				Frame.main.panel.tmpString = "Ошибка подключения";
+				Frame.main.panel.tmpString = Message.Null;
 				error = true;
 			} else if(answer.contains("keyerr"))
 			{
-				Frame.main.panel.tmpString = "Ключ введен неверно!";
+				Frame.main.panel.tmpString = Message.keyerr;
 				error = true;
 			} else if(answer.contains("errorLogin"))
 			{
-				Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
+				Frame.main.panel.tmpString = Message.errorLogin;
 				error = true;
 			} else if(answer.contains("errorsql"))
 			{
-				Frame.main.panel.tmpString = "Ошибка sql";
+				Frame.main.panel.tmpString = Message.errorsql;
 				error = true;
 			} else if(answer.contains("temp"))
 			{
-				Frame.main.panel.tmpString = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+				Frame.main.panel.tmpString = Message.temp;
 				error = true;
 			} else if(answer.contains("noactive"))
 			{
-				Frame.main.panel.tmpString = "Ваш аккаунт не активирован!";
+				Frame.main.panel.tmpString = Message.noactive;
 				error = true;	
 			} else if(answer.contains("badhash"))
 			{
-				Frame.main.panel.tmpString = "Ошибка: Неподдерживаемый способ шифровки";
+				Frame.main.panel.tmpString = Message.badhash;
 				error = true;	
 			} else if(!answer.contains("success"))
 			{
@@ -478,39 +488,39 @@ public class ThreadUtils
 			boolean error = false;
 			if(answer == null)
 			{
-				Frame.main.panel.tmpString = "Ошибка подключения";
+				Frame.main.panel.tmpString = Message.Null;
 				error = true;
 			} else if(answer.contains("econo"))
 			{
-				Frame.main.panel.tmpString = "Вас нет в базе Fe Economy";
+				Frame.main.panel.tmpString = Message.econo;
 				error = true;
 			} else if(answer.contains("ecoerr"))
 			{
-				Frame.main.panel.tmpString = "Вы не ввели сумму";
+				Frame.main.panel.tmpString = Message.ecoerr;
 				error = true;
 			} else if(answer.contains("moneyno"))
 			{
-				Frame.main.panel.tmpString = "У вас недостаточно средств!";
+				Frame.main.panel.tmpString = Message.moneyno;
 				error = true;
 			} else if(answer.contains("errorLogin"))
 			{
-				Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
+				Frame.main.panel.tmpString = Message.errorLogin;
 				error = true;
 			} else if(answer.contains("errorsql"))
 			{
-				Frame.main.panel.tmpString = "Ошибка sql";
+				Frame.main.panel.tmpString = Message.errorsql;
 				error = true;
 			} else if(answer.contains("temp"))
 			{
-				Frame.main.panel.tmpString = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+				Frame.main.panel.tmpString = Message.temp;
 				error = true;
 			} else if(answer.contains("noactive"))
 			{
-				Frame.main.panel.tmpString = "Ваш аккаунт не активирован!";
+				Frame.main.panel.tmpString = Message.noactive;
 				error = true;	
 			} else if(answer.contains("badhash"))
 			{
-				Frame.main.panel.tmpString = "Ошибка: Неподдерживаемый способ шифровки";
+				Frame.main.panel.tmpString = Message.badhash;
 				error = true;	
 			} else if(!answer.contains("success"))
 			{
@@ -548,31 +558,31 @@ public class ThreadUtils
 			boolean error = false;
 			if(answer == null)
 			{
-				Frame.main.panel.tmpString = "Ошибка подключения";
+				Frame.main.panel.tmpString = Message.Null;
 				error = true;
 			} else if(answer.contains("moneyno"))
 			{
-				Frame.main.panel.tmpString = "У вас недостаточно средств!";
+				Frame.main.panel.tmpString = Message.moneyno;
 				error = true;
 			} else if(answer.contains("errorLogin"))
 			{
-				Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
+				Frame.main.panel.tmpString = Message.errorLogin;
 				error = true;
 			} else if(answer.contains("errorsql"))
 			{
-				Frame.main.panel.tmpString = "Ошибка sql";
+				Frame.main.panel.tmpString = Message.errorsql;
 				error = true;
 			} else if(answer.contains("temp"))
 			{
-				Frame.main.panel.tmpString = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+				Frame.main.panel.tmpString = Message.temp;
 				error = true;
 			} else if(answer.contains("noactive"))
 			{
-				Frame.main.panel.tmpString = "Ваш аккаунт не активирован!";
+				Frame.main.panel.tmpString = Message.noactive;
 				error = true;	
 			} else if(answer.contains("badhash"))
 			{
-				Frame.main.panel.tmpString = "Ошибка: Неподдерживаемый способ шифровки";
+				Frame.main.panel.tmpString = Message.badhash;
 				error = true;	
 			} else if(!answer.contains("success"))
 			{
@@ -612,78 +622,72 @@ public class ThreadUtils
 			    "email",mail
 			});
 			boolean error = false;
-			if(answer1.contains("done"))
+			if(answer1 == null)
 			{
-				Frame.main.panel.tmpString = "Регистрация успешно завершена";
+				Frame.main.panel.tmpString = Message.Null;
+				error = true;
+			} else if(answer1.contains("done"))
+			{
+				Frame.main.panel.tmpString = Message.done;
 				error = false;
 			} else if(answer1.contains("errorField"))
 			{
-				Frame.main.panel.tmpString = "Заполнены не все поля";
+				Frame.main.panel.tmpString = Message.errorField;
 				error = true;
 			} else if(answer1.contains("errorMail"))
 			{
-				Frame.main.panel.tmpString = "eMail адрес введен некорректно";
+				Frame.main.panel.tmpString = Message.errorMail;
 				error = true;
 			} else if(answer1.contains("errorMail2"))
 			{
-				Frame.main.panel.tmpString = "eMail адрес содержит запрещенные символы";
+				Frame.main.panel.tmpString = Message.errorMail2;
 				error = true;
 			} else if(answer1.contains("errorLoginSymbol"))
 			{
-				Frame.main.panel.tmpString = "Логин содержит запрещенные символы";
+				Frame.main.panel.tmpString = Message.errorLoginSymbol;
 				error = true;	
 			} else if(answer1.contains("passErrorSymbol"))
 			{
-				Frame.main.panel.tmpString = "Пароль содержит запрещенные символы";
+				Frame.main.panel.tmpString = Message.passErrorSymbol;
 				error = true;
 			} else if(answer1.contains("errorPassToPass"))
 			{
-				Frame.main.panel.tmpString = "Пароль не совпадает";
+				Frame.main.panel.tmpString = Message.errorPassToPass;
 				error = true;	
 			} else if(answer1.contains("errorSmallLogin"))
 			{
-				Frame.main.panel.tmpString = "Логин должен содержать 2-20 символов";
+				Frame.main.panel.tmpString = Message.errorSmallLogin;
 				error = true;
 			} else if(answer1.contains("errorPassSmall"))
 			{
-				Frame.main.panel.tmpString = "Пароль должен содержать 6-20 символов";
+				Frame.main.panel.tmpString = Message.errorPassSmall;
 				error = true;
 			} else if(answer1.contains("emailErrorPovtor"))
 			{
-				Frame.main.panel.tmpString = "eMail уже зарегестрирован";
+				Frame.main.panel.tmpString = Message.emailErrorPovtor;
 				error = true;
 			} else if(answer1.contains("Errorip"))
 			{
-				Frame.main.panel.tmpString = "С вашего ip уже была регистрация";
+				Frame.main.panel.tmpString = Message.Errorip;
 				error = true;	
 			} else if(answer1.contains("loginErrorPovtor"))
 			{
-				Frame.main.panel.tmpString = "Пользователем с таким логином уже зарегистрирован";
-				error = true;
-			} else if(answer1.contains("errorMail"))
-			{
-				Frame.main.panel.tmpString = "Неправильный адрес eMail";
-				error = true;
-			} else if(answer1.contains("errorField"))
-			{
-				Frame.main.panel.tmpString = "Заполнены не все поля";
+				Frame.main.panel.tmpString = Message.loginErrorPovtor;
 				error = true;
 			} else if(answer1.contains("errorsql"))
 			{
-				Frame.main.panel.tmpString = "Ошибка sql";
+				Frame.main.panel.tmpString = Message.errorsql;
 				error = true;
 			} else if(answer1.contains("registeroff"))
 			{
-				Frame.main.panel.tmpString = "Регистрация выключена!";
+				Frame.main.panel.tmpString = Message.registeroff;
 				error = true;	
-			}else {
-	  	    	Frame.main.panel.tmpString = "Неизвестная ошибка (" + answer1 +")";
+			} else {
+	  	    	Frame.main.panel.tmpString = Message.unknown.replace("%%", answer1);
 				error = true;
-	  	  	} 
-                        
-                        
-                        if(error)
-			{
+	  	  	}             
+            if(error) 
+            {
 				Frame.main.panel.tmpColor = Color.red;
 				try
 				{
@@ -716,39 +720,39 @@ public class ThreadUtils
 			boolean error = false;
 			if(answer == null)
 			{
-				Frame.main.panel.tmpString = "Ошибка подключения";
+				Frame.main.panel.tmpString = Message.Null;
 				error = true;
 			} else if(answer.contains("moneyno"))
 			{
-				Frame.main.panel.tmpString = "У вас недостаточно средств!";
+				Frame.main.panel.tmpString = Message.moneyno;
 				error = true;
 			} else if(answer.contains("banno"))
 			{
-				Frame.main.panel.tmpString = "Вы не забанены";
+				Frame.main.panel.tmpString = Message.banno;
 				error = true;
 			} else if(answer.contains("moneyno"))
 			{
-				Frame.main.panel.tmpString = "У вас недостаточно средств!";
+				Frame.main.panel.tmpString = Message.moneyno;
 				error = true;
 			} else if(answer.contains("errorLogin"))
 			{
-				Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
+				Frame.main.panel.tmpString = Message.errorLogin;
 				error = true;
 			} else if(answer.contains("errorsql"))
 			{
-				Frame.main.panel.tmpString = "Ошибка sql";
+				Frame.main.panel.tmpString = Message.errorsql;
 				error = true;
 			} else if(answer.contains("temp"))
 			{
-				Frame.main.panel.tmpString = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+				Frame.main.panel.tmpString = Message.temp;
 				error = true;
 			} else if(answer.contains("noactive"))
 			{
-				Frame.main.panel.tmpString = "Ваш аккаунт не активирован!";
+				Frame.main.panel.tmpString = Message.noactive;
 				error = true;	
 			} else if(answer.contains("badhash"))
 			{
-				Frame.main.panel.tmpString = "Ошибка: Неподдерживаемый способ шифровки";
+				Frame.main.panel.tmpString = Message.badhash;
 				error = true;	
 			} else if(!answer.contains("success"))
 			{

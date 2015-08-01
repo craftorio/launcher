@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -181,7 +182,11 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		login.setEditable(b1);
 		bpane.setOpaque(false);
 		bpane.getViewport().setOpaque(false);
-		bpane.setBorder(null);
+		if (Settings.drawTracers) {
+			bpane.setBorder(BorderFactory.createLineBorder(Color.black));
+		} else {
+			bpane.setBorder(null);
+		}
 
 		personalBpane.setOpaque(false);
 		personalBpane.getViewport().setOpaque(false);
@@ -201,7 +206,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 					openURL(e.getURL().toString());
 				}
 			}
-		});	
+		});
 
 		browser.setOpaque(false);
 		browser.setBorder(null);

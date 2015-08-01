@@ -9,6 +9,10 @@
 		$x  = $_POST['action'];
 		$x = str_replace(" ", "+", $x);
 		$yd = Security::decrypt($x, $key2);
+		if(isset($yd)) {
+			echo 'errorlauncher';
+			exit;
+		}
 		@list($action, $client, $login, $postPass, $launchermd5, $ctoken) = explode(':', $yd);
 	} else {
 		exit;

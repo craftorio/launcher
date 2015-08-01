@@ -30,7 +30,7 @@ public class Settings
 	public static final String[] links = 
 	{
 		//Для отключения добавьте в адрес ссылки #
-		" Регистрация ::http://",
+		" Сайт::http://",
 	};
 
 	/** Настройки структуры лаунчера */
@@ -50,10 +50,14 @@ public class Settings
 	public static final String key2              = "1234567891234567"; //16 Character Key Ключ пост запросов
 	
 	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
-	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
+    public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
 	public static final String masterVersion     = "final_RC4"; //Версия лаунчера
 
 	public static boolean patchDir 		         =  true; //Использовать автоматическую замену директории игры (true/false)
+
+	public static boolean release 		         =  false;  /**Ставим true после окончания настройки! 
+														    Необходимо для автообновления лаунчера 
+														    после смены ключей key1 key2.*/
 	
 	public static void onStart() {}
 	public static void onStartMinecraft() {}

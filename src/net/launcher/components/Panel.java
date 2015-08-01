@@ -161,7 +161,17 @@ public class Panel extends JPanel
 		{
 			g.drawImage(background_personal, 0, 0, getWidth(), getHeight(), null);
 			g.drawImage(pc.skin, skinX, skinY, skinW, skinH, null);
+		    if (Settings.drawTracers)
+		    {
+		    	g.setColor(Color.GREEN);
+		    	g.drawRect(skinX, skinY, skinW - 1, skinH - 1);
+		    }
 			g.drawImage(pc.cloak, cloakX, cloakY, cloakW, cloakH, null);
+		    if (Settings.drawTracers)
+		    {
+		    	g.setColor(Color.GREEN);
+		    	g.drawRect(cloakX, cloakY, cloakW - 1, cloakH - 1);
+		    }
 			
 			String ugroupLBL = pc.ugroup.equals("User") ? Message.user : pc.ugroup.equals("VIP") ? Message.vip : pc.ugroup.equals("Banned") ? Message.ban : Message.prem;
 			g.setColor(ugroup.color);
@@ -223,6 +233,7 @@ public class Panel extends JPanel
 				g.drawString(Message.joblvl.replace("%%", Integer.toString(pc.joblvl)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 				g.drawString(Message.jobexp.replace("%%", Integer.toString(pc.jobexp)), prices.x, prices.y + g.getFontMetrics().getHeight() * (j + 1)); j++;
 			}
+			
 		} else if(type == 7)
 		{
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
@@ -240,7 +251,7 @@ public class Panel extends JPanel
 	{
 		reset();
 		tmpImage = screen;
-		tmpString = "Авторизация...";
+		tmpString = Message.tmpString;
 		tmpColor = Color.WHITE;
 		type = 1;
 		timer = new Timer(50, new ActionListener()
