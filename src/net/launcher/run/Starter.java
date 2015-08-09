@@ -1,7 +1,10 @@
 package net.launcher.run;
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
 import net.launcher.components.Frame;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ProcessUtils;
@@ -39,7 +42,12 @@ public class Starter
 		} catch (Exception e)
 		{
 			JOptionPane.showMessageDialog(Frame.main, e, "Ошибка запуска", javax.swing.JOptionPane.ERROR_MESSAGE, null);
-			System.exit(0);
+			try{
+                Class<?> af = Class.forName("java.lang.Shutdown");
+                Method m = af.getDeclaredMethod("halt0", int.class);
+                m.setAccessible(true);
+                m.invoke(null, 1);
+            } catch (Exception x) { }
 		}
 	}
 }

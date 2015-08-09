@@ -11,9 +11,11 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+
 import net.minecraft.Launcher;
 import net.launcher.run.Settings;
 import net.launcher.utils.BaseUtils;
@@ -253,15 +255,18 @@ public class Game extends JFrame
 	    @Override
 		public void run() {
 
-			try
-			{
+			try {
 				Class<?> start = cl.loadClass(Cl);
 				Method main = start.getMethod("main", new Class[] { String[].class });
 				main.invoke(null, new Object[] { params.toArray(new String[0]) });
-			} catch (Exception e)
-			{
+			} catch (Exception e) {
 				JOptionPane.showMessageDialog(Frame.main, e, "Ошибка запуска", javax.swing.JOptionPane.ERROR_MESSAGE, null);
-				System.exit(0);
+				try {
+	                Class<?> af = Class.forName("java.lang.Shutdown");
+	                Method m = af.getDeclaredMethod("halt0", int.class);
+	                m.setAccessible(true);
+	                m.invoke(null, 1);
+	            } catch (Exception x) { }
 			}
 	    	
 	    }
