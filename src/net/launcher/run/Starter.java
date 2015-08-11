@@ -9,13 +9,11 @@ import net.launcher.components.Frame;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ProcessUtils;
 
-public class Starter
-{
-	public static void main(String[] args) throws Exception
-	{
+public class Starter {
+	public static void main(String[] args) throws Exception {
 		try {
 			String jarpath = Starter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-			int memory = BaseUtils.getPropertyInt("memory", 768);
+			int memory = BaseUtils.getPropertyInt("memory", Settings.defaultmemory);
 			
 			ArrayList<String> params = new ArrayList<String>();
 			params.add(System.getProperty("java.home")+"/bin/java");
@@ -47,7 +45,7 @@ public class Starter
                 Method m = af.getDeclaredMethod("halt0", int.class);
                 m.setAccessible(true);
                 m.invoke(null, 1);
-            } catch (Exception x) { }
+            } catch (Exception x) {}
 		}
 	}
 }

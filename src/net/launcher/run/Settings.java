@@ -20,6 +20,7 @@ public class Settings
 	
 	public static int height                         = 532;      //Высота окна клиента
 	public static int width                          = 900;      //Ширина окна клиента
+	public static int defaultmemory                  = 768;
         
 	public static String[] servers =
 	{
