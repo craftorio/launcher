@@ -193,6 +193,7 @@ public class BaseUtils
 		File dir = new File(BaseUtils.getAssetsDir().toString());
 		if(!dir.exists()) dir.mkdirs();
 		if(config.checkProperty(s)) return config.getPropertyInteger(s);
+		setProperty(s, d);
 		return d;
 	}
 
