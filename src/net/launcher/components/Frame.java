@@ -161,6 +161,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		password2Reg.setEchoChar('*');
 		password.addActionListener(this);
 		password.addFocusListener(this);
+		Focus.setInitialFocus(this, password);
 		String pass = getPropertyString("password");
 		if(pass == null || pass.equals("-"))
 		{
@@ -432,6 +433,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		if(e.getSource() == toLogout)
 		{
 			setProperty("password", "-");
+			setProperty("login", "");
 			password.setVisible(true);
 			toGame.setVisible(false);
 			toPersonal.setVisible(false);
@@ -440,6 +442,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			toRegister.setVisible(Settings.useRegister && true);
 			token = "null";
 			login.setEditable(true);
+			login.setText("Логин...");
+			password.setText("");
+			repaint();
 		}
 
 		if(e.getSource() == login || e.getSource() == password || e.getSource() == toGame || e.getSource() == toAuth || e.getSource() == toPersonal || e.getSource() == toGamePersonal)
