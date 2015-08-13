@@ -7,6 +7,7 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -113,11 +114,11 @@ public class Panel extends JPanel
 			g.setFont(updaterDesc.font);
 			g.setColor(updaterDesc.color);
 			
-			g.drawString(Message.currentfile.replace("%%", t.currentfile), stringsX, stringsY);
+			g.drawString(Message.currentfile.replace("%%", t.currentfile.substring(t.currentfile.lastIndexOf(File.separator)+1)), stringsX, stringsY);
 			g.drawString(Message.totalsize.replace("%%", Long.toString(t.totalsize)), stringsX, stringsY + 20);
 			g.drawString(Message.currentsize.replace("%%", Long.toString(t.currentsize)), stringsX, stringsY + 40);
 			g.drawString(Message.downloadspeed.replace("%%", Long.toString(t.downloadspeed)), stringsX, stringsY + 60);
-			g.drawString(Message.McDir.replace("%%", BaseUtils.getMcDir().getAbsolutePath()), stringsX, stringsY + 80);
+			g.drawString(Message.McDir.replace("%%", BaseUtils.getMcDir().getAbsolutePath().substring(BaseUtils.getMcDir().getAbsolutePath().lastIndexOf(File.separator)+1)), stringsX, stringsY + 80);
 			g.drawString(Message.state.replace("%%", t.state), stringsX, stringsY + 100);
 			g.drawString(Message.leftTime.replace("%%", Long.toString(leftTime)), stringsX, stringsY + 120);
 			
