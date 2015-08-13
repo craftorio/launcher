@@ -43,7 +43,7 @@ public class Game extends JFrame
 		boolean old = false;
 		try
 		{   
-			cl.loadClass("net.minecraft.client.Minecraft");
+			cl.loadClass("net.minecraft.client.MinecraftApplet");
 			old = true;
 		} catch(Exception e) {}
 		String user = answer.split("<br>")[1].split("<:>")[0];
