@@ -1,3 +1,23 @@
+# MineCraft Launcher
+
+### Development
+
+For build source code run:
+
+**Windows**
+
+```
+gradlew.bat build
+```
+
+**Linux / OSX**
+
+```
+./gradlew build
+```
+
+
+---
 Сразу предупреждаю, на бесплатном hostinger.ru небудет работать правильно.
 
 src тут https://github.com/alexandrage/Fix-Sashok

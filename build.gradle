@@ -1,0 +1,49 @@
+group 'mcstyle'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'net.launcher.run.Launcher'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.launcher.run.Launcher'
+    }
+}
+
+//sourceCompatibility = 1.5
+
+
+//jar {
+//    manifest {
+//        attributes	'Implementation-Title': 'Minecraft Launcher',
+//                'Implementation-Version': version,
+//                'Main-Class': 'net.minecraft.Launcher'
+//    }
+//}
+//
+sourceSets {
+    main {
+        resources {
+            srcDirs += "src/main"
+            exclude '**/*.java'
+        }
+    }
+}
+//
+//dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '4.11'
+//}
+
+//artifacts {
+//    archives jar
+//}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
