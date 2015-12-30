@@ -168,9 +168,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         toPersonal.setVisible(Settings.usePersonal);
         toOptions.addActionListener(this);
         toRegister.addActionListener(this);
-        login.setText("Логин minecraft.style");
+        login.setPlaceholderText("Логин minecraft.style");
         login.addActionListener(this);
-        login.addFocusListener(this);
+        //login.addFocusListener(this);
         password.setPlaceholderText("Введите пароль");
 
 //        password.setEchoChar('*');
@@ -179,7 +179,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
 //        passwordReg.setEchoChar('*');
 //        password2Reg.setEchoChar('*');
         password.addActionListener(this);
-        password.addFocusListener(this);
+        //password.addFocusListener(this);
         //Focus.setInitialFocus(this, password);
         String pass = getPropertyString("password");
         if (pass == null || pass.equals("-")) {
@@ -621,10 +621,10 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         BufferedImage screen = ImageUtils.sceenComponent(panel);
         panel.removeAll();
         panel.setOptions(screen);
-        panel.add(loadnews);
-        panel.add(Music);
-        panel.add(updatepr);
-        panel.add(cleanDir);
+        //panel.add(loadnews);
+        //panel.add(Music);
+        //panel.add(updatepr);
+        //panel.add(cleanDir);
         panel.add(fullscreen);
         panel.add(memory);
         panel.add(options_close);

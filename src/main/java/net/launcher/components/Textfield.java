@@ -13,6 +13,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import net.launcher.run.Settings;
+import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ImageUtils;
 
 public class Textfield extends JTextField
@@ -42,8 +43,10 @@ public class Textfield extends JTextField
 
     protected void paintInitialize()
     {
-        setText(placeholderText);
-        setForeground(placeholderTextColor);
+        if (getText().isEmpty() && !placeholderText.isEmpty()) {
+            setText(placeholderText);
+            setForeground(placeholderTextColor);
+        }
     }
 
     protected void paintComponent(Graphics maing) {
@@ -58,8 +61,8 @@ public class Textfield extends JTextField
         g.dispose();
 
         if (isFirstPaint) {
-            paintInitialize();
             isFirstPaint = false;
+            paintInitialize();
         }
 
         super.paintComponent(maing);
@@ -68,20 +71,12 @@ public class Textfield extends JTextField
     public void focusGained(FocusEvent e) {
         if (getText().equals(placeholderText)) {
             setText("");
-            setForeground(Color.white);
+            setForeground(Color.decode("0xFFFFFF"));
         }
     }
 
     public void focusLost(FocusEvent e) {
-        Document doc = getDocument();
-        String value = "";
-        try {
-            value = doc.getText(0, doc.getLength());
-        } catch (BadLocationException ex) {
-
-        }
-
-        if (value.equals("")) {
+        if (getText().isEmpty()) {
             setText(placeholderText);
             setForeground(placeholderTextColor);
         }

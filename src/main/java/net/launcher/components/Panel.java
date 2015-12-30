@@ -92,8 +92,9 @@ public class Panel extends JPanel {
             g.drawImage(getByIndex(wait, 100, tindex), getWidth() / 2 - 50, getHeight() / 2 - 50, 100, 100, null);
             g.drawString(tmpString, getWidth() / 2 - g.getFontMetrics().stringWidth(tmpString) / 2, getHeight() / 2 + 80);
         } else if (type == 2 || type == 8 || type == 9) {
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
             g.setFont(g.getFont().deriveFont(fonttitlesize));
-            g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
+            //g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
             g.drawString(Message.update, getWidth() / 2 - g.getFontMetrics().stringWidth(Message.update) / 2, UpdateTheme.stringsY);
             g.setFont(g.getFont().deriveFont(fontbasesize));
             g.drawString(Message.str1, UpdateTheme.stringsX, UpdateTheme.stringsY + 20);
@@ -107,10 +108,11 @@ public class Panel extends JPanel {
                 g.setColor(Color.RED);
                 g.drawString(type == 8 ? Message.str8 : Message.str9, UpdateTheme.stringsX, UpdateTheme.stringsY + 160);
             }
-        } else if (type == 3) {
+        } else if (type == 3) { // Error dialog
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
             g.setFont(g.getFont().deriveFont(fonttitlesize));
             g.setColor(Color.BLACK);
-            g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
+            //g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
             g.drawString(Message.messerr, getWidth() / 2 - g.getFontMetrics().stringWidth(Message.messerr) / 2, ErrorTheme.stringsY);
             g.setFont(g.getFont().deriveFont(fontbasesize));
             g.drawString(Message.err1, ErrorTheme.stringsX, ErrorTheme.stringsY + 20);
@@ -118,7 +120,9 @@ public class Panel extends JPanel {
             for (int i = 0; i < tmpString.split("<:>").length; i++)
                 g.drawString(Message.err2.replace("%%", tmpString.split("<:>")[i]), ErrorTheme.stringsX, ErrorTheme.stringsY + 40 + (20 * i));
         } else if (type == 4) {
-            g.drawImage(background_download, 0, 0, getWidth(), getHeight(), null);
+            drawBaseSkin();
+
+            //g.drawImage(background_download, 0, 0, getWidth(), getHeight(), null);
             UpdaterThread t = ThreadUtils.updaterThread;
 
             int leftTime = 0;
@@ -148,9 +152,10 @@ public class Panel extends JPanel {
                 g.drawString(t.procents + "%", (loadbarX + percentw) - (g.getFontMetrics().stringWidth(t.procents + "%") / 2), loadbarY - (bar_label.getHeight() / 2));
             } catch (Exception e) {
             }
-        } else if (type == 5) {
-            g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
-            g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
+        } else if (type == 5) { // Options Dialog
+            drawBaseSkin();
+            //g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
+            //g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
             g.setFont(g.getFont().deriveFont(fonttitlesize));
             g.setColor(OptionsTheme.memory.textColor);
             g.drawString(Message.options, titleX, titleY);
