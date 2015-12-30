@@ -214,9 +214,9 @@ public class Game extends JFrame
 				params.add("--assetsDir");
 				if(Integer.parseInt(Settings.servers[Frame.main.servers.getSelectedIndex()].split(", ")[3].replace(".", "")) < 173)
 				{
-					params.add(assets+"assets/virtual/legacy");
+					params.add(assets+ "resources/virtual/legacy");
 				} else {
-					params.add(assets+"assets");
+					params.add(assets+ "resources");
 				}
 				boolean tweakClass = false;
 				try {
@@ -245,7 +245,7 @@ public class Game extends JFrame
 				}
 				
                 Frame.main.setVisible(false);
-                GuardUtils.delete(new File(assets+"assets/skins"));
+                GuardUtils.delete(new File(assets+ "resources/skins"));
 				start.start();
 			} catch (Exception e) {}
 		}
@@ -260,6 +260,7 @@ public class Game extends JFrame
 				Method main = start.getMethod("main", new Class[] { String[].class });
 				main.invoke(null, new Object[] { params.toArray(new String[0]) });
 			} catch (Exception e) {
+				e.printStackTrace(new PrintStream(System.out));
 				JOptionPane.showMessageDialog(Frame.main, e, "Ошибка запуска", javax.swing.JOptionPane.ERROR_MESSAGE, null);
 				try {
 	                Class<?> af = Class.forName("java.lang.Shutdown");

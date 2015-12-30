@@ -35,6 +35,21 @@ public class PassfieldStyle
 		this.texture = BaseUtils.getLocalImage(texture);
 		this.border = border;
 	}
+
+    public PassfieldStyle(int x, int y, int w, int h, String texture, String fontName, float fontSize, Color textColor, Color caretColor, String echoChar)
+    {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.fontName = fontName;
+        this.fontSize = fontSize;
+        this.textColor = textColor;
+        this.caretColor = caretColor;
+        this.echoChar = echoChar;
+        this.texture = BaseUtils.getLocalImage(texture);
+        this.border = border;
+    }
 	
 	public void apply(Passfield pass)
 	{
@@ -44,6 +59,11 @@ public class PassfieldStyle
 		pass.setCaretColor(caretColor);
 		pass.setBackground(textColor);
 		pass.setForeground(textColor);
-		pass.setBorder(border);
+
+        if (null != border) {
+            pass.setBorder(border);
+        }
+
+
 	}
 }

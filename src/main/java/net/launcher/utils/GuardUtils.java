@@ -56,7 +56,7 @@ public class GuardUtils
 			        }
 				}
 				for (String check : client) {
-			        if (!sit.contains(check) && !check.contains(dir+"/assets/skins/")) {
+			        if (!sit.contains(check) && !check.contains(dir+ "/resources/skins/")) {
 			            File file = new File(check.split(":>")[0]);
 			            System.err.println("Delete -> "+file);
 			            delete(file);

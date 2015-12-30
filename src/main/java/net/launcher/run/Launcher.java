@@ -12,13 +12,12 @@ import net.launcher.utils.BaseUtils;
 public class Launcher
 {
 	public static void main(String[] args) throws Exception
-	{	
-		boolean test = (args.length != 0)?(args[0].equals("true")?true:false):false;
-        if (test) {
-			System.out.print("Hello =)");
+	{
+		boolean isRenderUi = (args.length != 0)?(args[0].equals("true")?true:false):false;
+        if (isRenderUi) {
 			File dir = new File(BaseUtils.getAssetsDir().toString());
 			if(!dir.exists()) dir.mkdirs();
-			InputStream stream 		  = Starter.class.getResourceAsStream("/java/net/launcher/theme/favicon.png");
+			InputStream stream 		  = Starter.class.getResourceAsStream("/assets/textures/gui/favicon.png");
 			OutputStream resStreamOut = null;
 			int readBytes;
 		    byte[] buffer = new byte[4096];
@@ -38,7 +37,8 @@ public class Launcher
 	           new MusPlay(Settings.iMusicname);
 	        }
         } else {
-        	Starter.main(null);
+            Frame.start();
+            //Starter.main(null);
         }
 	}
 }

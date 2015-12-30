@@ -104,6 +104,7 @@ public class ThreadUtils
 					Frame.toGame.setVisible(false);
 					Frame.toPersonal.setVisible(false);
 					Frame.toAuth.setVisible(true);
+                    Frame.toHelp.setVisible(true);
 					Frame.toLogout.setVisible(false);
 					Frame.toRegister.setVisible(Settings.useRegister && true);
 					Frame.token = "null";
@@ -264,7 +265,7 @@ public class ThreadUtils
 		if(!Settings.assetsfolder)
 		{
 			if(!answer.split("<br>")[0].split("<:>")[3].split("<>")[0].equals(BaseUtils.getPropertyString("assets_aspmd5")) ||
-			!new File(asfolder+"assets").exists() ||
+			!new File(asfolder+ "resources").exists() ||
 			Frame.main.updatepr.isSelected())
 			{
 				GuardUtils.filesize += Integer.parseInt(answer.split("<br>")[0].split("<:>")[3].split("<>")[1]);

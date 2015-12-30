@@ -3,8 +3,8 @@ package net.launcher.run;
 public class Settings
 {
 	/** Настройка заголовка лаунчера */
-	public static final String  title		         = "minecraft.style"; //Заголовок лаунчера
-	public static final String  titleInGame  	     = "Minecraft"; //Заголовок лаунчера после авторизации
+	public static final String  title		         = "McStyle"; //Заголовок лаунчера
+	public static final String  titleInGame  	     = "McStyle"; //Заголовок лаунчера после авторизации
 	public static final String  baseconf		     = "mcstyle"; //"voxelaria"; //Папка с файлом конфигурации
 	public static final String  pathconst		     = "mcstyle/%SERVERNAME%"; //Конструктор пути к папке с MC
 	public static final String  skins                = "MinecraftSkins/"; //Папка скинов
@@ -20,18 +20,19 @@ public class Settings
 	
 	public static int height                         = 532;      //Высота окна клиента
 	public static int width                          = 900;      //Ширина окна клиента
-	public static int defaultmemory                  = 768;
+	public static int defaultmemory                  = 1024;
         
 	public static String[] servers =
 	{
-		"Offline, localhost, 25565, 1.7.10",
+//		"s1.mine-craft.club, s1.mine-craft.club, 25565, 1.7.10",
+//		"s2.mine-craft.club, s2.mine-craft.club, 25565, 1.7.10",
 	};
 
 	/** Настройка панели ссылок **/
 	public static final String[] links = 
 	{
 		//Для отключения добавьте в адрес ссылки #
-		" Сайт::http://minecraft.style",
+		//" Сайт::http://minecraft.style",
 	};
 
 	/** Настройки структуры лаунчера */
@@ -39,8 +40,8 @@ public class Settings
 	public static boolean useRegister		     =  true;   //Использовать Регистрацию в лаунчере
 	public static boolean useMulticlient		 =  true;   //Использовать функцию "по клиенту на сервер"
 	public static boolean useStandartWB		     =  true;   //Использовать стандартный браузер для открытия ссылок
-	public static boolean usePersonal		     =  true;   //Использовать Личный кабинет
-	public static boolean customframe 		     =  true;   //Использовать кастомный фрейм
+	public static boolean usePersonal		     =  false;   //Использовать Личный кабинет
+	public static boolean customframe 		     =  false;   //Использовать кастомный фрейм
 	public static boolean useConsoleHider		 =  false;  //Использовать скрытие консоли клиента
 	public static boolean useModCheckerTimer	 =  true;   //Перепроверка jar через 30 секунд
 	public static int     useModCheckerint       =  2;      //Количество раз перепроверки jar во время игры

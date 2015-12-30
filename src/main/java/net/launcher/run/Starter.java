@@ -17,11 +17,16 @@ public class Starter {
 			
 			ArrayList<String> params = new ArrayList<String>();
 			params.add(System.getProperty("java.home")+"/bin/java");
+
+			// Check if it's 32 bit java, and fix memory limit
 			if(System.getProperty("sun.arch.data.model").equals("32") && (memory>1024)) {
 				memory = 1024;
 			}
+
+			// Command options
 			params.add("-Xmx"+memory+"m");
-			params.add("-XX:MaxPermSize=128m");
+			//params.add("-XX:MaxPermSize=128m");
+
 			if(System.getProperty("os.name").toLowerCase().startsWith("mac"))
 			{
 				params.add("-Xdock:name=Minecraft");

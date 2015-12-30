@@ -4,6 +4,9 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'application'
 
+compileJava.options.fork = true
+compileJava.options.forkOptions.executable = '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/bin/javac'
+
 repositories {
     mavenCentral()
 }
@@ -16,17 +19,6 @@ jar {
     }
 }
 
-//sourceCompatibility = 1.5
-
-
-//jar {
-//    manifest {
-//        attributes	'Implementation-Title': 'Minecraft Launcher',
-//                'Implementation-Version': version,
-//                'Main-Class': 'net.minecraft.Launcher'
-//    }
-//}
-//
 sourceSets {
     main {
         resources {
@@ -35,14 +27,7 @@ sourceSets {
         }
     }
 }
-//
-//dependencies {
-//    testCompile group: 'junit', name: 'junit', version: '4.11'
-//}
 
-//artifacts {
-//    archives jar
-//}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.9'

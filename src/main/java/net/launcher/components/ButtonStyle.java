@@ -41,9 +41,14 @@ public class ButtonStyle
 		button.setForeground(color);
 		button.setFont(BaseUtils.getFont(fontName, fontSize));
 		button.setHorizontalAlignment(align == Align.LEFT ? SwingConstants.LEFT : align == Align.CENTER ? SwingConstants.CENTER : SwingConstants.RIGHT);
-		
+
+//        button.defaultTX = texture;
+//        button.rolloverTX = texture;
+//        button.pressedTX = texture;
+//        button.lockedTX = texture;
+
 		int i = texture.getHeight() / 4;
-		
+
 		button.defaultTX = texture.getSubimage(0, 0, texture.getWidth(), i);
 		button.rolloverTX = texture.getSubimage(0, i, texture.getWidth(), i);
 		button.pressedTX = texture.getSubimage(0, i * 2, texture.getWidth(), i);
