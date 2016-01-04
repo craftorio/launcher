@@ -103,6 +103,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     public Button buyPremium = new Button(BaseUtils.empty);
     public Button buyUnban = new Button(Message.buyUnban);
     public Button toGamePersonal = new Button(Message.textloginReg1);
+    public LinkLabel projectLink = new LinkLabel(Settings.projectLinkLabel, Settings.projectLinkUrl);
 
 
 
@@ -168,7 +169,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         toPersonal.setVisible(Settings.usePersonal);
         toOptions.addActionListener(this);
         toRegister.addActionListener(this);
-        login.setPlaceholderText("Логин minecraft.style");
+        login.setPlaceholderText("Логин");
         login.addActionListener(this);
         //login.addFocusListener(this);
         password.setPlaceholderText("Введите пароль");
@@ -343,8 +344,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
      * Добавление элементов авторизации
      */
     public void addAuthComp() {
-//        panel.add(servers);
-//        panel.add(serverbar);
+        panel.add(projectLink);
+        panel.add(servers);
+        panel.add(serverbar);
 //        for (LinkLabel link : links)
 //            panel.add(link);
         panel.add(toGame);
@@ -356,6 +358,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         panel.add(toRegister);
         panel.add(login);
         panel.add(password);
+
 //        panel.add(bpane);
     }
 

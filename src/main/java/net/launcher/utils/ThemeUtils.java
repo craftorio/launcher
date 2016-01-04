@@ -1,10 +1,8 @@
 package net.launcher.utils;
 
 import java.awt.Dimension;
-import java.awt.FontMetrics;
 
 import net.launcher.components.Frame;
-import net.launcher.components.LinkLabel;
 import net.launcher.run.Settings;
 import static net.launcher.theme.LoginTheme.*;
 import static net.launcher.theme.OptionsTheme.*;
@@ -39,6 +37,7 @@ public class ThemeUtils extends BaseUtils
         password.apply(Frame.password);
         servers.apply(main.servers);
         serverbar.apply(main.serverbar);
+        projectLinkStyle.apply(main.projectLink);
         loadnews.apply(main.loadnews);
         Music.apply(main.Music);
         updatepr.apply(main.updatepr);

@@ -89,9 +89,9 @@ public class Message {
     //Выполнение
     public static String Loading = "Выполнение...";
     //Сервер
-    public static String serveroff = "Сервер выключен";
+    public static String serveroff = "Оффлайн";
     public static String serverfull = "Сервер переполнен (Всего слотов: %%)";
-    public static String serveron = "На сервере %% из ## игроков";
+    public static String serveron = "%% / ##";
     public static String servererr = "Ошибка получения информации";
     //tmpString
     public static String tmpString = "Авторизация...";
