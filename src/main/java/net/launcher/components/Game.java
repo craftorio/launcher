@@ -221,7 +221,7 @@ public class Game extends JFrame
 					params.add(assets+ "assets/virtual/legacy");
 				} else {
                     BaseUtils.send("==================================================================");
-                    BaseUtils.send("Load resources:" + assets+ "resources");
+                    BaseUtils.send("Load resources:" + assets+ "assets");
                     BaseUtils.send("==================================================================");
 					params.add(assets+ "assets");
 				}
