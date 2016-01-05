@@ -105,7 +105,14 @@ public class UpdaterThread extends Thread
 		{
 			String path = BaseUtils.getAssetsDir().getAbsolutePath() + File.separator;
 			String file = path + "assets.zip";
-			BaseUtils.setProperty("assets_aspmd5", GuardUtils.hash(new File(file).toURI().toURL()));
+
+            String md5 = GuardUtils.hash(new File(file).toURI().toURL());
+
+            BaseUtils.send("---------------------------------------------");
+            BaseUtils.send(md5);
+            BaseUtils.send("---------------------------------------------");
+
+			BaseUtils.setProperty("assets_aspmd5", md5);
 			ZipUtils.unzip(path, file);
 		}
 		

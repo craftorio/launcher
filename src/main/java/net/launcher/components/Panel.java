@@ -148,8 +148,9 @@ public class Panel extends JPanel {
             try {
                 int percentw = (int) (t.procents * loadbarW / 100);
                 g.drawImage(img.getSubimage(0, 0, percentw, loadbarH), loadbarX, loadbarY, null);
-                g.drawImage(bar_label, (loadbarX + percentw) - (bar_label.getWidth() / 2) - 10, loadbarY - bar_label.getHeight(), null);
-                g.drawString(t.procents + "%", (loadbarX + percentw) - (g.getFontMetrics().stringWidth(t.procents + "%") / 2), loadbarY - (bar_label.getHeight() / 2));
+                g.drawImage(bar_label, (loadbarX + percentw) - (bar_label.getWidth() / 2) - 10, loadbarY - bar_label.getHeight() - 5, null);
+                g.setFont(updaterLabelFont.font);
+                g.drawString(t.procents + "%", (loadbarX + percentw) - (g.getFontMetrics().stringWidth(t.procents + "%") / 2) -10, loadbarY - (bar_label.getHeight() / 2));
             } catch (Exception e) {
             }
         } else if (type == 5) { // Options Dialog

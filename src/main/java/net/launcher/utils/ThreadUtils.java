@@ -241,7 +241,7 @@ public class ThreadUtils {
 
         if (!Settings.assetsfolder) {
             if (!answer.split("<br>")[0].split("<:>")[3].split("<>")[0].equals(BaseUtils.getPropertyString("assets_aspmd5")) ||
-                    !new File(asfolder + "resources").exists() ||
+                    !new File(asfolder + "assets").exists() ||
                     Frame.main.updatepr.isSelected()) {
                 GuardUtils.filesize += Integer.parseInt(answer.split("<br>")[0].split("<:>")[3].split("<>")[1]);
                 files.add("/assets.zip");

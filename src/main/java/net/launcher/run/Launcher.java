@@ -33,8 +33,8 @@ public class Launcher {
                 new MusPlay(Settings.iMusicname);
             }
         } else {
-            //Frame.start();
-            Starter.main(null);
+            Frame.start();
+            //Starter.main(null);
         }
     }
 }
