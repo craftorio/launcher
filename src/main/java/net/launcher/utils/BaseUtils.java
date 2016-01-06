@@ -30,6 +30,8 @@ public class BaseUtils {
     public static Map<String, Font> fonts = new HashMap<String, Font>();
     public static Map<String, BufferedImage> resourceCache = new HashMap<String, BufferedImage>();
 
+    protected static String workDir;
+
     /**
      * Get the Gui Image
      *
@@ -106,63 +108,79 @@ public class BaseUtils {
         return (x >= xx) && (y >= yy) && (x < xx + w) && (y < yy + h);
     }
 
+    /**
+     *
+     * @return File
+     */
     public static File getConfigName() {
-        String home = System.getProperty("user.home", "");
-        String path = File.separator + Settings.baseconf + File.separator + "launcher.config";
-        switch (getPlatform()) {
-            case 1:
-                return new File(System.getProperty("user.home", "") + path);
-            case 2:
-                String appData = System.getenv("SYSTEMDRIVE");
-                if (appData != null)
-                    return new File(appData + path);
-                else
-                    return new File(home + path);
-            case 3:
-                return new File(home, path);
-            default:
-                return new File(home + path);
+
+        File config = new File(getWorkDir() + File.separator + "launcher.config");
+
+        if (!config.exists()) {
+            try {
+                config.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Can't create file: \""+config.getAbsolutePath()+"\", error:" + e.getMessage());
+            }
         }
+
+        return config;
     }
 
+    /**
+     *
+     * @return String
+     * @throws URISyntaxException
+     */
+    protected static String getWorkDir() {
+
+        try {
+            if (null == workDir) {
+                File file = new File(BaseUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+                File dir  = new File(file.getParentFile().getAbsolutePath() + File.separator + "mcstyle");
+
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                workDir = dir.getAbsolutePath();
+
+                BaseUtils.send("===> Initialize in work dir: " + workDir);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Can't initialize work dir: " + e.getMessage());
+        }
+
+        return workDir;
+    }
+
+    /**
+     *
+     * Retrieve assets directory
+     *
+     * @return File
+     */
     public static File getAssetsDir() {
-        String home = System.getProperty("user.home", "");
-        String path = File.separator + Settings.baseconf + File.separator;
-        switch (getPlatform()) {
-            case 1:
-                return new File(System.getProperty("user.home", "") + path);
-            case 2:
-                String appData = System.getenv("SYSTEMDRIVE");
-                if (appData != null)
-                    return new File(appData + path);
-                else
-                    return new File(home + path);
-            case 3:
-                return new File(home, path);
-            default:
-                return new File(home + path);
-        }
+
+        return new File(getWorkDir());
     }
 
+    /**
+     *
+     * Retrieve client directory
+     *
+     * @return File
+     */
     public static File getMcDir() {
-        String home = System.getProperty("user.home", "");
-        String path = Settings.pathconst.replaceAll("%SERVERNAME%", getClientName());
-        switch (getPlatform()) {
-            case 1:
-                return new File(System.getProperty("user.home", ""), path);
-            case 2:
-                String appData = System.getenv("SYSTEMDRIVE");
-                if (appData != null)
-                    return new File(appData, path);
-                else
-                    return new File(home, path);
-            case 3:
-                return new File(home, path);
-            default:
-                return new File(home, path);
-        }
+
+        return new File(getWorkDir() + File.separator + getClientName());
     }
 
+    /**
+     * Retrieve current OS ID
+     *
+     * @return int
+     */
     public static int getPlatform() {
         String osName = System.getProperty("os.name").toLowerCase();
 

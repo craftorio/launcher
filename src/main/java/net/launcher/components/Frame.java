@@ -58,8 +58,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     public static Button toRegister = new Button(Message.Register);
     public JTextPane browser = new JTextPane();
     public JTextPane personalBrowser = new JTextPane();
-    public JScrollPane bpane = new JScrollPane(browser);
-    public JScrollPane personalBpane = new JScrollPane(personalBrowser);
+//    public JScrollPane bpane = new JScrollPane(browser);
+//    public JScrollPane personalBpane = new JScrollPane(personalBrowser);
     public static Textfield login = new Textfield();
     public static Passfield password = new Passfield();
     public Combobox servers = new Combobox(getServerNames(), 0);
@@ -192,7 +192,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         toGame.setVisible(b2);
         toPersonal.setVisible(b2 && Settings.usePersonal);
         toAuth.setVisible(b1);
-        toHelp.setVisible(b1);
+        toHelp.setVisible(true);
         toLogout.setVisible(b2);
         toRegister.setVisible(Settings.useRegister && b1);
         if (toGame.isVisible()) {
@@ -200,46 +200,46 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         }
 
         login.setEditable(b1);
-        bpane.setOpaque(false);
-        bpane.getViewport().setOpaque(false);
-        if (Settings.drawTracers) {
-            bpane.setBorder(BorderFactory.createLineBorder(Color.black));
-        } else {
-            bpane.setBorder(null);
-        }
+//        bpane.setOpaque(false);
+//        bpane.getViewport().setOpaque(false);
+//        if (Settings.drawTracers) {
+//            bpane.setBorder(BorderFactory.createLineBorder(Color.black));
+//        } else {
+//            bpane.setBorder(null);
+//        }
+//
+//        personalBpane.setOpaque(false);
+//        personalBpane.getViewport().setOpaque(false);
+//        personalBpane.setBorder(null);
 
-        personalBpane.setOpaque(false);
-        personalBpane.getViewport().setOpaque(false);
-        personalBpane.setBorder(null);
+//        personalBrowser.setOpaque(false);
+//        personalBrowser.setBorder(null);
+//        personalBrowser.setContentType("text/html");
+//        personalBrowser.setEditable(false);
+//        personalBrowser.setFocusable(false);
+//        personalBrowser.addHyperlinkListener(new HyperlinkListener() {
+//            public void hyperlinkUpdate(HyperlinkEvent e) {
+//                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+//                    openURL(e.getURL().toString());
+//                }
+//            }
+//        });
 
-        personalBrowser.setOpaque(false);
-        personalBrowser.setBorder(null);
-        personalBrowser.setContentType("text/html");
-        personalBrowser.setEditable(false);
-        personalBrowser.setFocusable(false);
-        personalBrowser.addHyperlinkListener(new HyperlinkListener() {
-            public void hyperlinkUpdate(HyperlinkEvent e) {
-                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                    openURL(e.getURL().toString());
-                }
-            }
-        });
-
-        browser.setOpaque(false);
-        browser.setBorder(null);
-        browser.setContentType("text/html");
-        browser.setEditable(false);
-        browser.setFocusable(false);
-        browser.addHyperlinkListener(new HyperlinkListener() {
-            public void hyperlinkUpdate(HyperlinkEvent e) {
-                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                    if (Settings.useStandartWB)
-                        openURL(e.getURL().toString());
-                    else
-                        ThreadUtils.updateNewsPage(e.getURL().toString());
-                }
-            }
-        });
+//        browser.setOpaque(false);
+//        browser.setBorder(null);
+//        browser.setContentType("text/html");
+//        browser.setEditable(false);
+//        browser.setFocusable(false);
+//        browser.addHyperlinkListener(new HyperlinkListener() {
+//            public void hyperlinkUpdate(HyperlinkEvent e) {
+//                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+//                    if (Settings.useStandartWB)
+//                        openURL(e.getURL().toString());
+//                    else
+//                        ThreadUtils.updateNewsPage(e.getURL().toString());
+//                }
+//            }
+//        });
         hide.addActionListener(this);
         close.addActionListener(this);
 
@@ -382,7 +382,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
 
             main = new Frame();
 
-            ThreadUtils.updateNewsPage(buildUrl("news.php"));
+            //ThreadUtils.updateNewsPage(buildUrl("news.php"));
             ThreadUtils.pollSelectedServer();
             try {
                 main.memory.setText(String.valueOf(getPropertyInt("memory", Settings.defaultmemory)));
@@ -456,12 +456,17 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             toGame.setVisible(false);
             toPersonal.setVisible(false);
             toAuth.setVisible(true);
+            toHelp.setVisible(true);
             toLogout.setVisible(false);
             toRegister.setVisible(Settings.useRegister && true);
             token = "null";
+            login.setText("");
             login.setEditable(true);
-            login.setText("Логин...");
-            password.setText("123");
+            login.paintInitialize();
+            //login.setText("Логин...");
+            password.setText("");
+            password.paintInitialize();
+            password.repaint();
             repaint();
         }
 

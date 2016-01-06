@@ -53,8 +53,8 @@ public class GuardUtils {
             for (String check : client) {
                 if (!sit.contains(check) && !check.contains(dir + "/resources/skins/")) {
                     File file = new File(check.split(":>")[0]);
-                    System.err.println("Delete -> " + file);
                     delete(file);
+                    System.err.println("Deleted -> " + file);
                     ret = true;
                 }
             }
@@ -106,14 +106,17 @@ public class GuardUtils {
 
     public static void delete(File file) {
         try {
-            if (!file.exists())
+            if (!file.exists()) {
                 return;
+            }
             if (file.isDirectory()) {
-                for (File f : file.listFiles())
+                for (File f : file.listFiles()) {
                     delete(f);
+                }
                 file.delete();
-            } else
+            } else {
                 file.delete();
+            }
         } catch (Exception e) {
         }
     }

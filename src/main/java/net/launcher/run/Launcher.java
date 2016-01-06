@@ -11,8 +11,9 @@ public class Launcher {
         boolean isRenderUi = (args.length != 0) ? (args[0].equals("true") ? true : false) : false;
         if (isRenderUi) {
             File dir = new File(BaseUtils.getAssetsDir().toString());
-            if (!dir.exists())
+            if (!dir.exists()) {
                 dir.mkdirs();
+            }
             InputStream stream = Starter.class.getResourceAsStream("/assets/textures/gui/favicon.png");
             OutputStream resStreamOut = null;
             int readBytes;
@@ -25,7 +26,9 @@ public class Launcher {
             } catch (IOException e1) {
                 e1.printStackTrace();
             } finally {
-                stream.close();
+                if (null != stream) {
+                    stream.close();
+                }
                 resStreamOut.close();
             }
             Frame.start();
@@ -33,8 +36,8 @@ public class Launcher {
                 new MusPlay(Settings.iMusicname);
             }
         } else {
-            Frame.start();
-            //Starter.main(null);
+            //Frame.start();
+            Starter.main(null);
         }
     }
 }

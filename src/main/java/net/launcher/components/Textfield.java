@@ -41,7 +41,7 @@ public class Textfield extends JTextField
         placeholderTextColor = color;
     }
 
-    protected void paintInitialize()
+    public void paintInitialize()
     {
         if (getText().isEmpty() && !placeholderText.isEmpty()) {
             setText(placeholderText);

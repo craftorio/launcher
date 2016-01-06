@@ -19,7 +19,7 @@ public class Settings {
      * Параметры подключения
      */
     public static final String domain = "minecraft.style";//Домен сайта
-    public static final String siteDir = "site";//Папка с файлами лаунчера на сайте
+    public static final String siteDir = "launcher";//Папка с файлами лаунчера на сайте
     public static final String updateFile = "http://minecraft.style/launcher/fix";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
     public static final String buyVauncherLink = "http://minecraft.style/shop"; //Ссылка на страницу покупки ваучеров
     public static final String iMusicname = "001.mp3";

@@ -45,7 +45,7 @@ public class Passfield extends JPasswordField
         addFocusListener(this);
     }
 
-    protected void paintInitialize()
+    public void paintInitialize()
     {
         setText(placeholderText);
         setForeground(placeholderTextColor);
