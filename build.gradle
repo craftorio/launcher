@@ -4,8 +4,11 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'application'
 
-compileJava.options.fork = true
-compileJava.options.forkOptions.executable = '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/bin/javac'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+//compileJava.options.fork = true
+//compileJava.options.forkOptions.executable = '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/bin/javac'
+//compileJava.options.forkOptions.executable = 'C:\\Program Files\\Java\\jdk1.8.0_65\\bin\\javac'
 
 repositories {
     mavenCentral()

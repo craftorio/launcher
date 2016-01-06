@@ -60,7 +60,7 @@ public class Message {
     public static String joblvl = "Уровень: %%";
     public static String jobexp = "Опыт: %%";
     //Обновление клиента
-    public static String currentfile = "Текущий файл: %%";
+    public static String currentfile = "Файл: %%";
     public static String totalsize = "Всего: %% байт";
     public static String currentsize = "Загружено: %% байт";
     public static String downloadspeed = "Скорость: %% кб/сек";
