@@ -33,12 +33,12 @@ public class PersonalTheme {
     public static ButtonStyle buyPremium = new ButtonStyle(20, 390, 140, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);
     public static ButtonStyle buyUnban = new ButtonStyle(20, 440, 140, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);
 
-    public static TextfieldStyle vaucher = new TextfieldStyle(340, 340, 140, 38, "textfield", "font", 16F, Color.WHITE, Color.WHITE, new EmptyBorder(0, 10, 0, 10));
+    public static TextfieldStyle vaucher = new TextfieldStyle(340, 340, 140, 38, "input-def", "font", 16F, Color.WHITE, Color.WHITE, new EmptyBorder(0, 10, 0, 10));
     public static ButtonStyle vaucherButton = new ButtonStyle(340, 390, 140, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);
     public static ButtonStyle buyVaucher = new ButtonStyle(340, 440, 140, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);
 
-    public static TextfieldStyle exchangeFrom = new TextfieldStyle(20, 495, 140, 38, "textfield", "font", 16F, Color.WHITE, Color.WHITE, new EmptyBorder(0, 10, 0, 10));
-    public static TextfieldStyle exchangeTo = new TextfieldStyle(180, 495, 140, 38, "textfield", "font", 16F, Color.WHITE, Color.WHITE, new EmptyBorder(0, 10, 0, 10));
+    public static TextfieldStyle exchangeFrom = new TextfieldStyle(20, 495, 140, 38, "input-def", "font", 16F, Color.WHITE, Color.WHITE, new EmptyBorder(0, 10, 0, 10));
+    public static TextfieldStyle exchangeTo = new TextfieldStyle(180, 495, 140, 38, "input-def", "font", 16F, Color.WHITE, Color.WHITE, new EmptyBorder(0, 10, 0, 10));
     public static ButtonStyle exchangeBtn = new ButtonStyle(340, 490, 140, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);
 
     public static ButtonStyle toGamePSL = new ButtonStyle(180, 340, 140, 47, "font", "button", 16F, Color.decode("0xd4dc7b"), true, Align.CENTER);

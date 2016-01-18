@@ -205,23 +205,37 @@ try {
             !file_exists("clients/" . $client . "/mods/") ||
             !file_exists("clients/" . $client . "/coremods/") ||
             !file_exists("clients/" . $client . "/natives/") ||
-            !file_exists("clients/" . $client . "/config.zip")
+            !file_exists("clients/" . $client . "/scripts/") ||
+            !file_exists("clients/" . $client . "/config.zip") ||
+            !file_exists("clients/" . $client . "/servers.dat")
         )
             die(Security::encrypt("client<$> $client", $key1));
 
         $md5user     = strtoint(xorencode(str_replace('-', '', uuidConvert($realUser)), $protectionKey));
         $md5zip      = @md5_file("clients/" . $client . "/config.zip");
+        $md5servers  = @md5_file("clients/" . $client . "/servers.dat");
         $md5ass      = @md5_file("clients/assets.zip");
         $sizezip     = @filesize("clients/" . $client . "/config.zip");
+        $sizeservers     = @filesize("clients/" . $client . "/servers.dat");
         $sizeass     = @filesize("clients/assets.zip");
-        $usrsessions = "$masterversion<:>$md5user<:>" . $md5zip . "<>" . $sizezip . "<:>" . $md5ass . "<>" . $sizeass . "<br>" . $realUser . '<:>' . strtoint(xorencode($sessid, $protectionKey)) . '<br>' . $acesstoken . '<br>';
+
+        $usrsessions = "$masterversion<:>$md5user<:>" . $md5zip . "<>" . $sizezip . "<:>" . $md5ass . "<>" . $sizeass . "<:>" . $md5servers . "<>" . $sizeservers . "<br>" . $realUser . '<:>' . strtoint(xorencode($sessid, $protectionKey)) . '<br>' . $acesstoken . '<br>';
 
         function hashc($assetsfolder, $client)
         {
             if ($assetsfolder) {
-                $hash_md5 = str_replace("\\", "/", checkfiles('clients/' . $client . '/bin/') . checkfiles('clients/' . $client . '/mods/') . checkfiles('clients/' . $client . '/coremods/') . checkfiles('clients/' . $client . '/natives/') . checkfiles('clients/assets')) . '<::>assets/indexes<:b:>assets/objects<:b:>assets/virtual<:b:>' . $client . '/bin<:b:>' . $client . '/mods<:b:>' . $client . '/coremods<:b:>' . $client . '/natives<:b:>';
+                $hash_md5 = str_replace("\\", "/", checkfiles('clients/' . $client . '/bin/') . checkfiles('clients/' . $client . '/mods/') . checkfiles('clients/' . $client . '/coremods/')
+                . checkfiles('clients/' . $client . '/natives/')
+                    . checkfiles('clients/' . $client . '/scripts/')
+                . checkfiles('clients/assets')) . '<::>assets/indexes<:b:>assets/objects<:b:>assets/virtual<:b:>' . $client . '/bin<:b:>' . $client . '/mods<:b:>' . $client . '/coremods<:b:>' . $client . '/natives<:b:>' . $client . '/scripts<:b:>';
             } else {
-                $hash_md5 = str_replace("\\", "/", checkfiles('clients/' . $client . '/bin/') . checkfiles('clients/' . $client . '/mods/') . checkfiles('clients/' . $client . '/coremods/') . checkfiles('clients/' . $client . '/natives/')) . '<::>' . $client . '/bin<:b:>' . $client . '/mods<:b:>' . $client . '/coremods<:b:>' . $client . '/natives<:b:>';
+                $hash_md5 = str_replace("\\", "/", checkfiles('clients/' . $client . '/bin/') . checkfiles('clients/' . $client . '/mods/') . checkfiles('clients/' . $client . '/coremods/')
+                . checkfiles('clients/' . $client . '/natives/')
+                . checkfiles('clients/' . $client . '/scripts/'))
+                . '<::>' . $client . '/bin<:b:>' . $client . '/mods<:b:>' . $client . '/coremods<:b:>'
+                . $client . '/natives<:b:>'
+                . $client . '/scripts<:b:>'
+                ;
             }
             return $hash_md5;
         }

@@ -20,6 +20,12 @@ include_once("loger.php");
 		$exists1 = file_exists($uploaddirp.'/'.$realUser.'.png');
 		$file2 = $skinurl.$realUser.'.png';
 		$exists2 = file_exists($uploaddirs.'/'.$realUser.'.png');
+
+		if (!$exists2) {
+		    copy (__DIR__ . '/DefaultSkins/' . rand(1,15) . '.png', $uploaddirs.'/'.$realUser.'.png');
+		    $exists2 = true;
+		}
+
 		if ($exists1) {
 		    $cape = 
 		'

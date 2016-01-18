@@ -59,8 +59,8 @@
 
 	$uploaddirs         = 'MinecraftSkins';  //Папка скинов
 	$uploaddirp         = 'MinecraftCloaks'; //Папка плащей
-    $skinurl            = 'http://alexandrage.ru/site/'.$uploaddirs.'/'; //Ссылка на скины для клиентов 1.7.+
-    $capeurl            = 'http://alexandrage.ru/site/'.$uploaddirp.'/'; //Ссылка на плащи для клиентов 1.7.+
+    $skinurl            = 'http://auth.minecraft.style/'.$uploaddirs.'/'; //Ссылка на скины для клиентов 1.7.+
+    $capeurl            = 'http://auth.minecraft.style/'.$uploaddirp.'/'; //Ссылка на плащи для клиентов 1.7.+
 	
 	$usePersonal 		=  true; //Использовать личный кабинет
 	$canUploadSkin		=  true; //Можно ли заливать скины
