@@ -93,6 +93,7 @@ public class ThreadUtils {
                             setProperty("password", "-");
                             Frame.password.setVisible(true);
                             Frame.toGame.setVisible(false);
+                            Frame.toAccount.setVisible(false);
                             Frame.toPersonal.setVisible(false);
                             Frame.toAuth.setVisible(true);
                             Frame.toHelp.setVisible(true);
@@ -198,10 +199,14 @@ public class ThreadUtils {
                             }
                         }
 
+                        BaseUtils.send(answer.split("<br>")[2].split("<br>")[0]);
+
+                        setProperty("session", EncodingUtils.xorencode(EncodingUtils.inttostr(answer.split("<br>")[1].split("<:>")[1]), Settings.protectionKey));
                         setProperty("password", encrypt(answer.split("<br>")[2].split("<br>")[0], d).replaceAll("\n|\r\n", ""));
                         if (Frame.token.equals("null")) {
                             Frame.password.setVisible(false);
                             Frame.toGame.setVisible(true);
+                            Frame.toAccount.setVisible(true);
                             Frame.toPersonal.setVisible(Settings.usePersonal && true);
                             Frame.toAuth.setVisible(false);
                             Frame.toLogout.setVisible(true);

@@ -31,7 +31,6 @@
             $stmt->execute();
             #if($stmt->rowCount() == 1) {
                 echo json_encode($ok);
-                file_put_contents(__DIR__ . "/Sucess_" . $realUser, 1);
                 exit;
             #}
             

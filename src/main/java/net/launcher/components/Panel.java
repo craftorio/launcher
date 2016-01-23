@@ -95,18 +95,19 @@ public class Panel extends JPanel {
             g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
             g.setFont(g.getFont().deriveFont(fonttitlesize));
             //g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
-            g.drawString(Message.update, getWidth() / 2 - g.getFontMetrics().stringWidth(Message.update) / 2, UpdateTheme.stringsY);
+            g.drawString(Message.update, UpdateTheme.stringsX, UpdateTheme.stringsY - 10);
             g.setFont(g.getFont().deriveFont(fontbasesize));
-            g.drawString(Message.str1, UpdateTheme.stringsX, UpdateTheme.stringsY + 20);
-            g.drawString(Message.str2, UpdateTheme.stringsX, UpdateTheme.stringsY + 40);
-            g.drawString(Message.str3, UpdateTheme.stringsX, UpdateTheme.stringsY + 60);
-            g.drawString(Message.str4, UpdateTheme.stringsX, UpdateTheme.stringsY + 80);
-            g.drawString(Message.str5, UpdateTheme.stringsX, UpdateTheme.stringsY + 100);
-            g.drawString(Message.str6.replace("%%", Settings.masterVersion), UpdateTheme.stringsX, UpdateTheme.stringsY + 120);
-            g.drawString(Message.str7.replace("%%", tmpString), UpdateTheme.stringsX, UpdateTheme.stringsY + 140);
+            g.drawString(Message.str0, UpdateTheme.stringsX, UpdateTheme.stringsY + 20);
+            g.drawString(Message.str1, UpdateTheme.stringsX, UpdateTheme.stringsY + 40);
+            g.drawString(Message.str2, UpdateTheme.stringsX, UpdateTheme.stringsY + 60);
+            g.drawString(Message.str3, UpdateTheme.stringsX, UpdateTheme.stringsY + 80);
+            g.drawString(Message.str4, UpdateTheme.stringsX, UpdateTheme.stringsY + 100);
+            g.drawString(Message.str5, UpdateTheme.stringsX, UpdateTheme.stringsY + 120);
+            g.drawString(Message.str6.replace("%%", Settings.masterVersion), UpdateTheme.stringsX, UpdateTheme.stringsY + 140);
+            g.drawString(Message.str7.replace("%%", tmpString), UpdateTheme.stringsX, UpdateTheme.stringsY + 160);
             if (type == 8 || type == 9) {
                 g.setColor(Color.RED);
-                g.drawString(type == 8 ? Message.str8 : Message.str9, UpdateTheme.stringsX, UpdateTheme.stringsY + 160);
+                g.drawString(type == 8 ? Message.str8 : Message.str9, UpdateTheme.stringsX, UpdateTheme.stringsY + 80);
             }
         } else if (type == 3) { // Error dialog
             g.drawImage(background, 0, 0, getWidth(), getHeight(), null);

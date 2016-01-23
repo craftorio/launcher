@@ -29,6 +29,7 @@ public class ThemeUtils extends BaseUtils
         toGame.apply(Frame.toGame);
         loginBtn.apply(Frame.toAuth);
         helpBtn.apply(Frame.toHelp);
+        accountBtn.apply(Frame.toAccount);
         logoutBtn.apply(Frame.toLogout);
         toPersonal.apply(Frame.toPersonal);
         registerBtn.apply(Frame.toRegister);

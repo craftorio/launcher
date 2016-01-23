@@ -11,9 +11,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 
-import net.launcher.MusPlay;
 import net.launcher.run.Settings;
-import net.launcher.utils.ImageUtils;
+import net.launcher.utils.BaseUtils;
 
 public class Button extends JButton implements MouseListener, MouseMotionListener {
     private static final long serialVersionUID = 1L;
@@ -23,6 +22,7 @@ public class Button extends JButton implements MouseListener, MouseMotionListene
     public BufferedImage rolloverTX;
     public BufferedImage pressedTX;
     public BufferedImage lockedTX;
+    protected String url;
 
     public Button(String text) {
         addMouseListener(this);
@@ -34,6 +34,11 @@ public class Button extends JButton implements MouseListener, MouseMotionListene
         setOpaque(false);
         setFocusable(false);
         setCursor(Cursor.getPredefinedCursor(12));
+    }
+
+    public Button(String text, String url) {
+        this(text);
+        this.url = url;
     }
 
     protected void paintComponent(Graphics maing) {
@@ -95,6 +100,11 @@ public class Button extends JButton implements MouseListener, MouseMotionListene
      * @param e
      */
     public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            if (null != url) {
+                BaseUtils.openURL(url);
+            }
+        }
     }
 
     /**

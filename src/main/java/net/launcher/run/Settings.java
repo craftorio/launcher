@@ -4,6 +4,8 @@ public class Settings {
 
     public static final String projectLinkLabel = "www.minecraft.style";
     public static final String projectLinkUrl = "http://minecraft.style";
+    public static final String toHelpUrl = projectLinkUrl + "/help";
+    public static final String toAccountUrl = projectLinkUrl + "/account";
 
     /**
      * Настройка заголовка лаунчера
@@ -20,7 +22,7 @@ public class Settings {
      */
     public static final String domain = "minecraft.style";//Домен сайта
     public static final String siteDir = "launcher";//Папка с файлами лаунчера на сайте
-    public static final String updateFile = "http://minecraft.style/launcher/fix";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
+    public static final String updateFile = "http://minecraft.style/launcher/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
     public static final String buyVauncherLink = "http://minecraft.style/shop"; //Ссылка на страницу покупки ваучеров
     public static final String iMusicname = "001.mp3";
     public static final String[] p = {"wireshark", "cheat"};  //Список запрещенных процессов.
@@ -64,7 +66,7 @@ public class Settings {
 
     public static boolean debug = true; //Отображать все действия лаунчера (отладка)(true/false)
     public static boolean drawTracers = false; //Отрисовывать границы элементов лаунчера
-    public static final String masterVersion = "0.1.0"; //Версия лаунчера
+    public static final String masterVersion = "1.0.0"; //Версия лаунчера
 
     public static boolean patchDir = true; //Использовать автоматическую замену директории игры (true/false)
 

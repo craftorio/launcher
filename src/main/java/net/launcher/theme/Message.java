@@ -1,17 +1,12 @@
 package net.launcher.theme;
 public class Message {
-    // Login
-    public static String LoginBtn = "Login";
-    public static String HelpBtn = "Help";
-
-
     //Логин
-
     public static String Options = "";
     public static String Game = "Войти в игру";
     public static String Auth = "Вход";
     public static String Logout = "Выход";
     public static String Help = "Помощь";
+    public static String Account = "Личный кабинет";
     public static String Personal = "Войти в ЛК";
     public static String Register = "Создать учетную запись";
     public static String Login = "Логин";
@@ -68,19 +63,20 @@ public class Message {
     public static String state = "Состояние: %%";
     public static String leftTime = "Осталось: %% секунд";
     //Обновление лаунчера
-    public static String update = "Доступно обновление";
-    public static String str1 = "Для продолжения игры обновите лаунчер.";
-    public static String str2 = "Новый лаунчер содержит разные улучшения и исправления,";
-    public static String str3 = "а так же необходим для запуска игры. Нажмите \"Обновить\",";
-    public static String str4 = "чтобы скачать новую версию. Если же вы не можете обновить";
-    public static String str5 = "лаунчер прямо сейчас, нажмите кнопку \"Выход\".";
+    public static String update = "Требуется обновление";
+    public static String str0 = "Для продолжения обновите лаунчер.";
+    public static String str1 = "Новая версия содержит улучшения и";
+    public static String str2 = "исправления, необходимые для запуска игры.";
+    public static String str3 = "";
+    public static String str4 = "Нажмите \"Обновить\" для продолжения.";
+    public static String str5 = "Нажмите \"Отмена\" для выхода.";
     public static String str6 = "Текущая версия: %%";
     public static String str7 = "Новая версия: %%";
     public static String str8 = "Идет обновление лаунчера...";
     public static String str9 = "Ошибка при обновлении.";
     public static String update_exe = "exe";
-    public static String update_jar = "jar";
-    public static String update_no = "Выход";
+    public static String update_jar = "Обновить";
+    public static String update_no = "Отмена";
     public static String update_no2 = "Отмена";
     //Ошибка выполнения
     public static String messerr = "Ошибка  выполнения";

@@ -51,7 +51,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     public Title title = new Title();
     public static Button toGame = new Button(Message.Game);
     public static Button toAuth = new Button(Message.Auth);
-    public static Button toHelp = new Button(Message.Help);
+    public static Button toHelp = new Button(Message.Help, Settings.toHelpUrl);
+    public static ButtonAccount toAccount = new ButtonAccount(Message.Account, Settings.toAccountUrl);
+
     public static Button toLogout = new Button(Message.Logout);
     public static Button toPersonal = new Button(Message.Personal);
     public Button toOptions = new Button(Message.Options);
@@ -190,6 +192,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         login.setVisible(true);
         password.setVisible(b1);
         toGame.setVisible(b2);
+        toAccount.setVisible(b2);
         toPersonal.setVisible(b2 && Settings.usePersonal);
         toAuth.setVisible(b1);
         toHelp.setVisible(true);
@@ -350,6 +353,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
 //        for (LinkLabel link : links)
 //            panel.add(link);
         panel.add(toGame);
+        panel.add(toAccount);
         panel.add(toAuth);
         panel.add(toHelp);
         panel.add(toLogout);
@@ -454,6 +458,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             setProperty("login", "");
             password.setVisible(true);
             toGame.setVisible(false);
+            toAccount.setVisible(false);
             toPersonal.setVisible(false);
             toAuth.setVisible(true);
             toHelp.setVisible(true);
