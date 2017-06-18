@@ -39,12 +39,13 @@ public class Starter {
 
             ProcessBuilder pb = new ProcessBuilder(params);
             pb.directory(new File(BaseUtils.getAssetsDir().toString()));
+            BaseUtils.send("Starting launcher: \"" + String.join("\" \"", params) + "\"");
             Process process = pb.start();
             if (null == process) {
                 throw new Exception("Launcher can't be started!");
             }
-            //System.exit(0);
-            new ProcessUtils(process).print();
+            ProcessUtils processUtil = new ProcessUtils(process);
+            processUtil.print();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(Frame.main, e, "Ошибка запуска", javax.swing.JOptionPane.ERROR_MESSAGE, null);
             try {

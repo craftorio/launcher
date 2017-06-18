@@ -32,6 +32,53 @@ public class BaseUtils {
 
     protected static String workDir;
 
+    protected static Boolean isJar = null;
+
+    public static Boolean isDebugMode() {
+        return java.lang.management.ManagementFactory.getRuntimeMXBean().
+                getInputArguments().toString().indexOf("jdwp") >= 0;
+    }
+
+    /**
+     * Check is run in Jar
+     *
+     * @return
+     */
+    public static Boolean isJar() {
+        if (null == isJar) {
+            isJar = false;
+            String className = BaseUtils.class.getName().replace('.', '/');
+            String classJar = BaseUtils.class.getClass().getResource("/" + className + ".class").toString();
+            if (classJar.startsWith("jar:")) {
+                isJar = true;
+            }
+        }
+
+        return isJar;
+    }
+
+    /**
+     * Resolve assets path
+     *
+     * @param path
+     * @return
+     */
+    public static InputStream getResourceAsStream(String path) throws FileNotFoundException
+    {
+        InputStream stream;
+        if (!isJar()) {
+            path = BaseUtils.getAssetsDir() + "/../../resources/main" + path;
+            path = path.replace("\\", "/");
+            stream = new FileInputStream(path);
+            //stream = BaseUtils.class.getClassLoader().getResourceAsStream(path);
+        } else {
+            stream = BaseUtils.class.getResourceAsStream(path);
+        }
+
+        return stream;
+
+    }
+
     /**
      * Get the Gui Image
      *
@@ -46,7 +93,7 @@ public class BaseUtils {
         }
 
         try {
-            BufferedImage image = ImageIO.read(BaseUtils.class.getResource(path));
+            BufferedImage image = ImageIO.read(getResourceAsStream(path));
             resourceCache.put(path, image);
             send("Opened local image: " + path);
 
@@ -399,10 +446,10 @@ public class BaseUtils {
             Font font = null;
             send("Creating font: " + name);
             try {
-                font = Font.createFont(Font.TRUETYPE_FONT, BaseUtils.class.getResourceAsStream("/java/net/launcher/theme/" + name + ".ttf"));
+                font = Font.createFont(Font.TRUETYPE_FONT, BaseUtils.getResourceAsStream("/java/net/launcher/theme/" + name + ".ttf"));
             } catch (Exception e) {
                 try {
-                    font = Font.createFont(Font.TRUETYPE_FONT, BaseUtils.class.getResourceAsStream("/java/net/launcher/theme/" + name + ".otf"));
+                    font = Font.createFont(Font.TRUETYPE_FONT, BaseUtils.getResourceAsStream("/java/net/launcher/theme/" + name + ".otf"));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
