@@ -16,9 +16,14 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    compile files('libs/jnbt-1.1.jar')
+}
+
 mainClassName = 'net.launcher.run.Launcher'
 
 jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     manifest {
         attributes 'Main-Class': 'net.launcher.run.Launcher'
     }
@@ -32,7 +37,6 @@ sourceSets {
         }
     }
 }
-
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.9'

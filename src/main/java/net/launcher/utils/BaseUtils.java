@@ -34,6 +34,7 @@ public class BaseUtils {
 
     protected static Boolean isJar = null;
     public static ArrayList<HashMap> serversStatus = null;
+    public static HashMap<String, String> currentServer;
 
     public static ArrayList<HashMap> getServersStatus()
     {
@@ -259,6 +260,11 @@ public class BaseUtils {
         config.load();
     }
 
+    public static void setCurrentServer(int index)
+    {
+        currentServer = getServersStatus().get(index);
+    }
+
     public static void setProperty(String s, Object value) {
         if (config.checkProperty(s))
             config.changeProperty(s, value);
@@ -374,7 +380,7 @@ public class BaseUtils {
 
     public static String getClientName() {
         if (Settings.useMulticlient) {
-            return Frame.main.servers.getSelected().replaceAll(" ", empty);
+            return BaseUtils.currentServer.get("name").replaceAll(" ", empty);
         }
         return "main";
     }

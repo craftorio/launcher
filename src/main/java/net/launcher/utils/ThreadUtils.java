@@ -235,7 +235,6 @@ public class ThreadUtils {
     public static void runUpdater(String answer) {
         boolean zipupdate = false;
         boolean asupdate = false;
-        boolean serversdatupdate = false;
         List<String> files = GuardUtils.updateMods(answer);
 
         String folder = BaseUtils.getMcDir().getAbsolutePath() + File.separator;
@@ -258,21 +257,13 @@ public class ThreadUtils {
             }
         }
 
-        if (!answer.split("<br>")[0].split("<:>")[3].split("<>")[0].equals(BaseUtils.getPropertyString("serverdatmd5")) ||
-                !new File(asfolder + File.separator +  BaseUtils.getClientName() + File.separator + "servers.dat").exists() ||
-                Frame.main.updatepr.isSelected()) {
-            GuardUtils.filesize += Integer.parseInt(answer.split("<br>")[0].split("<:>")[4].split("<>")[1]);
-            files.add("/" + BaseUtils.getClientName() + "/servers.dat");
-            serversdatupdate = true;
-        }
-
         BaseUtils.send("---- Filelist start ----");
         for (Object s : files.toArray()) {
             BaseUtils.send("- " + (String) s);
         }
         BaseUtils.send("---- Filelist end ----");
         BaseUtils.send("Running updater...");
-        updaterThread = new UpdaterThread(files, zipupdate, asupdate, serversdatupdate, answer);
+        updaterThread = new UpdaterThread(files, zipupdate, asupdate, answer);
         updaterThread.setName("Updater thread");
         Frame.main.setUpdateState();
         updaterThread.run();

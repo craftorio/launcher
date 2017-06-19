@@ -1,17 +1,19 @@
 package net.launcher.utils;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 //import java.net.URLConnection;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.launcher.components.Game;
-
+import org.jnbt.CompoundTag;
+import org.jnbt.ListTag;
+import org.jnbt.StringTag;
 
 public class UpdaterThread extends Thread {
     public int procents = 0;
@@ -24,14 +26,12 @@ public class UpdaterThread extends Thread {
     public boolean error = false;
     public boolean zipupdate = false;
     public boolean asupdate = false;
-    public boolean serversdatupdate = false;
     public String answer;
 
-    public UpdaterThread(List<String> files, boolean zipupdate, boolean asupdate, boolean serversdatupdate, String answer) {
+    public UpdaterThread(List<String> files, boolean zipupdate, boolean asupdate, String answer) {
         this.files = files;
         this.zipupdate = zipupdate;
         this.asupdate = asupdate;
-        this.serversdatupdate = serversdatupdate;
         this.answer = answer;
     }
 
@@ -108,11 +108,28 @@ public class UpdaterThread extends Thread {
                 ZipUtils.unzip(path, file);
             }
 
-            if (serversdatupdate) {
-                String path = BaseUtils.getAssetsDir().getAbsolutePath() + File.separator + "servers.dat";
-                String md5 = GuardUtils.hash(new File(path).toURI().toURL());
-                BaseUtils.setProperty("serverdatmd5", md5);
-            }
+            HashMap<String, String> currentServer = BaseUtils.currentServer;
+
+            String serversDatPathOut = BaseUtils.getAssetsDir().getAbsolutePath()
+                    + File.separator
+                    + BaseUtils.getClientName()
+                    + File.separator + "servers.dat";
+
+            FileOutputStream fos = new FileOutputStream(serversDatPathOut);
+            NBTOutputStream NBTos = new NBTOutputStream(fos);
+
+
+            Map serverInfo = new HashMap<String, CompoundTag>();
+            serverInfo.put("ip", new StringTag("ip", currentServer.get("ip") + ":" + currentServer.get("port")));
+            serverInfo.put("name", new StringTag("name", currentServer.get("name")));
+
+            List serversList = new ArrayList<CompoundTag>();
+            serversList.add(0, new CompoundTag("", serverInfo));
+            Map values = new HashMap<String, CompoundTag>();
+            values.put("servers", new ListTag("servers", CompoundTag.class, serversList));
+
+            NBTos.writeTag(new CompoundTag("", values));
+            NBTos.close();
 
             new Game(answer);
         } catch (Exception e) {

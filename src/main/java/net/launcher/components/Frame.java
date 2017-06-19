@@ -575,6 +575,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     }
 
     public void toGame(AWTEvent e, int serverIndex) {
+        BaseUtils.setCurrentServer(serverIndex);
         boolean personal = false;
         if (e.getSource() == toPersonal) {
             personal = true;
