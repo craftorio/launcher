@@ -4,14 +4,7 @@ import java.awt.Color;
 
 import javax.swing.border.EmptyBorder;
 
-import net.launcher.components.Align;
-import net.launcher.components.ButtonStyle;
-import net.launcher.components.ComboboxStyle;
-import net.launcher.components.ComponentStyle;
-import net.launcher.components.LinklabelStyle;
-import net.launcher.components.PassfieldStyle;
-import net.launcher.components.ServerbarStyle;
-import net.launcher.components.TextfieldStyle;
+import net.launcher.components.*;
 
 public class LoginTheme
 {
@@ -47,6 +40,8 @@ public class LoginTheme
     public static ServerbarStyle  serverbar   = new ServerbarStyle(159, 112, 80, 16, "font", 12F, Color.decode("0xcccccc"), true);
 
     public static LinklabelStyle  projectLinkStyle = new LinklabelStyle(20, 305, 265, 26, "font", 12F, Color.decode("0x778981"), Color.decode("0x03d942"), Align.CENTER);
+    public static ServerSelectStyle serverSelectStyle = new ServerSelectStyle(20, 120, 45, "font", "button3", 14F, Color.decode("0xcccccc"));
+    public static ButtonStyle serverSelectBack = new ButtonStyle(20, 353, 126, 34, "font", "button2", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
     
     public static float           fontbasesize  = 12F;
     public static float           fonttitlesize = 18F;

@@ -13,7 +13,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static net.launcher.utils.BaseUtils.*;
 
@@ -300,6 +303,45 @@ public class ThreadUtils {
             }
         };
         serverPollThread.setName("Server poll thread");
+        serverPollThread.start();
+    }
+
+    public static void pollServersStatus() {
+        BaseUtils.send("Refreshing servers state...");
+        ArrayList<HashMap> servers = new ArrayList<HashMap>();
+        for (int i = 0; i < Settings.servers.length; i++) {
+            String[] serverSettings = Settings.servers[i].split(", ");
+            HashMap<String, String> server = new HashMap<String, String>();
+            server.put("name", serverSettings[0]);
+            server.put("host", serverSettings[1]);
+            server.put("ip", serverSettings[1]);
+            server.put("port", Integer.toString(BaseUtils.parseInt(serverSettings[2], 25565)));
+            server.put("version", serverSettings[3]);
+            String[] status = BaseUtils.pollServer(server.get("ip"), Integer.parseInt(server.get("port")));
+            server.put("online", status[1]);
+            server.put("max_online", status[2]);
+            servers.add(server);
+        }
+
+        BaseUtils.serversStatus = servers;
+        BaseUtils.send("Refreshing servers done!");
+    }
+
+    public static void pollServersStatusAsync() {
+        try {
+            serverPollThread.interrupt();
+            serverPollThread = null;
+        } catch (Exception e) {
+
+        }
+        serverPollThread = new Thread() {
+            public void run() {
+                ThreadUtils.pollServersStatus();
+                serverPollThread.interrupt();
+                serverPollThread = null;
+            }
+        };
+        serverPollThread.setName("Servers poll thread");
         serverPollThread.start();
     }
 

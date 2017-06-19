@@ -181,6 +181,8 @@ public class Panel extends JPanel {
 //            g.drawString(textpassword2Reg1, textpassword2Reg.x - (g.getFontMetrics().stringWidth(textpassword2Reg1)), textpassword2Reg.y + 18);
 //            String textmailReg1 = Message.textmailReg1;
 //            g.drawString(textmailReg1, textmailReg.x - (g.getFontMetrics().stringWidth(textmailReg1)), textmailReg.y + 18);
+        } else if (type == 60) { // Select Server
+            drawBaseSkin();
         } else if (type == 6) {
             g.drawImage(background_personal, 0, 0, getWidth(), getHeight(), null);
             g.drawImage(pc.skin, skinX, skinY, skinW, skinH, null);
@@ -348,6 +350,23 @@ public class Panel extends JPanel {
             }
         });
         timer.start();
+    }
+
+    public void setSelectServer(BufferedImage screen) {
+        reset();
+        tmpImage = screen;
+        type = 60;
+        timer = new Timer(50, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tindex++;
+                if (tindex > 10)
+                    timer.stop();
+                tmpImage.getGraphics().drawImage(getByIndex(colors, 1, 0), 0, dragger.h, getWidth(), getHeight() - dragger.h, null);
+                repaint();
+            }
+        });
+        timer.start();
+        repaint();
     }
 
     public void setPersonalState(PersonalContainer pc) {

@@ -45,9 +45,9 @@ public class Launcher {
                 }
             }
             Frame.start();
-            if (BaseUtils.getPropertyBoolean("Music", true)) {
-                new MusPlay(Settings.iMusicname);
-            }
+//            if (BaseUtils.getPropertyBoolean("Music", true)) {
+//                new MusPlay(Settings.iMusicname);
+//            }
         } else {
             Starter.main(null);
         }

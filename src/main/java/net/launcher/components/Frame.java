@@ -1,8 +1,6 @@
 package net.launcher.components;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -14,19 +12,16 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 
 import net.launcher.run.Settings;
+import net.launcher.theme.LoginTheme;
 import net.launcher.theme.Message;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ImageUtils;
@@ -55,6 +50,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     public static ButtonAccount toAccount = new ButtonAccount(Message.Account, Settings.toAccountUrl);
 
     public static Button toLogout = new Button(Message.Logout);
+    public static Button serverSelectBack = new Button(Message.Back);
     public static Button toPersonal = new Button(Message.Personal);
     public Button toOptions = new Button(Message.Options);
     public static Button toRegister = new Button(Message.Register);
@@ -66,6 +62,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     public static Passfield password = new Passfield();
     public Combobox servers = new Combobox(getServerNames(), 0);
     public Serverbar serverbar = new Serverbar();
+    public ServerSelect serverselect = new ServerSelect(LoginTheme.serverSelectStyle);
 
     public LinkLabel[] links = new LinkLabel[Settings.links.length];
 
@@ -167,6 +164,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         toAuth.addActionListener(this);
         toHelp.addActionListener(this);
         toLogout.addActionListener(this);
+        serverSelectBack.addActionListener(this);
         toPersonal.addActionListener(this);
         toPersonal.setVisible(Settings.usePersonal);
         toOptions.addActionListener(this);
@@ -348,8 +346,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
      */
     public void addAuthComp() {
         panel.add(projectLink);
-        panel.add(servers);
-        panel.add(serverbar);
+        //panel.add(servers);
+        //panel.add(serverbar);
 //        for (LinkLabel link : links)
 //            panel.add(link);
         panel.add(toGame);
@@ -388,6 +386,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
 
             //ThreadUtils.updateNewsPage(buildUrl("news.php"));
             ThreadUtils.pollSelectedServer();
+            ThreadUtils.pollServersStatus();
             try {
                 main.memory.setText(String.valueOf(getPropertyInt("memory", Settings.defaultmemory)));
                 main.fullscreen.setSelected(getPropertyBoolean("fullscreen"));
@@ -453,6 +452,10 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             }.start();
         }
 
+        if (e.getSource() == serverSelectBack) {
+            setAuthComp();
+        }
+
         if (e.getSource() == toLogout) {
             setProperty("password", "-");
             setProperty("login", "");
@@ -475,20 +478,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             repaint();
         }
 
-        if (e.getSource() == login || e.getSource() == password || e.getSource() == toGame || e.getSource() == toAuth || e.getSource() == toPersonal || e.getSource() == toGamePersonal) {
-            boolean personal = false;
-            if (e.getSource() == toPersonal) {
-                personal = true;
-            }
-            setProperty("login", login.getText());
-            setProperty("server", servers.getSelectedIndex());
-            panel.remove(hide);
-            panel.remove(close);
-            BufferedImage screen = ImageUtils.sceenComponent(panel);
-            panel.removeAll();
-            panel.setAuthState(screen);
-            ThreadUtils.auth(personal);
-            addFrameComp();
+        if (e.getSource() == login || e.getSource() == password || e.getSource() == toAuth || e.getSource() == toPersonal || e.getSource() == toGamePersonal) {
+            toGame(e, servers.getSelectedIndex());
         }
 
         if (e.getSource() == toOptions) {
@@ -497,6 +488,11 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
 
         if (e.getSource() == toRegister) {
             setRegister();
+        }
+
+        if (e.getSource() == toGame) {
+            setSelectServer();
+            repaint();
         }
 
         if (e.getSource() == options_close) {
@@ -578,6 +574,22 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         }
     }
 
+    public void toGame(AWTEvent e, int serverIndex) {
+        boolean personal = false;
+        if (e.getSource() == toPersonal) {
+            personal = true;
+        }
+        setProperty("login", login.getText());
+        setProperty("server", serverIndex);
+        panel.remove(hide);
+        panel.remove(close);
+        BufferedImage screen = ImageUtils.sceenComponent(panel);
+        panel.removeAll();
+        panel.setAuthState(screen);
+        ThreadUtils.auth(personal);
+        addFrameComp();
+    }
+
     public void focusGained(FocusEvent e) {
         if (e.getSource() == login && login.getText().equals(Message.Login))
             login.setText(empty);
@@ -624,6 +636,18 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         panel.add(mailReg);
         panel.add(okreg);
         panel.add(closereg);
+        addFrameComp();
+        repaint();
+    }
+
+    public void setSelectServer() {
+        panel.remove(hide);
+        panel.remove(close);
+        BufferedImage screen = ImageUtils.sceenComponent(panel);
+        panel.removeAll();
+        panel.setSelectServer(screen);
+        panel.add(serverselect);
+        panel.add(serverSelectBack);
         addFrameComp();
         repaint();
     }

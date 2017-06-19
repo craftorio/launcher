@@ -5,6 +5,7 @@ public class Message {
     public static String Game = "Войти в игру";
     public static String Auth = "Вход";
     public static String Logout = "Выход";
+    public static String Back = "Назад";
     public static String Help = "Помощь";
     public static String Account = "Личный кабинет";
     public static String Personal = "Войти в ЛК";
@@ -127,4 +128,6 @@ public class Message {
     public static String registeroff = "Регистрация выключена!";
     public static String unknown = "Неизвестная ошибка (%%)";
     public static String banno = "Вы не забанены";
+    public static String serverSelectRowOnline = "%s (%s из %s)";
+    public static String serverSelectRowOffline = "%s (недоступен)";
 }

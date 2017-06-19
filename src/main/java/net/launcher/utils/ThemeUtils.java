@@ -4,16 +4,15 @@ import java.awt.Dimension;
 
 import net.launcher.components.Frame;
 import net.launcher.run.Settings;
+
 import static net.launcher.theme.LoginTheme.*;
 import static net.launcher.theme.OptionsTheme.*;
 import static net.launcher.theme.RegTheme.*;
 import static net.launcher.theme.PersonalTheme.*;
 import static net.launcher.theme.DraggerTheme.*;
 
-public class ThemeUtils extends BaseUtils
-{
-    public static void updateStyle(Frame main) throws Exception
-    {
+public class ThemeUtils extends BaseUtils {
+    public static void updateStyle(Frame main) throws Exception {
 //        int i = 0;
 //        for(LinkLabel link : main.links)
 //        {
@@ -22,7 +21,7 @@ public class ThemeUtils extends BaseUtils
 //            link.setBounds(i + links.x, links.y, fm.stringWidth(link.getText()), fm.getHeight());
 //            i += fm.stringWidth(link.getText()) + links.margin;
 //        }
-        
+
         title.apply(main.title);
         dragger.apply(main.dragger);
         dbuttons.apply(main.hide, main.close);
@@ -38,6 +37,8 @@ public class ThemeUtils extends BaseUtils
         password.apply(Frame.password);
         servers.apply(main.servers);
         serverbar.apply(main.serverbar);
+        serverSelectStyle.apply(main.serverselect);
+        serverSelectBack.apply(main.serverSelectBack);
         projectLinkStyle.apply(main.projectLink);
         loadnews.apply(main.loadnews);
         Music.apply(main.Music);
@@ -45,13 +46,13 @@ public class ThemeUtils extends BaseUtils
         cleandir.apply(main.cleanDir);
         fullscrn.apply(main.fullscreen);
         memory.apply(main.memory);
-        close.apply(main.options_close);     
+        close.apply(main.options_close);
         closereg.apply(main.closereg);
         loginReg.apply(main.loginReg);
         passwordReg.apply(main.passwordReg);
         password2Reg.apply(main.password2Reg);
         mailReg.apply(main.mailReg);
-        okreg.apply(main.okreg);           
+        okreg.apply(main.okreg);
         buyCloak.apply(main.buyCloak);
         changeskin.apply(main.changeSkin);
         buyVip.apply(main.buyVip);
@@ -69,7 +70,7 @@ public class ThemeUtils extends BaseUtils
         update_jar.apply(main.update_jar);
         //newsBrowser.apply(main.bpane);
         main.panel.setPreferredSize(new Dimension(frameW, frameH));
-        
+
         main.setIconImage(BaseUtils.getLocalImage("favicon"));
         main.setTitle(Settings.title);
         main.setLocationRelativeTo(null);

@@ -33,6 +33,15 @@ public class BaseUtils {
     protected static String workDir;
 
     protected static Boolean isJar = null;
+    public static ArrayList<HashMap> serversStatus = null;
+
+    public static ArrayList<HashMap> getServersStatus()
+    {
+        if (null == serversStatus) {
+            ThreadUtils.pollServersStatus();
+        }
+        return serversStatus;
+    }
 
     public static Boolean isDebugMode() {
         return java.lang.management.ManagementFactory.getRuntimeMXBean().
@@ -63,8 +72,7 @@ public class BaseUtils {
      * @param path
      * @return
      */
-    public static InputStream getResourceAsStream(String path) throws FileNotFoundException
-    {
+    public static InputStream getResourceAsStream(String path) throws FileNotFoundException {
         InputStream stream;
         if (!isJar()) {
             path = BaseUtils.getAssetsDir() + "/../../resources/main" + path;
@@ -156,7 +164,6 @@ public class BaseUtils {
     }
 
     /**
-     *
      * @return File
      */
     public static File getConfigName() {
@@ -167,7 +174,7 @@ public class BaseUtils {
             try {
                 config.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException("Can't create file: \""+config.getAbsolutePath()+"\", error:" + e.getMessage());
+                throw new RuntimeException("Can't create file: \"" + config.getAbsolutePath() + "\", error:" + e.getMessage());
             }
         }
 
@@ -175,7 +182,6 @@ public class BaseUtils {
     }
 
     /**
-     *
      * @return String
      * @throws URISyntaxException
      */
@@ -184,7 +190,7 @@ public class BaseUtils {
         try {
             if (null == workDir) {
                 File file = new File(BaseUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-                File dir  = new File(file.getParentFile().getAbsolutePath() + File.separator + "mcstyle");
+                File dir = new File(file.getParentFile().getAbsolutePath() + File.separator + "mcstyle");
 
                 if (!dir.exists()) {
                     dir.mkdirs();
@@ -202,7 +208,6 @@ public class BaseUtils {
     }
 
     /**
-     *
      * Retrieve assets directory
      *
      * @return File
@@ -213,7 +218,6 @@ public class BaseUtils {
     }
 
     /**
-     *
      * Retrieve client directory
      *
      * @return File
@@ -569,6 +573,14 @@ public class BaseUtils {
             }
         }
         return Message.servererr;
+    }
+
+    public static BufferedImage getServerOnlineImage() {
+        return Files.iconServerOnline;
+    }
+
+    public static BufferedImage getServerOfflineImage() {
+        return Files.iconServerOffline;
     }
 
     public static BufferedImage genServerIcon(String[] args) {
