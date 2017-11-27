@@ -46,7 +46,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     public Title title = new Title();
     public static Button toGame = new Button(Message.Game);
     public static Button toAuth = new Button(Message.Auth);
-    public static Button toHelp = new Button(Message.Help, Settings.toHelpUrl);
+    public static LinkLabel toHelp = new LinkLabel(Message.Help, Settings.toHelpUrl);
     public static ButtonAccount toAccount = new ButtonAccount(Message.Account, Settings.toAccountUrl);
 
     public static Button toLogout = new Button(Message.Logout);
@@ -162,7 +162,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         // Add listeners
         toGame.addActionListener(this);
         toAuth.addActionListener(this);
-        toHelp.addActionListener(this);
+        //toHelp.addActionListener(this);
         toLogout.addActionListener(this);
         serverSelectBack.addActionListener(this);
         toPersonal.addActionListener(this);

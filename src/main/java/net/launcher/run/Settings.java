@@ -2,36 +2,35 @@ package net.launcher.run;
 
 public class Settings {
 
-    public static final String projectLinkLabel = "www.minecraft.style";
-    public static final String projectLinkUrl = "http://minecraft.style";
-    public static final String toHelpUrl = projectLinkUrl + "/help";
+    public static final String projectLinkLabel = "www.craftorio.com";
+    public static final String projectLinkUrl = "https://craftorio.com";
+    public static final String toHelpUrl = projectLinkUrl + "/forum";
     public static final String toAccountUrl = projectLinkUrl + "/account";
 
     /**
      * Настройка заголовка лаунчера
      */
-    public static final String title = "McStyle"; //Заголовок лаунчера
-    public static final String titleInGame = "McStyle"; //Заголовок лаунчера после авторизации
-    public static final String baseconf = "mcstyle"; //"voxelaria"; //Папка с файлом конфигурации
-    public static final String pathconst = "mcstyle/%SERVERNAME%"; //Конструктор пути к папке с MC
+    public static final String title = "Craftorio"; //Заголовок лаунчера
+    public static final String titleInGame = "Craftorio"; //Заголовок лаунчера после авторизации
+    public static final String baseconf = "craftorio"; //"voxelaria"; //Папка с файлом конфигурации
+    public static final String pathconst = "craftorio/%SERVERNAME%"; //Конструктор пути к папке с MC
     public static final String skins = "MinecraftSkins/"; //Папка скинов
     public static final String cloaks = "MinecraftCloaks/"; //Папка плащей
 
     /**
      * Параметры подключения
      */
-    public static final String domain = "minecraft.style";//Домен сайта
+    public static final String domain = "craftorio.com";//Домен сайта
     public static final String siteDir = "launcher";//Папка с файлами лаунчера на сайте
-    public static final String updateFile = "http://minecraft.style/launcher/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
-    public static final String buyVauncherLink = "http://minecraft.style/shop"; //Ссылка на страницу покупки ваучеров
-    public static final String iMusicname = "001.mp3";
+    public static final String updateFile = "https://craftorio.com/launcher/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
+    public static final String buyVauncherLink = "https://craftorio.com/shop"; //Ссылка на страницу покупки ваучеров
+    //public static final String iMusicname = "001.mp3";
     public static final String[] p = {"wireshark", "cheat"};  //Список запрещенных процессов.
-    public static final String http = "http://";   //Протокол подключения https:// если есть ssl сертификат
+    public static final String http = "https://";   //Протокол подключения https:// если есть ssl сертификат
 
-
-    public static int height = 532;      //Высота окна клиента
+    public static int height = 532;     //Высота окна клиента
     public static int width = 900;      //Ширина окна клиента
-    public static int defaultmemory = 1024;
+    public static int defaultmemory = 2048;
 
     public static String[] servers = {
             //        "s1.mine-craft.club, s1.mine-craft.club, 25565, 1.7.10",

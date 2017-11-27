@@ -11,7 +11,7 @@ import java.awt.event.MouseListener;
 public class LinkLabel extends JLabel {
     private static final long serialVersionUID = 1L;
 
-    public Color idleColor = Color.decode("0x999999");
+    public Color idleColor = Color.decode("0x323232");
     public Color activeColor = Color.WHITE;
 
     public LinkLabel(String title, final String url) {

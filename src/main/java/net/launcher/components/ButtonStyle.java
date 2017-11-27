@@ -47,11 +47,12 @@ public class ButtonStyle
 //        button.pressedTX = texture;
 //        button.lockedTX = texture;
 
+		int w = texture.getWidth();
 		int i = texture.getHeight() / 4;
 
-		button.defaultTX = texture.getSubimage(0, 0, texture.getWidth(), i);
-		button.rolloverTX = texture.getSubimage(0, i, texture.getWidth(), i);
-		button.pressedTX = texture.getSubimage(0, i * 2, texture.getWidth(), i);
-		button.lockedTX = texture.getSubimage(0, i * 3, texture.getWidth(), i);
+		button.defaultTX = texture.getSubimage(0, 0, w, i);
+		button.rolloverTX = texture.getSubimage(0, i, w, i);
+		button.pressedTX = texture.getSubimage(0, i * 2, w, i);
+		button.lockedTX = texture.getSubimage(0, i * 3, w, i);
 	}
 }

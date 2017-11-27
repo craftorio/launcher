@@ -34,9 +34,9 @@ public class Panel extends JPanel {
     private static final long serialVersionUID = 1L;
 
 
-    public static BufferedImage background = BaseUtils.getLocalImage("background");
+    public static BufferedImage background = BaseUtils.getLocalImage("background_craftorio");
     public static BufferedImage icon = BaseUtils.getLocalImage("icon");
-    public static BufferedImage logo = BaseUtils.getLocalImage("logo");
+    public static BufferedImage logo = BaseUtils.getLocalImage("logo_craftorio");
     public static BufferedImage background_personal = BaseUtils.getLocalImage("background_personal");
     public static BufferedImage background_dialog = BaseUtils.getLocalImage("background_dialog");
     public static BufferedImage background_download = BaseUtils.getLocalImage("background_download");
@@ -68,8 +68,8 @@ public class Panel extends JPanel {
     private void drawBaseSkin()
     {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
-        g.drawImage(icon, 18, 38, 63, 63, null);
-        g.drawImage(logo, 86, 38, 200, 50, null);
+        //g.drawImage(icon, 18, 38, 63, 63, null);
+        g.drawImage(logo, 48, 34, 265, 146, null);
     }
 
     public void paintComponent(final Graphics gmain) {

@@ -1,12 +1,12 @@
 package net.launcher.theme;
 public class Message {
     //Логин
-    public static String Options = "";
+    public static String Options = "Настройки";
     public static String Game = "Войти в игру";
     public static String Auth = "Вход";
     public static String Logout = "Выход";
     public static String Back = "Назад";
-    public static String Help = "Помощь";
+    public static String Help = "Форум";
     public static String Account = "Личный кабинет";
     public static String Personal = "Войти в ЛК";
     public static String Register = "Создать учетную запись";
