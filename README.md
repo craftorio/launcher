@@ -13,7 +13,11 @@ gradlew.bat build
 **Linux / OSX**
 
 ```
+export LAUNCHER_VERSION=1.3
 ./gradlew build
+java -jar "./bin/stringer.jar" "./build/libs/launcher-${LAUNCHER_VERSION}.jar" "./build/libs/launcher.jar"
+java -jar "./build/libs/launcher.jar"
+
 ```
 
 

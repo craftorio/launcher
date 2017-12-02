@@ -40,7 +40,7 @@ public class Panel extends JPanel {
     public static BufferedImage background_personal = BaseUtils.getLocalImage("background_personal");
     public static BufferedImage background_dialog = BaseUtils.getLocalImage("background_dialog");
     public static BufferedImage background_download = BaseUtils.getLocalImage("background_download");
-    public static BufferedImage bar = BaseUtils.getLocalImage("bar");
+    public static BufferedImage bar = BaseUtils.getLocalImage("bar-craftorio");
     public static BufferedImage bar_label = BaseUtils.getLocalImage("bar_label");
     public static BufferedImage extpanel = BaseUtils.getLocalImage("extpanel");
 
@@ -97,6 +97,7 @@ public class Panel extends JPanel {
             //g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
             g.drawString(Message.update, UpdateTheme.stringsX, UpdateTheme.stringsY - 10);
             g.setFont(g.getFont().deriveFont(fontbasesize));
+            g.setColor(Color.BLACK);
             g.drawString(Message.str0, UpdateTheme.stringsX, UpdateTheme.stringsY + 20);
             g.drawString(Message.str1, UpdateTheme.stringsX, UpdateTheme.stringsY + 40);
             g.drawString(Message.str2, UpdateTheme.stringsX, UpdateTheme.stringsY + 60);

@@ -191,7 +191,7 @@ public class BaseUtils {
         try {
             if (null == workDir) {
                 File file = new File(BaseUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-                File dir = new File(file.getParentFile().getAbsolutePath() + File.separator + "mcstyle");
+                File dir = new File(file.getParentFile().getAbsolutePath() + File.separator + "craftorio");
 
                 if (!dir.exists()) {
                     dir.mkdirs();

@@ -17,8 +17,8 @@ public class LoginTheme
     public static LinklabelStyle  helpBtn     = new LinklabelStyle(114, 461, 133, 17, "font", 12F, Color.decode("0x323232"), Color.decode("0xE47134"), Align.CENTER);
     public static ButtonStyle     settingsBtn = new ButtonStyle(184, 320, 127, 37, "font", "button2-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
 
-    public static ButtonStyle     toGame      = new ButtonStyle(48, 320, 265, 32, "font", "button1-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
-    public static ButtonStyle     toPersonal  = new ButtonStyle(262, 367, 150, 47, "font", "button1-craftorio", 14F, Color.decode("0x03d942"), true, Align.CENTER);
+    public static ButtonStyle     toGame      = new ButtonStyle(48, 269, 265, 37, "font", "button1-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
+    public static ButtonStyle     toPersonal  = new ButtonStyle(184, 269, 127, 37, "font", "button1-craftorio", 14F, Color.decode("0x03d942"), true, Align.CENTER);
 
     public static ButtonStyle     registerBtn = new ButtonStyle(48, 412, 265, 37, "font", "button3-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
     public static ButtonStyle     accountBtn = new ButtonStyle(48, 412, 265, 37, "font", "button3-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
@@ -41,8 +41,8 @@ public class LoginTheme
     public static ServerbarStyle  serverbar   = new ServerbarStyle(159, 112, 80, 16, "font", 12F, Color.decode("0xcccccc"), true);
 
     public static LinklabelStyle  projectLinkStyle = new LinklabelStyle(114, 372, 133, 17, "font", 12F, Color.decode("0x323232"), Color.decode("0xE47134"), Align.CENTER);
-    public static ServerSelectStyle serverSelectStyle = new ServerSelectStyle(20, 120, 45, "font", "button3", 14F, Color.decode("0xcccccc"));
-    public static ButtonStyle serverSelectBack = new ButtonStyle(20, 353, 126, 34, "font", "button2", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
+    public static ServerSelectStyle serverSelectStyle = new ServerSelectStyle(45, 220, 37, "font", "button3-craftorio-1x", 14F, Color.decode("0xcccccc"));
+    public static ButtonStyle serverSelectBack = new ButtonStyle(45, 220, 265, 37, "font", "button2-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
     
     public static float           fontbasesize  = 12F;
     public static float           fonttitlesize = 18F;
