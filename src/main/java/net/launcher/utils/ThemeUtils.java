@@ -27,7 +27,8 @@ public class ThemeUtils extends BaseUtils {
         dbuttons.apply(main.hide, main.close);
         toGame.apply(Frame.toGame);
         loginBtn.apply(Frame.toAuth);
-        helpBtn.apply(Frame.toHelp);
+        //helpBtn.apply(Frame.toHelp);
+        avatar.apply(Frame.avatar);
         accountBtn.apply(Frame.toAccount);
         logoutBtn.apply(Frame.toLogout);
         toPersonal.apply(Frame.toPersonal);

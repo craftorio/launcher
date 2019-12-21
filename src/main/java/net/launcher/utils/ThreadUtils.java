@@ -3,6 +3,7 @@ package net.launcher.utils;
 import net.launcher.components.Frame;
 import net.launcher.components.PersonalContainer;
 import net.launcher.run.Settings;
+import net.launcher.theme.LoginTheme;
 import net.launcher.theme.Message;
 import net.y;
 
@@ -92,6 +93,8 @@ public class ThreadUtils {
                         Frame.main.setUpdateComp(answer.replace("badlauncher<$>_", ""));
                         return;
                     } else if (answer.contains("errorLogin<$>")) {
+                        BaseUtils.sendErr("Ошибка авторизации");
+                        LoginTheme.login.apply(Frame.login);
                         if (Frame.token.equals("token")) {
                             setProperty("password", "-");
                             Frame.password.setVisible(true);
@@ -101,6 +104,9 @@ public class ThreadUtils {
                             Frame.toAuth.setVisible(true);
                             Frame.toHelp.setVisible(true);
                             Frame.toLogout.setVisible(false);
+                            Frame.avatar.setVisible(false);
+                            LoginTheme.login.apply(net.launcher.components.Frame.login);
+
                             Frame.toRegister.setVisible(Settings.useRegister && true);
                             Frame.token = "null";
                             Frame.login.setEditable(true);
@@ -127,9 +133,9 @@ public class ThreadUtils {
                         error = true;
                     }
                     if (error) {
-                        Frame.main.panel.tmpColor = Color.red;
+                        Frame.main.panel.tmpColor = new Color(255, 60, 0);
                         try {
-                            sleep(2000);
+                            sleep(3000);
                         } catch (InterruptedException e) {
                         }
                         Frame.main.setAuthComp();
@@ -173,7 +179,7 @@ public class ThreadUtils {
                                 error = true;
                             }
                             if (error) {
-                                Frame.main.panel.tmpColor = Color.red;
+                                Frame.main.panel.tmpColor = new Color(255, 60, 0);
                                 try {
                                     sleep(2000);
                                 } catch (InterruptedException e) {
@@ -213,6 +219,8 @@ public class ThreadUtils {
                             Frame.toPersonal.setVisible(Settings.usePersonal && true);
                             Frame.toAuth.setVisible(false);
                             Frame.toLogout.setVisible(true);
+                            Frame.avatar.setVisible(true);
+                            LoginTheme.loginCurrent.apply(net.launcher.components.Frame.login);
                             Frame.toRegister.setVisible(false);
                             Frame.token = "token";
                             Frame.login.setEditable(false);
@@ -401,9 +409,9 @@ public class ThreadUtils {
                     error = true;
                 }
                 if (error) {
-                    Frame.main.panel.tmpColor = Color.red;
+                    Frame.main.panel.tmpColor = new Color(255, 60, 0);
                     try {
-                        sleep(2000);
+                        sleep(3000);
                     } catch (InterruptedException e) {
                     }
                     Frame.main.setPersonal(Frame.main.panel.pc);
@@ -451,9 +459,9 @@ public class ThreadUtils {
                     error = true;
                 }
                 if (error) {
-                    Frame.main.panel.tmpColor = Color.red;
+                    Frame.main.panel.tmpColor = new Color(255, 60, 0);
                     try {
-                        sleep(2000);
+                        sleep(3000);
                     } catch (InterruptedException e) {
                     }
                     Frame.main.setPersonal(Frame.main.panel.pc);
@@ -503,9 +511,9 @@ public class ThreadUtils {
                     error = true;
                 }
                 if (error) {
-                    Frame.main.panel.tmpColor = Color.red;
+                    Frame.main.panel.tmpColor = new Color(255, 60, 0);
                     try {
-                        sleep(2000);
+                        sleep(3000);
                     } catch (InterruptedException e) {
                     }
                     Frame.main.setPersonal(Frame.main.panel.pc);
@@ -553,9 +561,9 @@ public class ThreadUtils {
                     error = true;
                 }
                 if (error) {
-                    Frame.main.panel.tmpColor = Color.red;
+                    Frame.main.panel.tmpColor = new Color(255, 60, 0);
                     try {
-                        sleep(2000);
+                        sleep(3000);
                     } catch (InterruptedException e) {
                     }
                     Frame.main.setPersonal(Frame.main.panel.pc);
@@ -626,9 +634,9 @@ public class ThreadUtils {
                     error = true;
                 }
                 if (error) {
-                    Frame.main.panel.tmpColor = Color.red;
+                    Frame.main.panel.tmpColor = new Color(255, 60, 0);
                     try {
-                        sleep(2000);
+                        sleep(3000);
                     } catch (InterruptedException e) {
                     }
                     Frame.main.setRegister();
@@ -684,9 +692,9 @@ public class ThreadUtils {
                     error = true;
                 }
                 if (error) {
-                    Frame.main.panel.tmpColor = Color.red;
+                    Frame.main.panel.tmpColor = new Color(255, 60, 0);
                     try {
-                        sleep(2000);
+                        sleep(3000);
                     } catch (InterruptedException e) {
                     }
                     Frame.main.setPersonal(Frame.main.panel.pc);

@@ -1,5 +1,7 @@
 # MineCraft Launcher
 
+![preview](preview.png)
+
 ### Development
 
 For build source code run:

@@ -117,6 +117,23 @@ public class BaseUtils {
 
     }
 
+    /**
+     * @param imageUrl
+     * @param FallbackImage
+     * @return
+     */
+    public static BufferedImage getRemoteImage(String imageUrl, String FallbackImage) {
+        try {
+            URL url = new URL(imageUrl);
+            BufferedImage image = ImageIO.read(url.openStream());
+            send("Opened remote image: " + imageUrl);
+            return image;
+        } catch (Exception e) {
+            send("Can't open remote image: " + imageUrl);
+            return getLocalImage(FallbackImage);
+        }
+    }
+
     public static BufferedImage getLocalImage(String name) {
         return getResourceGuiImage(name);
 

@@ -6,7 +6,7 @@ public class Message {
     public static String Auth = "Вход";
     public static String Logout = "Выход";
     public static String Back = "Назад";
-    public static String Help = "Форум";
+    public static String Help = "discord";
     public static String Account = "Личный кабинет";
     public static String Personal = "Войти в ЛК";
     public static String Register = "Создать учетную запись";
@@ -20,13 +20,13 @@ public class Message {
     public static String textmailReg1 = "E-mail:";
     //Настройки
     public static String options = "Настройки";
-    public static String options_close = "Закрыть";
+    public static String options_close = "Назад";
     public static String loadnews = "Загружать новости";
     public static String Music = "Музыка в лаунчере";
     public static String updatepr = "Принудительное обновление";
     public static String cleanDir = "Очистить папку";
-    public static String fullscreen = "Запустить в полный экран";
-    public static String memory = "Память (в мегабайтах):";
+    public static String fullscreen = "Запускать в полном экране";
+    public static String memory = "Память (мегабайт):";
     //Личный кабинет
     public static String buyVip = "Купить VIP";
     public static String buyPremium = "Купить Premium";
@@ -57,12 +57,12 @@ public class Message {
     public static String jobexp = "Опыт: %%";
     //Обновление клиента
     public static String currentfile = "Файл: %%";
-    public static String totalsize = "Всего: %% байт";
-    public static String currentsize = "Загружено: %% байт";
+    public static String totalsize = "Всего: %% Мбайт";
+    public static String currentsize = "Загружено: %% Мбайт";
     public static String downloadspeed = "Скорость: %% кб/сек";
     public static String McDir = "Папка: %%";
     public static String state = "Состояние: %%";
-    public static String leftTime = "Осталось: %% секунд";
+    public static String leftTime = "Осталось: %m минут, %s секунд";
     //Обновление лаунчера
     public static String update = "Требуется обновление";
     public static String str0 = "Для продолжения обновите лаунчер.";
@@ -97,7 +97,7 @@ public class Message {
     public static String errorLogin = "Ошибка авторизации (Логин, пароль)";
     public static String errorsql = "Ошибка sql";
     public static String client = "Ошибка: %% не найден";
-    public static String temp = "Подождите, перед следущей попыткой ввода (Логин Пароль)";
+    public static String temp = "Подождите, перед следущей попыткой (Логин Пароль)";
     public static String badhash = "Ошибка: Неподдерживаемый способ хеширования";
     public static String tmpDownload = "Загрузка данных...";
     public static String noactive = "Ваш аккаунт не активирован!";
@@ -128,6 +128,6 @@ public class Message {
     public static String registeroff = "Регистрация выключена!";
     public static String unknown = "Неизвестная ошибка (%%)";
     public static String banno = "Вы не забанены";
-    public static String serverSelectRowOnline = "%s (%s из %s)";
+    public static String serverSelectRowOnline = "%s (%s из %s онлайн)";
     public static String serverSelectRowOffline = "%s (недоступен)";
 }

@@ -112,14 +112,25 @@ public class ServerSelect extends JComponent {
             }
             //g.setColor(Color.YELLOW);
             //g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+            int imgWith = 24;
+            int imgHeight = 24;
 
             g.drawImage(sss.texture.getSubimage(0, 0, sss.texture.getWidth(), this.rowHeight), startX, startY, sss.texture.getWidth(), this.rowHeight, null);
-            g.drawImage(img, startX + 6, startY + 6, img.getWidth(), img.getHeight(), null);
-            g.drawString(text, startX + 6 + img.getWidth() + imageRightMargin, totalHeight + Integer.max(img.getHeight(), this.rowHeight) / 2 + g.getFontMetrics().getLineMetrics(text, g).getHeight() / 4);
+            g.setColor(new Color(33,33,33));
+            g.fillRoundRect(startX, startY, 308, this.rowHeight, 7, 7);
+            g.setColor(new Color(99,99,99));
+            g.drawRoundRect(startX, startY, 308, this.rowHeight, 7, 7);
+            if (serverOnline) {
+                g.setColor(Color.WHITE);
+            } else {
+                g.setColor(Color.GRAY);
+            }
+            g.drawImage(img, startX + 12, startY + 12, imgWith, imgHeight, null);
+            g.drawString(text, startX + 12 + imgWith + imageRightMargin, 3 + totalHeight + Integer.max(imgHeight, this.rowHeight) / 2 + g.getFontMetrics().getLineMetrics(text, g).getHeight() / 4);
             //startY += img.getHeight() + rowBottomMargin; // Shift down
-            int itemWidth = img.getWidth() + rowBottomMargin + g.getFontMetrics().stringWidth(text);
+            int itemWidth = imgWith + rowBottomMargin + g.getFontMetrics().stringWidth(text);
             int rowWidth = Integer.max(itemWidth, sss.texture.getWidth());
-            int rowHeight = Integer.max(img.getHeight(), this.rowHeight);
+            int rowHeight = Integer.max(imgHeight, this.rowHeight);
 
             if (totalWidth < rowWidth) {
                 totalWidth = rowWidth;

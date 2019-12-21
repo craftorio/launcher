@@ -3,9 +3,9 @@
 // 2-> ip 
 // 3-> port 
 // 4-> Версия клиента
-echo '
-v152, localhost, 25565, 1.5.2<::>
-voxelaria164, 188.165.137.202, 25675, 1.6.4<::>
-voxelaria1710, localhost, 25565, 1.7.10<::>
-vanilla181, localhost, 25565, 1.8.1<::>
-';
+$servers = [
+    'IndustrialStrike, server.craftorio.com, 25565, 1.12.2<::>',
+    #'IndustrialForest, server.craftorio.com, 25567, 1.12.2<::>',
+];
+
+echo implode(PHP_EOL, $servers);

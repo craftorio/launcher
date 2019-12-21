@@ -1,4 +1,5 @@
 <?php
+ob_start();
     define('INCLUDE_CHECK',true);
     include_once("loger.php");
     $postdata = file_get_contents("php://input");
@@ -12,30 +13,34 @@
     $bad = array('error' => "Bad login",'errorMessage' => "Bad login");
     try {
         if (!preg_match("/^[a-zA-Z0-9_-]+$/", $md5) || !preg_match("/^[a-zA-Z0-9:_\-]+$/", $sessionid) || !preg_match("/^[a-zA-Z0-9_\-]+$/", $serverid)){
-            exit(json_encode($bad));
-        }
-        include("connect.php");
-        $stmt = $db->prepare("Select md5,user From usersession WHERE md5= :md5 AND SESSION= :sessionid");
-        $stmt->bindValue(':md5', $md5);
-        $stmt->bindValue(':sessionid', $sessionid);
-        $stmt->execute();
-        $row      = $stmt->fetch(PDO::FETCH_ASSOC);
-        $realmd5  = $row['md5'];
-        $realUser = $row['user'];
-        $ok = array('id' => $realmd5, 'name' => $realUser);
-        if($realmd5 == $md5) {
-            $stmt = $db->prepare("Update usersession SET server= :serverid Where session = :sessionid And md5 = :md5");
+            echo (json_encode($bad));
+        } else {
+            include("connect.php");
+            $stmt = $db->prepare("Select md5,user From usersession WHERE md5= :md5 AND SESSION= :sessionid");
             $stmt->bindValue(':md5', $md5);
             $stmt->bindValue(':sessionid', $sessionid);
-            $stmt->bindValue(':serverid', $serverid);
             $stmt->execute();
-            #if($stmt->rowCount() == 1) {
+            $row      = $stmt->fetch(PDO::FETCH_ASSOC);
+            $realmd5  = $row['md5'];
+            $realUser = $row['user'];
+            $ok       = ['id' => $realmd5, 'name' => $realUser];
+            if ($realmd5 == $md5) {
+                $stmt = $db->prepare("Update usersession SET server= :serverid Where session = :sessionid And md5 = :md5");
+                $stmt->bindValue(':md5', $md5);
+                $stmt->bindValue(':sessionid', $sessionid);
+                $stmt->bindValue(':serverid', $serverid);
+                $stmt->execute();
+
                 echo json_encode($ok);
-                exit;
-            #}
-            
+            } else {
+                echo json_encode($bad);
+            }
         }
-        echo json_encode($bad);
     } catch(PDOException $pe) {
-        die("bad".$logger->WriteLine($log_date.$pe));
+        echo ("bad".$logger->WriteLine($log_date.$pe));
     }
+$content = ob_get_clean();
+
+//file_put_contents('/tmp/j.php.log.' . time(), $content);
+
+echo $content;

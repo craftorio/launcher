@@ -11,12 +11,16 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -28,6 +32,7 @@ import net.launcher.utils.ImageUtils;
 import net.launcher.utils.ThemeUtils;
 import net.launcher.utils.ThreadUtils;
 
+import static net.launcher.theme.LoginTheme.loginCurrent;
 import static net.launcher.utils.BaseUtils.*;
 
 import com.sun.awt.AWTUtilities;
@@ -45,6 +50,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
     public Dragger dragger = new Dragger();
     public Title title = new Title();
     public static Button toGame = new Button(Message.Game);
+    public static Avatar avatar = new Avatar();
     public static Button toAuth = new Button(Message.Auth);
     public static LinkLabel toHelp = new LinkLabel(Message.Help, Settings.toHelpUrl);
     public static ButtonAccount toAccount = new ButtonAccount(Message.Account, Settings.toAccountUrl);
@@ -187,6 +193,12 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             b1 = true;
             b2 = false;
         }
+
+        if (b2) {
+            LoginTheme.loginCurrent.apply(net.launcher.components.Frame.login);
+        } else {
+            LoginTheme.login.apply(net.launcher.components.Frame.login);
+        }
         login.setVisible(true);
         password.setVisible(b1);
         toGame.setVisible(b2);
@@ -195,6 +207,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         toAuth.setVisible(b1);
         toHelp.setVisible(true);
         toLogout.setVisible(b2);
+        avatar.setVisible(b2);
         toRegister.setVisible(Settings.useRegister && b1);
         if (toGame.isVisible()) {
             token = "token";
@@ -358,6 +371,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
 //        panel.add(toPersonal);
         panel.add(toOptions);
         panel.add(toRegister);
+        panel.add(avatar);
         panel.add(login);
         panel.add(password);
 
@@ -466,6 +480,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             toAuth.setVisible(true);
             toHelp.setVisible(true);
             toLogout.setVisible(false);
+            avatar.setVisible(false);
+            LoginTheme.login.apply(net.launcher.components.Frame.login);
+
             toRegister.setVisible(Settings.useRegister && true);
             token = "null";
             login.setText("");
@@ -479,7 +496,15 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         }
 
         if (e.getSource() == login || e.getSource() == password || e.getSource() == toAuth || e.getSource() == toPersonal || e.getSource() == toGamePersonal) {
+//            if (e.getSource() == toAuth || e.getSource() == options_close) {
+//                loginCurrent.apply(login);
+//            }
+            //loginCurrent.apply(login);
             toGame(e, servers.getSelectedIndex());
+        } else {
+            if (e.getSource() == toLogout) {
+                LoginTheme.login.apply(login);
+            }
         }
 
         if (e.getSource() == toOptions) {
@@ -631,6 +656,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         password2Reg.setPlaceholderText("Подтвердить пароль");
         mailReg.setPlaceholderText("E-Mail");
 
+        panel.add(avatar);
         panel.add(loginReg);
         panel.add(passwordReg);
         panel.add(password2Reg);
@@ -647,8 +673,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         BufferedImage screen = ImageUtils.sceenComponent(panel);
         panel.removeAll();
         panel.setSelectServer(screen);
-        panel.add(serverselect);
         panel.add(serverSelectBack);
+        panel.add(serverselect);
         addFrameComp();
         repaint();
     }

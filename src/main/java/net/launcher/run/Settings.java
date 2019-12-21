@@ -63,13 +63,13 @@ public class Settings {
     public static final String key1 = "1234567891234567"; //16 Character Key Ключ пост запросов
     public static final String key2 = "1234567891234567"; //16 Character Key Ключ пост запросов
 
-    public static boolean debug = true; //Отображать все действия лаунчера (отладка)(true/false)
+    public static boolean debug = false; //Отображать все действия лаунчера (отладка)(true/false)
     public static boolean drawTracers = false; //Отрисовывать границы элементов лаунчера
-    public static final String masterVersion = "1.0.0"; //Версия лаунчера
+    public static final String masterVersion = "1.4.1"; //Версия лаунчера
 
     public static boolean patchDir = true; //Использовать автоматическую замену директории игры (true/false)
 
-    public static boolean release = false;
+    public static boolean release = true;
 
     /**
      * Ставим true после окончания настройки!

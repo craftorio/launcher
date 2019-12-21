@@ -23,18 +23,18 @@
 	
 	$db_host			= 'localhost'; // Ip-адрес MySQL
 	$db_port			= '3306'; // Порт базы данных
-	$db_user			= 'root'; // Пользователь базы данных
-	$db_pass			= 'root'; // Пароль базы данных
+	$db_user			= 'minecraft'; // Пользователь базы данных
+	$db_pass			= 'minecraft'; // Пароль базы данных
 	$db_database		= 'w'; //База данных
+	$genderapi_key      = null; // установить ключ от genderapi.io
 	
-	$db_table       	= 'accounts'; //Таблица с пользователями
+	$db_table       	= 'craftorio.users'; //Таблица с пользователями
 	$db_columnId  		= 'id'; //Колонка с ID пользователей
-	$db_columnUser  	= 'login'; //Колонка с именами пользователей
+	$db_columnUser  	= 'username'; //Колонка с именами пользователей
 	$db_columnPass  	= 'password'; //Колонка с паролями пользователей
 	$db_tableOther 		= 'xf_user_authenticate'; //Дополнительная таблица для XenForo, не трогайте
 	$db_columnSalt  	= 'members_pass_salt'; //Настраивается для IPB и vBulletin: , IPB - members_pass_salt, vBulletin - salt
     $db_columnIp  		= 'ip'; //Колонка с IP пользователей
-	
 	$db_columnDatareg   = 'create_time'; // Колонка даты регистрации
 	$db_columnMail      = 'email'; // Колонка mail
 
@@ -43,14 +43,14 @@
 	$useban             =  false; //Бан на сервере = бан в лаунчере, Ultrabans плагин
 	$useantibrut        =  true; //Защита от частых подборов пароля (Пауза 1 минута при неправильном пароле)
 	
-	$masterversion  	= 'final_RC4'; //Мастер-версия лаунчера
-	$protectionKey		= '1234567890'; 
-	$key1               = "1234567891234567";  //16 Character Key Ключ пост запросов
-	$key2               = "1234567891234567"; //16 Character  Key  Ключ пост запросов
+	$masterversion  	= '1.3.0'; //Мастер-версия лаунчера
+	$protectionKey		= '123456789';
+	$key1               = '1234567890123456';  //16 Character Key Ключ пост запросов
+	$key2               = '1234567890123456'; //16 Character  Key  Ключ пост запросов
     $checklauncher      = false; //Проверка хеша лаунчера
-	$md5launcherexe     = md5(@file_get_contents("launcher/fix.exe"));  // Сверяем MD5
-	$md5launcherjar     = md5(@file_get_contents("launcher/fix.jar"));  // Сверяем MD5
-	$temp               =  true; //Использовать файлы кеширования для ускорение авторизации и снижение нагрузки на вебсервер.
+	$md5launcherexe     = md5(@file_get_contents("launcher/craftorio.exe"));  // Сверяем MD5
+	$md5launcherjar     = md5(@file_get_contents("launcher/craftorio.jar"));  // Сверяем MD5
+	$temp               =  false; //Использовать файлы кеширования для ускорение авторизации и снижение нагрузки на вебсервер.
 	                             //Удаляем файл хеша после обновления клиента на сервере в папке /temp/ИмяКлиента!
 
 	$assetsfolder       = false; //Скачивать assets из папки, или из архива (true=из папки false=из архива)
@@ -59,8 +59,8 @@
 
 	$uploaddirs         = 'MinecraftSkins';  //Папка скинов
 	$uploaddirp         = 'MinecraftCloaks'; //Папка плащей
-    $skinurl            = 'http://auth.minecraft.style/'.$uploaddirs.'/'; //Ссылка на скины для клиентов 1.7.+
-    $capeurl            = 'http://auth.minecraft.style/'.$uploaddirp.'/'; //Ссылка на плащи для клиентов 1.7.+
+    $skinurl            = 'https://auth.craftorio.com/'.$uploaddirs.'/'; //Ссылка на скины для клиентов 1.7.+
+    $capeurl            = 'https://auth.craftorio.com/'.$uploaddirp.'/'; //Ссылка на плащи для клиентов 1.7.+
 	
 	$usePersonal 		=  true; //Использовать личный кабинет
 	$canUploadSkin		=  true; //Можно ли заливать скины

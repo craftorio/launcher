@@ -58,6 +58,5 @@ public class TextfieldStyle
         if (null != border) {
             text.setBorder(border);
         }
-
     }
 }

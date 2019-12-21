@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -69,7 +72,7 @@ public class Panel extends JPanel {
     {
         g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
         //g.drawImage(icon, 18, 38, 63, 63, null);
-        g.drawImage(logo, 48, 34, 265, 146, null);
+        g.drawImage(logo, 15, 15, 337, 150, null);
     }
 
     public void paintComponent(final Graphics gmain) {
@@ -90,14 +93,35 @@ public class Panel extends JPanel {
             //g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
             g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
             g.drawImage(getByIndex(wait, 100, tindex), getWidth() / 2 - 50, getHeight() / 2 - 50, 100, 100, null);
+            Color currTmpColor = g.getColor();
+            g.setColor(new Color(35, 33, 36));
+            g.fillRoundRect(
+                    getWidth() / 2 - g.getFontMetrics().stringWidth(tmpString) / 2 - 10,
+                    getHeight() / 2 + 62,
+                    g.getFontMetrics().stringWidth(tmpString) + 20,
+                    g.getFontMetrics().getHeight() + 10,
+                    5,
+                    5
+            );
+            g.setColor(new Color(117, 145, 137));
+            g.drawRoundRect(
+                    getWidth() / 2 - g.getFontMetrics().stringWidth(tmpString) / 2 - 10,
+                    getHeight() / 2 + 62,
+                    g.getFontMetrics().stringWidth(tmpString) + 20,
+                    g.getFontMetrics    ().getHeight() + 10,
+                    5,
+                    5
+            );
+            g.setColor(currTmpColor);
             g.drawString(tmpString, getWidth() / 2 - g.getFontMetrics().stringWidth(tmpString) / 2, getHeight() / 2 + 80);
+
         } else if (type == 2 || type == 8 || type == 9) {
+            g.setColor(Color.WHITE);
             g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
             g.setFont(g.getFont().deriveFont(fonttitlesize));
             //g.drawImage(background_dialog, 0, 0, getWidth(), getHeight(), null);
             g.drawString(Message.update, UpdateTheme.stringsX, UpdateTheme.stringsY - 10);
             g.setFont(g.getFont().deriveFont(fontbasesize));
-            g.setColor(Color.BLACK);
             g.drawString(Message.str0, UpdateTheme.stringsX, UpdateTheme.stringsY + 20);
             g.drawString(Message.str1, UpdateTheme.stringsX, UpdateTheme.stringsY + 40);
             g.drawString(Message.str2, UpdateTheme.stringsX, UpdateTheme.stringsY + 60);
@@ -137,12 +161,13 @@ public class Panel extends JPanel {
             g.setColor(updaterDesc.color);
 
             g.drawString(Message.currentfile.replace("%%", t.currentfile.substring(t.currentfile.lastIndexOf(File.separator) + 1)), stringsX, stringsY);
-            g.drawString(Message.totalsize.replace("%%", Long.toString(t.totalsize)), stringsX, stringsY + 20);
-            g.drawString(Message.currentsize.replace("%%", Long.toString(t.currentsize)), stringsX, stringsY + 40);
+            g.drawString(Message.totalsize.replace("%%", Long.toString(t.totalsize/1024/1024)), stringsX, stringsY + 20);
+            g.drawString(Message.currentsize.replace("%%", Long.toString(t.currentsize/1024/1024)), stringsX, stringsY + 40);
             g.drawString(Message.downloadspeed.replace("%%", Long.toString(t.downloadspeed)), stringsX, stringsY + 60);
             g.drawString(Message.McDir.replace("%%", BaseUtils.getMcDir().getAbsolutePath().substring(BaseUtils.getMcDir().getAbsolutePath().lastIndexOf(File.separator) + 1)), stringsX, stringsY + 80);
             g.drawString(Message.state.replace("%%", t.state), stringsX, stringsY + 100);
-            g.drawString(Message.leftTime.replace("%%", Long.toString(leftTime)), stringsX, stringsY + 120);
+            String leftTimeString = Message.leftTime.replace("%m", leftTime > 60 ? Long.toString(leftTime/60) : "0").replace("%s", Long.toString(leftTime%60));
+            g.drawString(leftTimeString, stringsX, stringsY + 120);
 
             if (t.error)
                 return;

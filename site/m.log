@@ -1,1 +1,8 @@
-﻿
+[29 11 2017 14:57] PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mcstyle.users' doesn't exist in /var/www/launcher/launcher.php:37
+Stack trace:
+#0 /var/www/launcher/launcher.php(37): PDOStatement->execute()
+#1 {main}
+[29 11 2017 14:59] PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user 'minecraft'@'localhost' for table 'users' in /var/www/launcher/launcher.php:37
+Stack trace:
+#0 /var/www/launcher/launcher.php(37): PDOStatement->execute()
+#1 {main}
