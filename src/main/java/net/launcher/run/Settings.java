@@ -23,6 +23,8 @@ public class Settings {
     public static final String domain = "craftorio.com";//Домен сайта
     public static final String siteDir = "launcher";//Папка с файлами лаунчера на сайте
     public static final String updateFile = "https://craftorio.com/launcher/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
+//    public static final String siteDir = "launcher_test";//Папка с файлами лаунчера на сайте
+//    public static final String updateFile = "https://craftorio.com/launcher_test/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
     public static final String buyVauncherLink = "https://craftorio.com/shop"; //Ссылка на страницу покупки ваучеров
     //public static final String iMusicname = "001.mp3";
     public static final String[] p = {"wireshark", "cheat"};  //Список запрещенных процессов.
@@ -30,7 +32,7 @@ public class Settings {
 
     public static int height = 532;     //Высота окна клиента
     public static int width = 900;      //Ширина окна клиента
-    public static int defaultmemory = 2048;
+    public static int defaultmemory = 3072;
 
     public static String[] servers = {
             //        "s1.mine-craft.club, s1.mine-craft.club, 25565, 1.7.10",
@@ -65,7 +67,7 @@ public class Settings {
 
     public static boolean debug = false; //Отображать все действия лаунчера (отладка)(true/false)
     public static boolean drawTracers = false; //Отрисовывать границы элементов лаунчера
-    public static final String masterVersion = "1.4.1"; //Версия лаунчера
+    public static final String masterVersion = "1.4.2"; //Версия лаунчера
 
     public static boolean patchDir = true; //Использовать автоматическую замену директории игры (true/false)
 
