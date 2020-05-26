@@ -207,6 +207,7 @@ try {
             !file_exists("clients/" . $client . "/natives/") ||
             !file_exists("clients/" . $client . "/scripts/") ||
             !file_exists("clients/" . $client . "/Flan/") ||
+            !file_exists("clients/" . $client . "/shaderpacks/") ||
             !file_exists("clients/" . $client . "/config.zip")
         ) {
             die(Security::encrypt("client<$> $client", $key1));
@@ -225,21 +226,34 @@ try {
         function hashc($assetsfolder, $client)
         {
             if ($assetsfolder) {
-                $hash_md5 = str_replace("\\", "/", checkfiles('clients/' . $client . '/bin/') . checkfiles('clients/' . $client . '/mods/') . checkfiles('clients/' . $client . '/coremods/') 
+                $hash_md5 = str_replace("\\", "/",
+                checkfiles('clients/' . $client . '/bin/')
+                . checkfiles('clients/' . $client . '/mods/')
+                . checkfiles('clients/' . $client . '/coremods/')
                 . checkfiles('clients/' . $client . '/natives/') 
                 . checkfiles('clients/' . $client . '/scripts/')
                 . checkfiles('clients/' . $client . '/Flan/')
-                . checkfiles('clients/assets')) . '<::>assets/indexes<:b:>assets/objects<:b:>assets/virtual<:b:>' . $client . '/bin<:b:>' . $client . '/mods<:b:>' . $client . '/coremods<:b:>' . $client . '/natives<:b:>' . $client . '/scripts<:b:>' . $client . '/Flan<:b:>';
+                . checkfiles('clients/' . $client . '/shaderpacks/')
+                . checkfiles('clients/assets')) . '<::>assets/indexes<:b:>assets/objects<:b:>assets/virtual<:b:>'
+                . $client . '/bin<:b:>'
+                . $client . '/mods<:b:>'
+                . $client . '/coremods<:b:>'
+                . $client . '/natives<:b:>'
+                . $client . '/scripts<:b:>'
+                . $client . '/Flan<:b:>'
+                . $client . '/shaderpacks<:b:>';
             } else {
                 $hash_md5 = str_replace("\\", "/", checkfiles('clients/' . $client . '/bin/') . checkfiles('clients/' . $client . '/mods/') . checkfiles('clients/' . $client . '/coremods/') 
                 . checkfiles('clients/' . $client . '/natives/') 
                 . checkfiles('clients/' . $client . '/scripts/')
                 . checkfiles('clients/' . $client . '/Flan/')
+                . checkfiles('clients/' . $client . '/shaderpacks/')
                 ) 
                 . '<::>' . $client . '/bin<:b:>' . $client . '/mods<:b:>' . $client . '/coremods<:b:>' 
                 . $client . '/natives<:b:>'
                 . $client . '/scripts<:b:>'
                 . $client . '/Flan<:b:>'
+                . $client . '/shaderpacks<:b:>'
                 ;
             }
             return $hash_md5;
