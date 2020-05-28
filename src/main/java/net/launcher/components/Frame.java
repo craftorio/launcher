@@ -402,7 +402,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             ThreadUtils.pollSelectedServer();
             ThreadUtils.pollServersStatus();
             try {
-                main.memory.setText(String.valueOf(getPropertyInt("memory", Settings.defaultmemory)));
+                main.memory.setText(String.valueOf(getPropertyIntMax("memory", Settings.defaultmemory)));
                 main.fullscreen.setSelected(getPropertyBoolean("fullscreen"));
                 main.loadnews.setSelected(getPropertyBoolean("loadnews", true));
                 main.Music.setSelected(getPropertyBoolean("Music", true));

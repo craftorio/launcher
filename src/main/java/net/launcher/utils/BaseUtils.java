@@ -317,6 +317,20 @@ public class BaseUtils {
         return d;
     }
 
+    public static int getPropertyIntMax(String s, int d) {
+        File dir = new File(BaseUtils.getAssetsDir().toString());
+        if (!dir.exists())
+            dir.mkdirs();
+        if (config.checkProperty(s)) {
+            Integer v = config.getPropertyInteger(s);
+            if (v >= d) {
+                return v;
+            }
+        }
+        setProperty(s, d);
+        return d;
+    }
+
     public static boolean getPropertyBoolean(String s, boolean b) {
         if (config.checkProperty(s))
             return config.getPropertyBoolean(s);

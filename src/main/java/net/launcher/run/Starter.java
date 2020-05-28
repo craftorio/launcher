@@ -13,7 +13,7 @@ public class Starter {
     public static void main(String[] args) throws Exception {
         try {
             String jarpath = Starter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-            int memory = BaseUtils.getPropertyInt("memory", Settings.defaultmemory);
+            int memory = BaseUtils.getPropertyIntMax("memory", Settings.defaultmemory);
 
             ArrayList<String> params = new ArrayList<String>();
             params.add(System.getProperty("java.home") + "/bin/java");
