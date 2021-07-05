@@ -21,7 +21,7 @@ public class Settings {
      * Параметры подключения
      */
     public static final String domain = "craftorio.com";//Домен сайта
-    public static final String siteDir = "launcher_test";//Папка с файлами лаунчера на сайте
+    public static final String siteDir = "launcher";//Папка с файлами лаунчера на сайте
     public static final String updateFile = "https://craftorio.com/launcher/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
 //    public static final String siteDir = "launcher_test";//Папка с файлами лаунчера на сайте
 //    public static final String updateFile = "https://craftorio.com/launcher_test/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
