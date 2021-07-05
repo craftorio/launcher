@@ -35,6 +35,7 @@ public class BaseUtils {
     protected static Boolean isJar = null;
     public static ArrayList<HashMap> serversStatus = null;
     public static HashMap<String, String> currentServer;
+    private static String clientName = null;
 
     public static ArrayList<HashMap> getServersStatus()
     {
@@ -46,7 +47,7 @@ public class BaseUtils {
 
     public static Boolean isDebugMode() {
         return java.lang.management.ManagementFactory.getRuntimeMXBean().
-                getInputArguments().toString().indexOf("jdwp") >= 0;
+                getInputArguments().toString().contains("jdwp");
     }
 
     /**
@@ -76,7 +77,7 @@ public class BaseUtils {
     public static InputStream getResourceAsStream(String path) throws FileNotFoundException {
         InputStream stream;
         if (!isJar()) {
-            path = BaseUtils.getAssetsDir() + "/../../resources/main" + path;
+            path = BaseUtils.getAssetsDir() + "/../../../resources/main" + path;
             path = path.replace("\\", "/");
             stream = new FileInputStream(path);
             //stream = BaseUtils.class.getClassLoader().getResourceAsStream(path);
@@ -102,9 +103,9 @@ public class BaseUtils {
         }
 
         try {
+            send("Opened local image: " + path);
             BufferedImage image = ImageIO.read(getResourceAsStream(path));
             resourceCache.put(path, image);
-            send("Opened local image: " + path);
 
             return image;
         } catch (Exception e) {
@@ -279,7 +280,12 @@ public class BaseUtils {
 
     public static void setCurrentServer(int index)
     {
-        currentServer = getServersStatus().get(index);
+        setCurrentServer(getServersStatus().get(index));
+    }
+
+    public static void setCurrentServer(HashMap<String, String> name)
+    {
+        currentServer = name;
     }
 
     public static void setProperty(String s, Object value) {
@@ -409,11 +415,20 @@ public class BaseUtils {
         return Settings.http + Settings.domain + path;
     }
 
+    public void setClientName(String name) {
+        clientName = name;
+    }
+
     public static String getClientName() {
-        if (Settings.useMulticlient) {
-            return BaseUtils.currentServer.get("name").replaceAll(" ", empty);
+        if (null == clientName) {
+            if (Settings.useMulticlient) {
+                clientName = BaseUtils.currentServer.get("name").replaceAll(" ", empty);
+            } else {
+                clientName = "default";
+            }
         }
-        return "main";
+
+        return clientName;
     }
 
     public static void openURL(String url) {
@@ -460,6 +475,11 @@ public class BaseUtils {
     public static String execute(String surl, Object[] params) {
         try {
             send("Openning stream: " + surl);
+            for(int i = 0; i < params.length - 1; i += 2) {
+                send("With param: " + params[i] + "=" + params[i+1]
+                        + "(" + ThreadUtils.decrypt(params[i+1].toString(), Settings.key2) + ")");
+            }
+
             URL url = new URL(surl);
 
             InputStream is = PostUtils.post(url, params);
@@ -640,9 +660,7 @@ public class BaseUtils {
             params.add(Starter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
             params.add(Starter.class.getCanonicalName());
             ProcessBuilder pb = new ProcessBuilder(params);
-            Process process = pb.start();
-            if (process == null)
-                throw new Exception("Launcher can't be started!");
+            pb.start();
         } catch (Exception e) {
             e.printStackTrace();
             return;

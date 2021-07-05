@@ -18,19 +18,19 @@ public class Launcher {
      */
     public static void main(String[] args) throws Exception {
         boolean isRenderUi;
-        isRenderUi = BaseUtils.isDebugMode() ? true : (args.length > 0 && args[0].equals("true")) ? true : false;
+        isRenderUi = BaseUtils.isDebugMode() || (args.length > 0 && args[0].equals("true"));
         if (isRenderUi) {
             File dir = new File(BaseUtils.getAssetsDir().toString());
             if (!dir.exists()) {
                 dir.mkdirs();
             }
 
-            InputStream stream = BaseUtils.getResourceAsStream("/assets/textures/gui/favicon.png");
+            InputStream stream = BaseUtils.getResourceAsStream("/assets/textures/gui/favicon_netherupdate.png");
             OutputStream resStreamOut = null;
             int readBytes;
             byte[] buffer = new byte[4096];
             try {
-                resStreamOut = new FileOutputStream(new File(BaseUtils.getAssetsDir().toString() + "/favicon.png"));
+                resStreamOut = new FileOutputStream(new File(BaseUtils.getAssetsDir().toString() + "/favicon_netherupdate.png"));
                 while ((readBytes = stream.read(buffer)) > 0) {
                     resStreamOut.write(buffer, 0, readBytes);
                 }

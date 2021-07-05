@@ -132,7 +132,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
         }
 
         //Подготовка окна
-        setIconImage(BaseUtils.getLocalImage("favicon"));
+        setIconImage(BaseUtils.getLocalImage("favicon_netherupdate"));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBackground(Color.DARK_GRAY);
         setForeground(Color.DARK_GRAY);
@@ -390,11 +390,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
             }
             send("Running debug methods...");
 
-            new Runnable() {
-                public void run() {
-                    Settings.onStart();
-                }
-            }.run();
+            ((Runnable) () -> Settings.onStart()).run();
 
             main = new Frame();
 
@@ -406,7 +402,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener {
                 main.fullscreen.setSelected(getPropertyBoolean("fullscreen"));
                 main.loadnews.setSelected(getPropertyBoolean("loadnews", true));
                 main.Music.setSelected(getPropertyBoolean("Music", true));
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         } catch (Exception e) {
             throwException(e, main);

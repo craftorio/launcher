@@ -23,14 +23,14 @@ public class Starter {
                 memory = 1024;
             }
 
-            params.add("-Xms256m");
             // Command options
+            params.add("-Xms" + memory + "m");
             params.add("-Xmx" + memory + "m");
             //params.add("-XX:MaxPermSize=128m");
 
             if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
                 params.add("-Xdock:name=Minecraft");
-                params.add("-Xdock:icon=" + BaseUtils.getAssetsDir().toString() + "/favicon.png");
+                params.add("-Xdock:icon=" + BaseUtils.getAssetsDir() + "/favicon_netherupdate.png");
             }
             params.add("-classpath");
             params.add(jarpath);
@@ -41,9 +41,6 @@ public class Starter {
             pb.directory(new File(BaseUtils.getAssetsDir().toString()));
             BaseUtils.send("Starting launcher: \"" + String.join("\" \"", params) + "\"");
             Process process = pb.start();
-            if (null == process) {
-                throw new Exception("Launcher can't be started!");
-            }
             ProcessUtils processUtil = new ProcessUtils(process);
             processUtil.print();
         } catch (Exception e) {

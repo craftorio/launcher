@@ -17,7 +17,7 @@ public class LoginTheme
     public static LinklabelStyle  helpBtn     = new LinklabelStyle(26, 461, 133, 17, "font", 12F, Color.decode("0xFFFFFF"), Color.decode("0xE47134"), Align.CENTER);
     public static ButtonStyle     settingsBtn = new ButtonStyle(185, 274, 148, 48, "font", "button2-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
 
-    public static ButtonStyle     toGame      = new ButtonStyle(26, 212, 308, 50, "font", "button3-craftorio-2", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
+    public static ButtonStyle     toGame      = new ButtonStyle(26, 212, 308, 50, "minecraft", "button3-craftorio-2", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
     public static ButtonStyle     toPersonal  = new ButtonStyle(26, 320, 148, 50, "font", "button3-craftorio-2", 14F, Color.decode("0x03d942"), true, Align.CENTER);
 
     public static ButtonStyle     registerBtn = new ButtonStyle(26, 412, 308, 50, "font", "button3-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
@@ -42,7 +42,7 @@ public class LoginTheme
     public static ComboboxStyle   servers     = new ComboboxStyle(20, 106, 126, 26, "font", "servers_combo", 12F, Color.decode("0x778981"), true, Align.CENTER, new EmptyBorder(0, 10, 0, 10));
     public static ServerbarStyle  serverbar   = new ServerbarStyle(159, 112, 80, 16, "font", 12F, Color.decode("0xcccccc"), true);
 
-    public static LinklabelStyle  projectLinkStyle = new LinklabelStyle(26, 355, 308, 20, "font", 14F, Color.decode("0xFFFFFF"), Color.decode("0xE47134"), Align.CENTER);
+    public static LinklabelStyle  projectLinkStyle = new LinklabelStyle(26, 470, 308, 20, "font", 14F, Color.decode("0xFFFFFF"), Color.decode("0xE47134"), Align.CENTER);
     public static ServerSelectStyle serverSelectStyle = new ServerSelectStyle(26, 170, 47, "font", "button3-craftorio-1x", 14F, Color.decode("0xcccccc"));
     public static ButtonStyle serverSelectBack = new ButtonStyle(26, 412, 308, 48, "font", "button2-craftorio", 14F, Color.decode("0xFFFFFF"), true, Align.CENTER);
     

@@ -68,7 +68,7 @@ public class ThreadUtils {
                         }
                     }
                     String answer2 = BaseUtils.execute(BaseUtils.buildUrl("launcher.php"), new Object[]{"action", encrypt("auth:" + BaseUtils.getClientName() + ":" + Frame.login.getText() + ":" + token + ":" + GuardUtils.hash(ThreadUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().toURL()) + ":" + Frame.token, Settings.key2),});
-                    BaseUtils.send(answer2);
+                    BaseUtils.send(decrypt(answer2, Settings.key1));
                     String answer = null;
                     System.err.println();
                     try {

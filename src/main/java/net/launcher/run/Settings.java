@@ -21,7 +21,7 @@ public class Settings {
      * Параметры подключения
      */
     public static final String domain = "craftorio.com";//Домен сайта
-    public static final String siteDir = "launcher";//Папка с файлами лаунчера на сайте
+    public static final String siteDir = "launcher_test";//Папка с файлами лаунчера на сайте
     public static final String updateFile = "https://craftorio.com/launcher/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
 //    public static final String siteDir = "launcher_test";//Папка с файлами лаунчера на сайте
 //    public static final String updateFile = "https://craftorio.com/launcher_test/launcher/launcher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
@@ -65,13 +65,13 @@ public class Settings {
     public static final String key1 = "1234567891234567"; //16 Character Key Ключ пост запросов
     public static final String key2 = "1234567891234567"; //16 Character Key Ключ пост запросов
 
-    public static boolean debug = false; //Отображать все действия лаунчера (отладка)(true/false)
+    public static boolean debug = true; //Отображать все действия лаунчера (отладка)(true/false)
     public static boolean drawTracers = false; //Отрисовывать границы элементов лаунчера
-    public static final String masterVersion = "1.4.2"; //Версия лаунчера
+    public static final String masterVersion = "1.4.1"; //Версия лаунчера
 
     public static boolean patchDir = true; //Использовать автоматическую замену директории игры (true/false)
 
-    public static boolean release = true;
+    public static boolean release = false;
 
     /**
      * Ставим true после окончания настройки!

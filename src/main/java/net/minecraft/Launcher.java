@@ -33,11 +33,7 @@ public class Launcher extends Applet implements AppletStub {
         }
 
 
-        new Runnable() {
-            public void run() {
-                Settings.onStartMinecraft();
-            }
-        }.run();
+        Settings.onStartMinecraft();
 
         eURLClassLoader cl = new eURLClassLoader(urls);
         System.setProperty("org.lwjgl.librarypath", bin + "natives");
@@ -61,7 +57,7 @@ public class Launcher extends Applet implements AppletStub {
     }
 
     public String getParameter(String name) {
-        String custom = (String) customParameters.get(name);
+        String custom = customParameters.get(name);
         if (custom != null)
             return custom;
         try {

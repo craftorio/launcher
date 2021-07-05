@@ -72,7 +72,7 @@ public class ThemeUtils extends BaseUtils {
         //newsBrowser.apply(main.bpane);
         main.panel.setPreferredSize(new Dimension(frameW, frameH));
 
-        main.setIconImage(BaseUtils.getLocalImage("favicon"));
+        main.setIconImage(BaseUtils.getLocalImage("favicon_netherupdate"));
         main.setTitle(Settings.title);
         main.setLocationRelativeTo(null);
         main.pack();

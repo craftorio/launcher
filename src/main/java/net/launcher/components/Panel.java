@@ -37,13 +37,13 @@ public class Panel extends JPanel {
     private static final long serialVersionUID = 1L;
 
 
-    public static BufferedImage background = BaseUtils.getLocalImage("background_craftorio");
+    public static BufferedImage background = BaseUtils.getLocalImage("background_netherupdate");
     public static BufferedImage icon = BaseUtils.getLocalImage("icon");
     public static BufferedImage logo = BaseUtils.getLocalImage("logo_craftorio");
     public static BufferedImage background_personal = BaseUtils.getLocalImage("background_personal");
     public static BufferedImage background_dialog = BaseUtils.getLocalImage("background_dialog");
     public static BufferedImage background_download = BaseUtils.getLocalImage("background_download");
-    public static BufferedImage bar = BaseUtils.getLocalImage("bar-craftorio");
+    public static BufferedImage bar = BaseUtils.getLocalImage("bar-netherupdate");
     public static BufferedImage bar_label = BaseUtils.getLocalImage("bar_label");
     public static BufferedImage extpanel = BaseUtils.getLocalImage("extpanel");
 

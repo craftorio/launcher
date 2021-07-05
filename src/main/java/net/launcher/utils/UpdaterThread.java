@@ -1,19 +1,24 @@
 package net.launcher.utils;
 
-import java.io.*;
+import net.launcher.components.GameFrame;
+import net.launcher.components.GameLegacy;
+import org.jnbt.CompoundTag;
+import org.jnbt.ListTag;
+import org.jnbt.StringTag;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-//import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.launcher.components.Game;
-import org.jnbt.CompoundTag;
-import org.jnbt.ListTag;
-import org.jnbt.StringTag;
+//import java.net.URLConnection;
 
 public class UpdaterThread extends Thread {
     public int procents = 0;
@@ -55,7 +60,7 @@ public class UpdaterThread extends Thread {
                 BaseUtils.send("Downloading file: " + currentfile);
                 try {
                     dir = new File(pathTo + "/" + currentfile.substring(0, currentfile.lastIndexOf("/")));
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
                 if (!dir.exists()) dir.mkdirs();
                 HttpURLConnection ct = null;
@@ -131,7 +136,7 @@ public class UpdaterThread extends Thread {
             NBTos.writeTag(new CompoundTag("", values));
             NBTos.close();
 
-            new Game(answer);
+            new GameFrame(answer);
         } catch (Exception e) {
             e.printStackTrace();
             state = e.toString();

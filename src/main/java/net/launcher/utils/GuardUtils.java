@@ -1,7 +1,8 @@
 package net.launcher.utils;
 
 import net.launcher.components.Frame;
-import net.launcher.components.Game;
+import net.launcher.components.GameFrame;
+import net.launcher.components.GameLegacy;
 import net.launcher.run.Settings;
 
 import java.io.*;
@@ -73,21 +74,21 @@ public class GuardUtils {
     public static void checkMods(String answer, boolean action) {
         BaseUtils.sendp("ANTICHEAT: Rechecking jars....");
         GuardUtils.updateMods(answer);
-        if (ret && action) {
-            Frame.main.setError("Ошибка вторичной проверки кеша.");
-            return;
-        } else if (ret && !action) {
-            BaseUtils.sendp("ANTICHEAT: Strange mods detected");
-            try {
-                Class<?> af = Class.forName("java.lang.Shutdown");
-                Method m = af.getDeclaredMethod("halt0", int.class);
-                m.setAccessible(true);
-                m.invoke(null, 1);
-            } catch (Exception e) {
-            }
-            Game.start.stop();
-            return;
-        }
+//        if (ret && action) {
+//            Frame.main.setError("Ошибка вторичной проверки кеша.");
+//            return;
+//        } else if (ret && !action) {
+//            BaseUtils.sendp("ANTICHEAT: Strange mods detected");
+//            try {
+//                Class<?> af = Class.forName("java.lang.Shutdown");
+//                Method m = af.getDeclaredMethod("halt0", int.class);
+//                m.setAccessible(true);
+//                m.invoke(null, 1);
+//            } catch (Exception e) {
+//            }
+//            //GameFrame.gameThread.stop();
+//            return;
+//        }
 
         BaseUtils.sendp("ANTICHEAT: Mod checking done");
     }
@@ -121,12 +122,12 @@ public class GuardUtils {
         }
     }
 
-    public static void getLogs(File Logs) {
-        if (!Logs.exists())
+    public static void prepareLogDirs(File Logs) {
+        if (!Logs.exists()) {
             Logs.mkdirs();
+        }
         for (File file : Logs.listFiles()) {
-            if (file.isDirectory()) {
-            } else {
+            if (!file.isDirectory()) {
                 if (file.getName().contains(".log")) {
                     delete(file);
                 }
